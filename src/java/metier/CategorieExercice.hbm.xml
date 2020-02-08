@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8 f?vr. 2020 12:38:48 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.CategorieExercice" table="CategorieExercice" catalog="db_21305092" optimistic-lock="version">
+        <id name="idCategorieExercice" type="java.lang.Integer">
+            <column name="IdCategorieExercice" />
+            <generator class="identity" />
+        </id>
+        <property name="nomCategorieExercice" type="string">
+            <column name="NomCategorieExercice" length="50" not-null="true" />
+        </property>
+        <property name="descriptionCategorieExercice" type="string">
+            <column name="DescriptionCategorieExercice" length="250" />
+        </property>
+        <set name="exercices" table="AvoirCategorieExercice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdCategorieExercice" not-null="true" />
+            </key>
+            <many-to-many entity-name="metier.Exercice">
+                <column name="IdExercice" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

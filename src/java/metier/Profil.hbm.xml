@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8 f?vr. 2020 12:38:48 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.Profil" table="Profil" catalog="db_21305092" optimistic-lock="version">
+        <id name="idProfil" type="java.lang.Integer">
+            <column name="IdProfil" />
+            <generator class="identity" />
+        </id>
+        <property name="nomProfil" type="string">
+            <column name="NomProfil" length="50" not-null="true" />
+        </property>
+        <set name="programmes" table="Programme" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdProfil" />
+            </key>
+            <one-to-many class="metier.Programme" />
+        </set>
+    </class>
+</hibernate-mapping>
