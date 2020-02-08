@@ -27,11 +27,11 @@
         <property name="nbOccurenceRepetitions" type="java.lang.Integer">
             <column name="NbOccurenceRepetitions" />
         </property>
-        <property name="tempsPause" type="java.lang.Long">
-            <column name="TempsPause" precision="10" scale="0" />
+        <property name="tempsPause" type="java.lang.Float">
+            <column name="TempsPause"  scale="0" />
         </property>
-        <property name="duree" type="java.lang.Long">
-            <column name="Duree" precision="10" scale="0" />
+        <property name="duree" type="java.lang.Float">
+            <column name="Duree"  scale="0" />
         </property>
     </class>
 </hibernate-mapping>
