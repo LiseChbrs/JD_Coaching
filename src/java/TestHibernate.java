@@ -22,8 +22,9 @@ Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 Transaction t = session.beginTransaction();
 
 // Votre code sera ici !
-System.out.println("lol");
+
 t.commit();
+System.out.println("lol");
 System.exit(0);
 }
 
