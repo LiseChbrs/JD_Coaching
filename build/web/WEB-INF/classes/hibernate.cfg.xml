@@ -50,15 +50,15 @@ Contributor(s):
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <property name="hibernate.hbm2ddl.auto">validate</property>
-    <mapping resource="metier/Exercice.hbm.xml"/>
-    <mapping resource="metier/CategorieExercice.hbm.xml"/>
-    <mapping resource="metier/ObjectifExercice.hbm.xml"/>
-    <mapping resource="metier/ContenirExercice.hbm.xml"/>
-    <mapping resource="metier/Programme.hbm.xml"/>
-    <mapping resource="metier/Seance.hbm.xml"/>
-    <mapping resource="metier/ContenirSeance.hbm.xml"/>
     <mapping resource="metier/Profil.hbm.xml"/>
-    <mapping resource="metier/CategorieSeance.hbm.xml"/>
+    <mapping resource="metier/Seance.hbm.xml"/>
+    <mapping resource="metier/Programme.hbm.xml"/>
+    <mapping resource="metier/ContenirSeance.hbm.xml"/>
+    <mapping resource="metier/CategorieExercice.hbm.xml"/>
+    <mapping resource="metier/Exercice.hbm.xml"/>
     <mapping resource="metier/Difficulte.hbm.xml"/>
+    <mapping resource="metier/ContenirExercice.hbm.xml"/>
+    <mapping resource="metier/CategorieSeance.hbm.xml"/>
+    <mapping resource="metier/ObjectifExercice.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>
