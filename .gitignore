@@ -2,3 +2,5 @@ src/java/hibernate.cfg.xml
 
 src/java/hibernate.cfg
 
+/build/
+/dist/

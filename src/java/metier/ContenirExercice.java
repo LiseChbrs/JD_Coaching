@@ -1,5 +1,5 @@
 package metier;
-// Generated 8 févr. 2020 12:38:47 by Hibernate Tools 4.3.1
+// Generated 8 fevr. 2020 12:38:47 by Hibernate Tools 4.3.1
 
 
 
@@ -14,8 +14,8 @@ public class ContenirExercice  implements java.io.Serializable {
      private Seance seance;
      private Integer nbRepetitions;
      private Integer nbOccurenceRepetitions;
-     private Long tempsPause;
-     private Long duree;
+     private Float tempsPause;
+     private Float duree;
 
     public ContenirExercice() {
     }
@@ -26,7 +26,7 @@ public class ContenirExercice  implements java.io.Serializable {
         this.exercice = exercice;
         this.seance = seance;
     }
-    public ContenirExercice(ContenirExerciceId id, Exercice exercice, Seance seance, Integer nbRepetitions, Integer nbOccurenceRepetitions, Long tempsPause, Long duree) {
+    public ContenirExercice(ContenirExerciceId id, Exercice exercice, Seance seance, Integer nbRepetitions, Integer nbOccurenceRepetitions, Float tempsPause, Float duree) {
        this.id = id;
        this.exercice = exercice;
        this.seance = seance;
@@ -71,18 +71,18 @@ public class ContenirExercice  implements java.io.Serializable {
     public void setNbOccurenceRepetitions(Integer nbOccurenceRepetitions) {
         this.nbOccurenceRepetitions = nbOccurenceRepetitions;
     }
-    public Long getTempsPause() {
+    public Float getTempsPause() {
         return this.tempsPause;
     }
     
-    public void setTempsPause(Long tempsPause) {
+    public void setTempsPause(Float tempsPause) {
         this.tempsPause = tempsPause;
     }
-    public Long getDuree() {
+    public Float getDuree() {
         return this.duree;
     }
     
-    public void setDuree(Long duree) {
+    public void setDuree(Float duree) {
         this.duree = duree;
     }
 
