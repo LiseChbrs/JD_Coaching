@@ -1,11 +1,4 @@
- <?php 
-    session_start();
-    //charger le fichier de fonctions
-        require('fonctionsUtiles.php');
-        //exécuter la fonction
-        $co= connexion_choix();
-   
-    ?>
+
 <html>
 
 <head>

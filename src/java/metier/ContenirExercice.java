@@ -21,13 +21,13 @@ public class ContenirExercice  implements java.io.Serializable {
     }
 
 	
-    public ContenirExercice(ContenirExerciceId id, Exercice exercice, Seance seance) {
-        this.id = id;
+    public ContenirExercice(Exercice exercice, Seance seance, int numOrdre) {
+        this.id = new ContenirExerciceId(exercice.getIdExercice(), seance.getIdSeance(), numOrdre);
         this.exercice = exercice;
         this.seance = seance;
     }
-    public ContenirExercice(ContenirExerciceId id, Exercice exercice, Seance seance, Integer nbRepetitions, Integer nbOccurenceRepetitions, Float tempsPause, Float duree) {
-       this.id = id;
+    public ContenirExercice(ContenirExerciceId id, Exercice exercice, Seance seance, int numOrdre, Integer nbRepetitions, Integer nbOccurenceRepetitions, Float tempsPause, Float duree) {
+       this.id = new ContenirExerciceId(exercice.getIdExercice(), seance.getIdSeance(), numOrdre);
        this.exercice = exercice;
        this.seance = seance;
        this.nbRepetitions = nbRepetitions;
