@@ -3,25 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlet;
+package ctrl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import metier.CategorieExercice;
+import metier.ObjectifExercice;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Projections;
 import orm.HibernateUtil;
 
 /**
  *
  * @author alied
  */
-@WebServlet(name = "ServletCreationSeance", urlPatterns = {"/ServletCreationSeance"})
-public class ServletCreationSeance extends HttpServlet {
+public class ServletCreationExercice extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,19 +39,38 @@ public class ServletCreationSeance extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+System.out.println("test");
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = session.beginTransaction();
 
+        RequestDispatcher rd = request.getRequestDispatcher("exercice"); // je récupère mon dispatche
+
+        List categories = session.createCriteria(CategorieExercice.class)
+                .setProjection(Projections.projectionList()
+                        .add(Projections.property("idCategorieExercice"))
+                        .add(Projections.property("nomCategorieExercice")))
+                .list();
+
+        List objectifs = session.createCriteria(ObjectifExercice.class)
+                .setProjection(Projections.projectionList()
+                        .add(Projections.property("idObjectifExercice"))
+                        .add(Projections.property("descriptionObjectifExercice")))
+                .list();
+
+        request.setAttribute("categories", categories); // Je met mon arrayListe "list" en tant qu'attribut du reques
+
+        request.setAttribute("objectifs", objectifs); // Je met mon arrayListe "list" en tant qu'attribut du request
         try {
-            String nomSeance = request.getParameter("nomSeance");
-            
-            String typeSeance = request.getParameter("typeSeance");
+            rd.forward(request, response); // j'envoi le request ?
+        } catch (ServletException ex) {
+            Logger.getLogger(ServletCreationExercice.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("kek");
+        } catch (IOException ex) {
+            Logger.getLogger(ServletCreationExercice.class.getName()).log(Level.SEVERE, null, ex);
+                        System.out.println("ika");
 
-            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-            Transaction t = session.beginTransaction();           
         }
-        catch(){
-            
-        }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -10,11 +10,11 @@
     </servlet>
     <servlet>
         <servlet-name>ServletCreationSeance</servlet-name>
-        <servlet-class>servlet.ServletCreationSeance</servlet-class>
+        <servlet-class>ctrl.ServletCreationSeance</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ServletCreationExercice</servlet-name>
-        <servlet-class>servlet.ServletCreationExercice</servlet-class>
+        <servlet-class>ctrl.ServletCreationExercice</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreationSeance</servlet-name>
