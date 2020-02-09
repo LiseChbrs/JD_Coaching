@@ -1,6 +1,6 @@
 <%-- 
     Document   : Exercice
-    Created on : 9 févr. 2020, 14:12:13
+    Created on : 9 fevr. 2020, 14:12:13
     Author     : alied
 --%>
 
@@ -107,6 +107,8 @@
             out.println("<h1> Categories </h1> ");
             System.out.println(categories.size());
                 for(int i=0; i<categories.size();i++){
+                    System.out.println(categories.get(i));
+                    System.out.println((categories.get(i).getClass()));
                     CategorieExercice ce =(CategorieExercice)categories.get(i);
                     out.println("<input type=\"checkbox\" name =\"cat\" value="+ce.getIdCategorieExercice()+">"+ce.getNomCategorieExercice());
                           
