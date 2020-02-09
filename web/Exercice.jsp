@@ -1,9 +1,5 @@
-<%-- 
-    Document   : Exercice
-    Created on : 9 févr. 2020, 14:12:13
-    Author     : alied
---%>
-
+<%@page import="org.hibernate.Session"%>
+<%@page import="orm.HibernateUtil"%>
 <%@page import="metier.CategorieExercice"%>
 <%@page import="metier.ObjectifExercice"%>
 <%@page import="java.util.List"%>
@@ -40,6 +36,7 @@
 </head>
 
 <body>
+    
 
     <div class="brand" ><p><img src="boots/image/logojd.jpg"  alt="logojd" width="150" height="150"  ></p>JD Coaching</div>
     <div class="address-bar">Coach sportif diplômé</div>
@@ -91,33 +88,43 @@
                         <!-- Wrapper for slides -->
                        
                             <h2>Entrez les champs suivants</h2></br></br>
-                                <form action="ServletExercice">
-                                    <input type="text" name="nom" value="" placeholder="nom" required/><br><br>
-                                    <input type="text" name="description" placeholder="description" value="" size="25" required/></br><br>
+                                <form action="ServletCreationExercice">
+                                    <input type="text" id="zone" name="nom" value="" placeholder="Nom" required/><br><br>
+                                    <div id="resultat"></div>
+                                    <input type="text" name="description" placeholder="Mettez une description (optionnel)" value="" size="25" /></br><br>
                                     <input type="text" name="lienimg" value="" placeholder="rentrer l'URL de l'image" /><br><br>
                                     <input type="text" name="lienvid" value="" placeholder="rentrer l'URL de la vido"/><br><br>   
 
      <%
            
                 //récup attribut
-                List categories = (List)request.getAttribute("categories");
-                List objectifs = (List)request.getAttribute("objectifs");
+                
+                List<CategorieExercice> categories = (List<CategorieExercice>)request.getAttribute("categories");
+                List<ObjectifExercice> objectifs = (List<ObjectifExercice>)request.getAttribute("objectifs");
+                
 
                 //creation tab
-            out.println("<h1> Categories </h1> ");
+           out.println("<h1> Categories </h1> ");
                 for(int i=0; i<categories.size();i++){
                     CategorieExercice ce =(CategorieExercice)categories.get(i);
-                    out.println("<input type=\"checkbox\" name =\"cat\" value="+ce.getIdCategorieExercice()+">"+ce.getNomCategorieExercice());
+                    out.println("<input type=\"checkbox\" name =\"cat\" value="+ce.getIdCategorieExercice()+">"+ce.getNomCategorieExercice() + "required");
                           
                 }out.println("</br>");
+                
 				
                 //creation tab
-		out.println("<h1> Objectifs </h1> ");
+                 out.println("<h1> Objectifs </h1> ");
                 for(int i=0; i<objectifs.size();i++){
                     ObjectifExercice ob =(ObjectifExercice)objectifs.get(i);
-                   out.println("<input type=\"checkbox\" name =\"obj\"  value="+ob.getIdObjectifExercice()+">"+ob.getNomObjectifExercice());
+                   out.println("<input type=\"checkbox\" name =\"obj\"  value="+ob.getIdObjectifExercice()+">"+ob.getNomObjectifExercice() + "required");
                           
                 }out.println("</br>");
+                
+                
+                    
+                
+
+                
                 
                 %>
                                     <input type="submit" value="Enregistrer" name="btnajouter" />
@@ -153,6 +160,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+    <script type="text/JavaScript" src="jsfonction/ajax.js"></script>
 
 
 </body>
