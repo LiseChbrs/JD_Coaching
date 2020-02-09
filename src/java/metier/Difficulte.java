@@ -18,6 +18,11 @@ public class Difficulte  implements java.io.Serializable {
     public Difficulte() {
     }
 
+    public Difficulte(Integer idDifficulte, String nomDifficulte) {
+        this.idDifficulte = idDifficulte;
+        this.nomDifficulte = nomDifficulte;
+    }
+
 	
     public Difficulte(String nomDifficulte) {
         this.nomDifficulte = nomDifficulte;

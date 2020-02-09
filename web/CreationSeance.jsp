@@ -4,6 +4,11 @@
     Author     : alied
 --%>
 
+<%@page import="metier.CategorieExercice"%>
+<%@page import="metier.Difficulte"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
+<%@page import="metier.CategorieSeance"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,10 +68,10 @@
                         <a href="index.html">Accueil</a>
                     </li>
                     <li>
-                        <a href="Exercice.jsp">Exercice</a>
+                        <a href="ServletCreationExercice">Exercice</a>
                     </li>
                     <li>
-                        <a href="CreationSeance.jsp">Séance</a>
+                        <a href="ServletCreationSeance?action=versForm">Séance</a>
                     </li>
                     <li>
                         <a href="Programme.jsp">Programme</a>
@@ -94,8 +99,38 @@
                     <form method="GET" action="ServletCreationSeance">
                         Nom : <input type="text" name="nomSeance" id="idNomSeance"/>
                         Séance bilan <input type="checkbox" name="typeSeance" id="idTypeSeance"/> 
+                        Difficulté : Catégorie : <select name="categorie" >
+                            <option></option>
+                            <%  List<Difficulte> lstDifficulte = (List<Difficulte>)request.getAttribute("listeDifficulte");
+                            for(Difficulte d : lstDifficulte){
+                                out.println("<option>");
+                                out.println(d.getNomDifficulte());
+                                out.println("</option>");
+                            }
+                            %>
+                        </select>
+                        <p>Catégorie : <select name="categorie" >
+                            <option></option>
+                            <%  List<CategorieSeance> lstCategorie = (List<CategorieSeance>)request.getAttribute("listeCategorie");
+                            for(CategorieSeance cs : lstCategorie){
+                                out.println("<option>");
+                                out.println(cs.getNomCategorieSeance());
+                                out.println("</option>");
+                            }
+                            %>
+                            </select>
+                            <input type="button" value="Enregistrer la categorie"/>     </P>    
+                        
+                        Exercice : 
+                        Categorie de l'exercice : 
+                        <% List<CategorieExercice> lstCategorieExercice = (List<CategorieExercice>)request.getAttribute("listeCategorieExercice");
+                            for(CategorieExercice ce : lstCategorieExercice){
+                                out.print("<input type=\"button\" id="+ce.getIdCategorieExercice()+" onClick='afficherExercice(this.id)' value="+ce.getNomCategorieExercice()+">");
+                            }
+                            
+                        %>
+                        </br><input type="submit" value="Enregistrer la séance"/>
                     </form>
-                    
                     </div>
             </div>
         </div>
@@ -114,7 +149,7 @@
             </div>
         </div>
     </footer>
-
+<!--<script type="text/JavaScript" src="js/visuel.js"></script>-->
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 

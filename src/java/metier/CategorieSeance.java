@@ -23,6 +23,12 @@ public class CategorieSeance  implements java.io.Serializable {
     public CategorieSeance(String nomCategorieSeance) {
         this.nomCategorieSeance = nomCategorieSeance;
     }
+
+    public CategorieSeance(Integer idCategorieSeance, String nomCategorieSeance) {
+        this.idCategorieSeance = idCategorieSeance;
+        this.nomCategorieSeance = nomCategorieSeance;
+    }
+    
     public CategorieSeance(String nomCategorieSeance, String descriptionCategorieSeance, Set seances) {
        this.nomCategorieSeance = nomCategorieSeance;
        this.descriptionCategorieSeance = descriptionCategorieSeance;
