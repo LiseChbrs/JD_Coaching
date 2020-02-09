@@ -23,6 +23,13 @@ public class CategorieExercice  implements java.io.Serializable {
     public CategorieExercice(String nomCategorieExercice) {
         this.nomCategorieExercice = nomCategorieExercice;
     }
+
+    public CategorieExercice(Integer idCategorieExercice, String nomCategorieExercice) {
+        this.idCategorieExercice = idCategorieExercice;
+        this.nomCategorieExercice = nomCategorieExercice;
+    }
+    
+    
     public CategorieExercice(String nomCategorieExercice, String descriptionCategorieExercice, Set exercices) {
        this.nomCategorieExercice = nomCategorieExercice;
        this.descriptionCategorieExercice = descriptionCategorieExercice;

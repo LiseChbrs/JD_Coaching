@@ -7,11 +7,17 @@ package ctrl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import metier.CategorieExercice;
+import metier.CategorieSeance;
+import metier.Difficulte;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import orm.HibernateUtil;
@@ -36,14 +42,40 @@ public class ServletCreationSeance extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-            String nomSeance = request.getParameter("nomSeance");
-            
-            String typeSeance = request.getParameter("typeSeance");
 
-            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-            Transaction t = session.beginTransaction();           
-        }
-        catch(Exception e){
+            String action = request.getParameter("action");
+            switch (action) {
+                case "versForm":
+                    try {
+                        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+                        Transaction t = session.beginTransaction();
+                        List<Difficulte> queryDifficulte = (List<Difficulte>) session.createQuery(
+                                "select new metier.Difficulte(d.idDifficulte"
+                                + " ,d.nomDifficulte)"
+                                + " from Difficulte d").list();
+                        List<CategorieSeance> queryCategorieSeance = (List<CategorieSeance>) session.createQuery(
+                                "select new metier.CategorieSeance(cs.idCategorieSeance"
+                                + " ,cs.nomCategorieSeance)"
+                                + " from CategorieSeance cs").list();
+                        List<CategorieExercice> queryCategorieExercice = (List<CategorieExercice>) session.createQuery(
+                                "select new metier.CategorieExercice(ce.idCategorieExercice"
+                                + " ,ce.nomCategorieExercice)"
+                                + " from CategorieExercice ce").list();
+                        RequestDispatcher rd = request.getRequestDispatcher("creationSeance");
+                        request.setAttribute("listeCategorie", queryCategorieSeance);
+                        request.setAttribute("listeDifficulte", queryDifficulte);
+                        request.setAttribute("listeCategorieExercice", queryCategorieExercice);
+                        rd.forward(request, response);
+
+                    } catch (Exception e) {
+System.out.println(e.getMessage());
+                    }
+
+            }
+
+            //String nomSeance = request.getParameter("nomSeance");
+            //String typeSeance = request.getParameter("typeSeance");
+        } catch (Exception e) {
         }
 
     }
