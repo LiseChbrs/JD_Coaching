@@ -105,6 +105,7 @@
 
                 //creation tab
             out.println("<h1> Categories </h1> ");
+            System.out.println(categories.size());
                 for(int i=0; i<categories.size();i++){
                     CategorieExercice ce =(CategorieExercice)categories.get(i);
                     out.println("<input type=\"checkbox\" name =\"cat\" value="+ce.getIdCategorieExercice()+">"+ce.getNomCategorieExercice());
