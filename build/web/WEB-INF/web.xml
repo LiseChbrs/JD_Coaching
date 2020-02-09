@@ -20,6 +20,10 @@
         <servlet-name>ServletVerifExercice</servlet-name>
         <servlet-class>ctrl.ServletVerifExercice</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletListeExercices</servlet-name>
+        <servlet-class>ctrl.ServletListeExercices</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreationSeance</servlet-name>
         <url-pattern>/creationSeance</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ServletVerifExercice</servlet-name>
         <url-pattern>/ServletVerifExercice</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletListeExercices</servlet-name>
+        <url-pattern>/ServletListeExercices</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

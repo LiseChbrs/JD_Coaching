@@ -109,7 +109,7 @@
                     System.out.println(categories.get(i));
                     System.out.println((categories.get(i).getClass()));
                     CategorieExercice ce =(CategorieExercice)categories.get(i);
-                    out.println("<input type=\"checkbox\" name =\"cat\" value="+ce.getIdCategorieExercice()+">"+ce.getNomCategorieExercice() + "required");
+                    out.println("<input type=\"checkbox\" name =\"cat\" value="+ce.getIdCategorieExercice()+ " required=\"required\"/>"+ce.getNomCategorieExercice());
                           
                 }out.println("</br>");
                 
@@ -118,7 +118,7 @@
                  out.println("<h1> Objectifs </h1> ");
                 for(int i=0; i<objectifs.size();i++){
                     ObjectifExercice ob =(ObjectifExercice)objectifs.get(i);
-                   out.println("<input type=\"checkbox\" name =\"obj\"  value="+ob.getIdObjectifExercice()+">"+ob.getNomObjectifExercice() + "required");
+                   out.println("<input type=\"checkbox\" name =\"obj\"  value="+ob.getIdObjectifExercice()+ " required=\"required\"/>"+ob.getNomObjectifExercice());
                           
                 }out.println("</br>");
                 
@@ -129,7 +129,7 @@
                 
                 
                 %>
-                                    <input type="submit" value="Enregistrer" name="btnajouter" />
+                                    <input type="submit" id="btnajouter" value="Enregistrer" name="btnajouter" />
                                 </form>    
                     
                        

@@ -41,8 +41,6 @@ public class ServletCreationSeance extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        try {
-
             String action = request.getParameter("action");
             switch (action) {
                 case "versForm":
@@ -68,15 +66,13 @@ public class ServletCreationSeance extends HttpServlet {
                         rd.forward(request, response);
 
                     } catch (Exception e) {
-System.out.println(e.getMessage());
+                        System.out.println(e.getMessage());
                     }
 
             }
 
             //String nomSeance = request.getParameter("nomSeance");
             //String typeSeance = request.getParameter("typeSeance");
-        } catch (Exception e) {
-        }
 
     }
 

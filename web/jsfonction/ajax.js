@@ -36,6 +36,36 @@ function isExist() {
                xhr.send(param);    
      
     }
+    
+function afficherExercice(id){
+    var xhr = new XMLHttpRequest();
+    var url = "ServletListeExercices?id=" + id ;        
+
+     xhr.open("GET",url);
+     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+
+      xhr.onload = function()
+            {
+                if (xhr.status === 200)
+                {    
+                    var elt = document.getElementById("zoneExercice");
+                    var doc = xhr.responseXML;
+                    var element = doc.getElementsByTagName("element");
+                    var chaine = "";
+                    for (var i = 0; i < name.length; i++){
+                       id = element[i].getElementsByTagName("id").firstChild.nodeValue;
+                       name = element[i].getElementsByTagName("name").firstChild.nodeValue;
+                       image = element[i].getElementsByTagName("image").firstChild.nodeValue;
+                       chaine += "<IMG SRC="+image+" ALT="+name+" TITLE="+name+">";
+                       chaine += "<input type=\"radio\" name=\"exercice\" value="+id+" />";
+                    }
+                    elt.innerHTML = chaine;
+                    
+                }
+            };
+            xhr.send();  
+}
 
 document.addEventListener("DOMContentLoaded", () => {
 

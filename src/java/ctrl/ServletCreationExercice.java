@@ -20,6 +20,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Projections;
 import orm.HibernateUtil;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class ServletCreationExercice extends HttpServlet{
@@ -73,5 +75,3 @@ public class ServletCreationExercice extends HttpServlet{
     
     
     
-import java.util.logging.Level;
-import java.util.logging.Logger;
