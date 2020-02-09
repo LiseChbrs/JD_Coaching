@@ -3,6 +3,7 @@ package metier;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -21,7 +22,6 @@ public class Seance  implements java.io.Serializable {
 
     public Seance() {
     }
-
 	
     public Seance(String nomSeance, String typeSeance) {
         this.nomSeance = nomSeance;
@@ -85,6 +85,37 @@ public class Seance  implements java.io.Serializable {
     public void setContenirSeances(Set contenirSeances) {
         this.contenirSeances = contenirSeances;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 29 * hash + Objects.hashCode(this.idSeance);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Seance other = (Seance) obj;
+        if (!Objects.equals(this.idSeance, other.idSeance)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Seance{" + "idSeance=" + idSeance + ", difficulte=" + difficulte + ", nomSeance=" + nomSeance + ", typeSeance=" + typeSeance + ", contenirExercices=" + contenirExercices + ", categorieSeances=" + categorieSeances + ", contenirSeances=" + contenirSeances + '}';
+    }
+    
 
 
 

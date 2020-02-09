@@ -1,10 +1,19 @@
+<%-- 
+    Document   : CreationSeance
+    Created on : 8 fevr. 2020, 18:21:26
+    Author     : alied
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Page d'accueil">
+    <meta name="description" content="Saisie d'une séance">
     <meta name="author" content="JALA-PC">
 
     <title>JD Coaching</title>
@@ -60,7 +69,7 @@
                         <a href="CreationSeance.jsp">Séance</a>
                     </li>
                     <li>
-                        <a href="contact.html">Programme</a>
+                        <a href="Programme.jsp">Programme</a>
                     </li>
                 </ul>
             </div>
@@ -71,51 +80,27 @@
 
     <div class="container">
 
+        
+
         <div class="row">
             <div class="box">
-                <div class="col-lg-12 text-center">
-                    <div id="carousel-example-generic" class="carousel slide">
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators hidden-xs">
-                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-                        </ol>
-
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img class="img-responsive img-full" src="boots/image/rt.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img class="img-responsive img-full" src="boots/image/rt.jpg" alt="">
-                            </div>
-                            <div class="item">
-                                <img class="img-responsive img-full" src="boots/image/slide-3.jpg" alt="">
-                            </div>
-                        </div>
-
-                        <!-- Controls -->
-                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                            <span class="icon-prev"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                            <span class="icon-next"></span>
-                        </a>
+                <div class="col-lg-12">
+                    <hr>
+                    <h2 class="intro-text text-center">Création d'une
+                        <strong>séance</strong>
+                    </h2>
+                    <hr>
+                    <hr class="visible-xs">
+                    <form method="GET" action="ServletCreationSeance">
+                        Nom : <input type="text" name="nomSeance" id="idNomSeance"/>
+                        Séance bilan <input type="checkbox" name="typeSeance" id="idTypeSeance"/> 
+                    </form>
+                    
                     </div>
-                    <h2 class="brand-before">
-                        <small>Bienvenue sur</small>
-                    </h2>
-                    <h1 class="brand-name">JD Coaching</h1>
-                    <hr class="tagline-divider">
-                    <h2>
-                        <small>By
-                            <strong>Jean-David Lalanne</strong>
-                        </small>
-                    </h2>
-                </div>
             </div>
         </div>
+
+     
 
     </div>
     <!-- /.container -->
@@ -135,14 +120,7 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
-    <!-- Script to Activate the Carousel -->
-    <script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
-    </script>
-
 </body>
 
 </html>
+

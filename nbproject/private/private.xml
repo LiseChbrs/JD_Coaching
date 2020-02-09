@@ -2,25 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/FITSurvivor/src/java/metier/Programme.java</file>
-            <file>file:/D:/FITSurvivor/src/java/hibernate.cfg.xml</file>
-            <file>file:/D:/FITSurvivor/src/java/metier/ContenirExerciceId.java</file>
-            <file>file:/D:/FITSurvivor/src/java/metier/Profil.java</file>
-            <file>file:/D:/FITSurvivor/src/java/metier/Seance.java</file>
-            <file>file:/D:/FITSurvivor/src/java/metier/Difficulte.java</file>
-            <file>file:/D:/FITSurvivor/src/java/metier/ContenirExercice.java</file>
-            <file>file:/D:/FITSurvivor/src/java/metier/ContenirSeanceId.java</file>
-            <file>file:/D:/FITSurvivor/src/java/metier/ContenirExercice.hbm.xml</file>
-            <file>file:/D:/FITSurvivor/src/java/metier/CategorieExercice.java</file>
-            <file>file:/D:/FITSurvivor/src/java/metier/CategorieSeance.java</file>
-            <file>file:/D:/FITSurvivor/src/java/metier/ContenirSeance.java</file>
-            <file>file:/D:/FITSurvivor/web/index.html</file>
-            <file>file:/D:/FITSurvivor/src/java/orm/HibernateUtil.java</file>
-            <file>file:/D:/FITSurvivor/src/java/metier/Exercice.java</file>
-            <file>file:/D:/FITSurvivor/src/java/hibernate.reveng.xml</file>
-            <file>file:/D:/FITSurvivor/src/java/metier/ObjectifExercice.java</file>
-            <file>file:/D:/FITSurvivor/src/java/TestHibernate.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
