@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>CreationSeance</servlet-name>
+        <jsp-file>/CreationSeance.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>Exercice</servlet-name>
+        <jsp-file>/Exercice.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletCreationSeance</servlet-name>
+        <servlet-class>servlet.ServletCreationSeance</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletCreationExercice</servlet-name>
+        <servlet-class>servlet.ServletCreationExercice</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CreationSeance</servlet-name>
+        <url-pattern>/creationSeance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Exercice</servlet-name>
+        <url-pattern>/exercice</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCreationSeance</servlet-name>
+        <url-pattern>/ServletCreationSeance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCreationExercice</servlet-name>
+        <url-pattern>/ServletCreationExercice</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

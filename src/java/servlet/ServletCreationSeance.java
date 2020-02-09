@@ -38,12 +38,10 @@ public class ServletCreationSeance extends HttpServlet {
         try {
             String nomSeance = request.getParameter("nomSeance");
             
-            boolean typeSeance = request.getParameter("typeSeance");
+            String typeSeance = request.getParameter("typeSeance");
 
             Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-            Transaction t = session.beginTransaction();
-            
-
+            Transaction t = session.beginTransaction();           
         }
         catch(){
             
