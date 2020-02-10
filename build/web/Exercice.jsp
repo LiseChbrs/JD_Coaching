@@ -88,7 +88,10 @@
 
 
                             
-                            <!-- Le formulaire de création d'exercice -->
+                            <!-- Le formulaire de crï¿½ation d'exercice -->
+
+                            <!-- Wrapper for slides -->
+
                             <h2>Entrez les champs suivants</h2></br></br>
                             <form action="ServletCreationExercice">
                                 <input type="text" id="zone" name="nom" value="" placeholder="Nom" required/><br><br>
@@ -97,36 +100,69 @@
                                 <input type="text" name="lienimg" value="" placeholder="rentrer l'URL de l'image" /><br><br>
                                 <input type="text" name="lienvid" value="" placeholder="rentrer l'URL de la vido"/><br><br>   
                                 
-                                <!-- Lecture de la BDD afin de récupérer les catégories et les objectifs  -->
+                                <!-- Lecture de la BDD afin de rï¿½cupï¿½rer les catï¿½gories et les objectifs  -->
                                 <%
 
                                     //rï¿½cup attribut
                                     List<CategorieExercice> categories = (List<CategorieExercice>) request.getAttribute("categories");
                                     List<ObjectifExercice> objectifs = (List<ObjectifExercice>) request.getAttribute("objectifs");
 
+                //creation tab
+           out.println("<h1> Categories </h1> ");
+                for(int i=0; i<categories.size();i++){
+                    CategorieExercice ce =(CategorieExercice)categories.get(i);
+                    out.println("<input type=\"checkbox\" name =\"cat\" value="+ce.getIdCategorieExercice()+">"+ce.getNomCategorieExercice() + "required");
+                          
+                }out.println("</br>");
+                
+				
+                //creation tab
+                 out.println("<h1> Objectifs </h1> ");
+                for(int i=0; i<objectifs.size();i++){
+                    ObjectifExercice ob =(ObjectifExercice)objectifs.get(i);
+                   out.println("<input type=\"checkbox\" name =\"obj\"  value="+ob.getIdObjectifExercice()+">"+ob.getNomObjectifExercice() + "required");
+                          
+                }out.println("</br>");
+                
+                
+                    
+                
+
                                     //creation tab
                                     out.println("<h1> Categories </h1> ");
+                                    out.println("<select id=\"catego\" name=\"cat\" multiple >");
                                     for (int i = 0; i < categories.size(); i++) {
-                                        System.out.println(categories.get(i));
-                                        System.out.println((categories.get(i).getClass()));
                                         CategorieExercice ce = (CategorieExercice) categories.get(i);
-                                        out.println("<input type=\"checkbox\" name =\"cat\" value=" + ce.getIdCategorieExercice() + " required=\"required\"/>" + ce.getNomCategorieExercice());
+                                        out.println("<option value=" + ce.getIdCategorieExercice() + ">" + ce.getNomCategorieExercice() + "</option>");
 
                                     }
+                                    out.println("</select>");
+
                                     out.println("</br>");
 
                                     //creation tab
                                     out.println("<h1> Objectifs </h1> ");
+                                    out.println("<select id=\"object\" multiple name=\"obj\" >");
+
                                     for (int i = 0; i < objectifs.size(); i++) {
                                         ObjectifExercice ob = (ObjectifExercice) objectifs.get(i);
-                                        out.println("<input type=\"checkbox\" name =\"obj\"  value=" + ob.getIdObjectifExercice() + " required=\"required\"/>" + ob.getNomObjectifExercice());
+                                        out.println("<option value=" + ob.getIdObjectifExercice() + ">" + ob.getNomObjectifExercice() + "</option>");
 
                                     }
+
+                                    out.println("</select>");
                                     out.println("</br>");
 
+ 
+                                    //message d'info sur l'ajout
+                                    String msg_info = (String)request.getAttribute("msg");
+                                    if (msg_info != null)
 
-                                %>
-                                <input type="submit" id="btnajouter" value="Enregistrer" name="btnajouter" />
+                                    out.println("<p><strong> <font color=\"green\"></font>" + msg_info + "</strong></p>");
+ %>                                    
+
+                                
+                                <input type="submit" name="btnajouter" value="Enregistrer" id="btnajouter" />
                             </form>    
 
 
@@ -154,10 +190,10 @@
         </footer>
 
         <!-- jQuery -->
-        <script src="js/jquery.js"></script>
+        <script src="boots/js/jquery.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="js/bootstrap.min.js"></script>
+        <script src="boots/js/bootstrap.min.js"></script>
 
         <script type="text/JavaScript" src="jsfonction/ajax.js"></script>
 
