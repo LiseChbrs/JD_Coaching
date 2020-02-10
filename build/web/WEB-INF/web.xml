@@ -20,6 +20,26 @@
         <servlet-name>ServletVerifExercice</servlet-name>
         <servlet-class>ctrl.ServletVerifExercice</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletAjoutExerciceBD</servlet-name>
+        <servlet-class>ctrl.ServletAjoutExerciceBD</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>erreur.jsp</servlet-name>
+        <jsp-file>/erreur.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletConsulterSeance</servlet-name>
+        <servlet-class>ctrl.ServletConsulterSeance</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletRechercherSeance</servlet-name>
+        <servlet-class>ctrl.ServletRechercherSeance</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>confirmation</servlet-name>
+        <jsp-file>/confirmation.jsp</jsp-file>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreationSeance</servlet-name>
         <url-pattern>/creationSeance</url-pattern>
@@ -39,6 +59,26 @@
     <servlet-mapping>
         <servlet-name>ServletVerifExercice</servlet-name>
         <url-pattern>/ServletVerifExercice</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAjoutExerciceBD</servlet-name>
+        <url-pattern>/ServletAjoutExerciceBD</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>erreur.jsp</servlet-name>
+        <url-pattern>/erreur</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletConsulterSeance</servlet-name>
+        <url-pattern>/ServletConsulterSeance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletRechercherSeance</servlet-name>
+        <url-pattern>/ServletRechercherSeance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>confirmation</servlet-name>
+        <url-pattern>/confirmation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

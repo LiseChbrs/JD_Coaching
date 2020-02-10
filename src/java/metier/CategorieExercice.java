@@ -3,6 +3,7 @@ package metier;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -58,7 +59,44 @@ public class CategorieExercice  implements java.io.Serializable {
         this.exercices = exercices;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 17 * hash + Objects.hashCode(this.idCategorieExercice);
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CategorieExercice other = (CategorieExercice) obj;
+        if (!Objects.equals(this.nomCategorieExercice, other.nomCategorieExercice)) {
+            return false;
+        }
+        if (!Objects.equals(this.descriptionCategorieExercice, other.descriptionCategorieExercice)) {
+            return false;
+        }
+        if (!Objects.equals(this.idCategorieExercice, other.idCategorieExercice)) {
+            return false;
+        }
+        if (!Objects.equals(this.exercices, other.exercices)) {
+            return false;
+        }
+        return true;
+    }
+
+    public void addExercice(Exercice e) {
+        exercices.add(e);
+        e.getCategorieExercices().add(this);
+    }
 
 
 }

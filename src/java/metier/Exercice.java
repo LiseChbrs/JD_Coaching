@@ -3,6 +3,7 @@ package metier;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -96,8 +97,63 @@ public class Exercice  implements java.io.Serializable {
         this.contenirExercices = contenirExercices;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.idExercice);
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Exercice other = (Exercice) obj;
+        if (!Objects.equals(this.nomExercice, other.nomExercice)) {
+            return false;
+        }
+        if (!Objects.equals(this.descriptionExercice, other.descriptionExercice)) {
+            return false;
+        }
+        if (!Objects.equals(this.imageExercice, other.imageExercice)) {
+            return false;
+        }
+        if (!Objects.equals(this.videoExercice, other.videoExercice)) {
+            return false;
+        }
+        if (!Objects.equals(this.idExercice, other.idExercice)) {
+            return false;
+        }
+        if (!Objects.equals(this.objectifExercices, other.objectifExercices)) {
+            return false;
+        }
+        if (!Objects.equals(this.categorieExercices, other.categorieExercices)) {
+            return false;
+        }
+        if (!Objects.equals(this.contenirExercices, other.contenirExercices)) {
+            return false;
+        }
+        return true;
+    }
 
+    public void addObjectifExercice(ObjectifExercice o) {
+        objectifExercices.add(o);
+        o.getExercices().add(this);
+    }
+
+    public void addCategorieExercice(CategorieExercice ce) {
+        categorieExercices.add(ce);
+        ce.getExercices().add(this);
+    }
+
+    
 
 }
 

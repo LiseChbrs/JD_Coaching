@@ -7,6 +7,7 @@ package ctrl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import metier.CategorieExercice;
+import metier.Exercice;
 import metier.ObjectifExercice;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -28,44 +30,28 @@ public class ServletCreationExercice extends HttpServlet{
 
 	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 		{
-                    
-                    
-                    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-                    Transaction t = session.beginTransaction();
-                    
-               RequestDispatcher rd = request.getRequestDispatcher("exercice"); // je récupère mon dispatche
+    
+                        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+                        Transaction t = session.beginTransaction();
 
-                    
-                    List<CategorieExercice> categories = session.createCriteria(CategorieExercice.class)
-                        .list();
-
-                         List<ObjectifExercice> objectifs = session.createCriteria(ObjectifExercice.class)
-                        .list();
+                        RequestDispatcher rd = request.getRequestDispatcher("exercice"); // je récupère mon dispatche
 
 
-                     
+                        List<CategorieExercice> categories = session.createCriteria(CategorieExercice.class)
+                            .list();
 
-                         request.setAttribute("categories", categories); // Je met mon arrayListe "list" en tant qu'attribut du reques
+                        List<ObjectifExercice> objectifs = session.createCriteria(ObjectifExercice.class)
+                       .list();
 
+                        request.setAttribute("categories", categories); // Je met mon arrayListe "list" en tant qu'attribut du reques
 
-                         request.setAttribute("objectifs", objectifs); // Je met mon arrayListe "list" en tant qu'attribut du request
+                        request.setAttribute("objectifs", objectifs); // Je met mon arrayListe "list" en tant qu'attribut du request
                         rd.forward(request, response); // j'envoi le request ?
 
-                                
-      
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                            
-
-		}
+                    
+                    }
+                    
+                    
 
 	@Override
 	protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { doGet(request, response); }
