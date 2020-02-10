@@ -157,7 +157,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     
-    <script type="text/JavaScript" src="jsfonction/ajax.js"></script>
+    <script type="text/JavaScript" src="jsfonction/afficheExercice.js"></script>
 </body>
 
 </html>
