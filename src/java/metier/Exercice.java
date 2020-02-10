@@ -23,7 +23,12 @@ public class Exercice  implements java.io.Serializable {
     public Exercice() {
     }
 
-	
+    public Exercice(Integer idExercice, String nomExercice, String imageExercice) {
+        this.idExercice = idExercice;
+        this.nomExercice = nomExercice;
+        this.imageExercice = imageExercice;
+    }
+    
     public Exercice(String nomExercice, String descriptionExercice, String imageExercice) {
         this.nomExercice = nomExercice;
         this.descriptionExercice = descriptionExercice;

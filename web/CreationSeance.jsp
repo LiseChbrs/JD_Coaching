@@ -121,7 +121,7 @@
                             </select>
                             <input type="button" value="Enregistrer la categorie"/>     </P>    
                         
-                        Exercice : 
+                        Exercice :</br>
                         Categorie de l'exercice : 
                         <% List<CategorieExercice> lstCategorieExercice = (List<CategorieExercice>)request.getAttribute("listeCategorieExercice");
                             for(CategorieExercice ce : lstCategorieExercice){
@@ -129,6 +129,7 @@
                             }
                             
                         %>
+                        <span id="zoneExercice"></span>
                         </br><input type="submit" value="Enregistrer la séance"/>
                     </form>
                     </div>
@@ -155,6 +156,8 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+    
+    <script type="text/JavaScript" src="jsfonction/ajax.js"></script>
 </body>
 
 </html>
