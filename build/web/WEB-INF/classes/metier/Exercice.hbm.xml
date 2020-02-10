@@ -20,7 +20,7 @@
         <property name="videoExercice" type="string">
             <column name="VideoExercice" length="250" />
         </property>
-        <set name="objectifExercices" table="AvoirObjectifExercice" inverse="false" lazy="true" fetch="select">
+        <set name="objectifExercices" table="AvoirObjectifExercice" cascade="all" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="IdExercice" not-null="true" />
             </key>
@@ -28,7 +28,7 @@
                 <column name="IdObjectifExercice" not-null="true" />
             </many-to-many>
         </set>
-        <set name="categorieExercices" table="AvoirCategorieExercice" inverse="false" lazy="true" fetch="select">
+        <set name="categorieExercices" table="AvoirCategorieExercice" cascade="all" inverse="false" lazy="true" fetch="select">
             <key>
                 <column name="IdExercice" not-null="true" />
             </key>

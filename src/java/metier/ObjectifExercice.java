@@ -3,6 +3,7 @@ package metier;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -58,8 +59,51 @@ public class ObjectifExercice  implements java.io.Serializable {
         this.exercices = exercices;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 59 * hash + Objects.hashCode(this.idObjectifExercice);
+        hash = 59 * hash + Objects.hashCode(this.nomObjectifExercice);
+        hash = 59 * hash + Objects.hashCode(this.descriptionObjectifExercice);
+        hash = 59 * hash + Objects.hashCode(this.exercices);
+        return hash;
+    }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ObjectifExercice other = (ObjectifExercice) obj;
+        if (!Objects.equals(this.nomObjectifExercice, other.nomObjectifExercice)) {
+            return false;
+        }
+        if (!Objects.equals(this.descriptionObjectifExercice, other.descriptionObjectifExercice)) {
+            return false;
+        }
+        if (!Objects.equals(this.idObjectifExercice, other.idObjectifExercice)) {
+            return false;
+        }
+        if (!Objects.equals(this.exercices, other.exercices)) {
+            return false;
+        }
+        return true;
+    }
 
+    /**
+     * Fonction d'ajout 
+     */
+
+    public void addExercice(Exercice e) {
+        exercices.add(e);
+        e.getObjectifExercices().add(this);
+    }
 
 }
 

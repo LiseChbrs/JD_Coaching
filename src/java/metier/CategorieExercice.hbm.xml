@@ -14,7 +14,7 @@
         <property name="descriptionCategorieExercice" type="string">
             <column name="DescriptionCategorieExercice" length="250" />
         </property>
-        <set name="exercices" table="AvoirCategorieExercice" inverse="true" lazy="true" fetch="select">
+        <set name="exercices" table="AvoirCategorieExercice" cascade="all" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="IdCategorieExercice" not-null="true" />
             </key>

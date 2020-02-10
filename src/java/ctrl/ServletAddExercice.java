@@ -7,24 +7,25 @@ package ctrl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import static java.util.stream.DoubleStream.builder;
-import javax.persistence.criteria.Root;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import metier.CategorieExercice;
 import metier.Exercice;
+import metier.ObjectifExercice;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.CriteriaQuery;
 import orm.HibernateUtil;
 
 /**
  *
  * @author Administrateur
  */
-public class ServletVerifExercice extends HttpServlet {
+@WebServlet(name = "ServletAddExercice", urlPatterns = {"/ServletAddExercice"})
+public class ServletAddExercice extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,33 +39,49 @@ public class ServletVerifExercice extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        
-         response.setContentType("application/xml;charset=UTF-8");
-            response.setCharacterEncoding("UTF-8");
-            try (PrintWriter out = response.getWriter()) 
-                {
-                out.println("<?xml version=\"1.0\"?>");
-                    /*----- Ouverture de la session et de la transaction -----*/
-                    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-                    Transaction t = session.beginTransaction();
+        try {
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction t = session.beginTransaction();
+            /*----- Récupérer les éléments saisies -----*/
+            String nom = request.getParameter("nom");
+            String desc = request.getParameter("description");
+            String image = request.getParameter("lienimg");
+            /*----- Ajouter l'exercice dans la BD -----*/
+            Exercice e = new Exercice(nom, desc, image);
+            session.save(e);
 
-                String caractere = request.getParameter("caractere");
+            String[] objs = request.getParameterValues("obj");
+            String[] cats = request.getParameterValues("cat");
+
+            for (int i = 0; i < objs.length; i++) {
+                ObjectifExercice oe = (ObjectifExercice) session.get(ObjectifExercice.class, Integer.valueOf(objs[i]));
+                oe.addExercice(e);
+                session.save(e);
+
+            }
+
+            for (int i = 0; i < cats.length; i++) {
+                CategorieExercice ce = (CategorieExercice) session.get(CategorieExercice.class, Integer.valueOf(cats[i]));
+                ce.addExercice(e);
+                session.save(e);
+            }
+
+            /*----- Enregistrer dans BD -----*/
+
+            /*----- Commit -----*/
+            t.commit();
+
+            RequestDispatcher rd1 = request.getRequestDispatcher("ServletCreationExercice");
+            request.setAttribute("msg", "Exercice Ajouté!");
                 
-                try {
-                   
-                    List<Object[]> exercices = session.createQuery("select ex.nomExercice from Exercice ex where ex.nomExercice = :para").setParameter("para", caractere).list();     
-                    
-                    if (exercices.isEmpty()) {
-                        out.println("<element>true</element>"); 
-                    }else {
-                        out.println("<element>Attention, le nom de l'exercice existe</element>");
-                    }
-                    
-                }catch(Exception ex) {
-                    out.println("Erreur " + ex.getMessage());
-                }
+            rd1.forward(request, response);
+        } catch (Exception ex) {
+            System.out.println("Erreur -" + ex.getMessage());
+            RequestDispatcher rd1 = request.getRequestDispatcher("erreur");
+            request.setAttribute("msg", ex.getMessage());
+            rd1.forward(request, response);
+        }
 
-                }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
