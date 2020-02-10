@@ -67,7 +67,9 @@ function afficherExercice(id){
             xhr.send();  
 }
 
+
 document.addEventListener("DOMContentLoaded", () => {
 
         document.getElementById("zone").addEventListener("keyup",isExist);
+
 });
