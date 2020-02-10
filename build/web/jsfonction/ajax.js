@@ -37,7 +37,9 @@ function isExist() {
      
     }
 
+
 document.addEventListener("DOMContentLoaded", () => {
 
         document.getElementById("zone").addEventListener("keyup",isExist);
+
 });

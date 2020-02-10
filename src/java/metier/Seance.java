@@ -35,6 +35,14 @@ public class Seance  implements java.io.Serializable {
        this.categorieSeances = categorieSeances;
        this.contenirSeances = contenirSeances;
     }
+
+    public Seance(Integer idSeance, Difficulte difficulte, String nomSeance, String typeSeance) {
+        this.idSeance = idSeance;
+        this.difficulte = difficulte;
+        this.nomSeance = nomSeance;
+        this.typeSeance = typeSeance;
+    }
+    
    
     public Integer getIdSeance() {
         return this.idSeance;

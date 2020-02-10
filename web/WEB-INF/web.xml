@@ -24,6 +24,18 @@
         <servlet-name>ServletListeExercices</servlet-name>
         <servlet-class>ctrl.ServletListeExercices</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletProgramme</servlet-name>
+        <servlet-class>ctrl.ServletProgramme</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Programme</servlet-name>
+        <jsp-file>/Programme.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletAfficherSeance</servlet-name>
+        <servlet-class>ctrl.ServletAfficherSeance</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreationSeance</servlet-name>
         <url-pattern>/creationSeance</url-pattern>
@@ -47,6 +59,18 @@
     <servlet-mapping>
         <servlet-name>ServletListeExercices</servlet-name>
         <url-pattern>/ServletListeExercices</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletProgramme</servlet-name>
+        <url-pattern>/ServletProgramme</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Programme</servlet-name>
+        <url-pattern>/programme</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAfficherSeance</servlet-name>
+        <url-pattern>/ServletAfficherSeance</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
