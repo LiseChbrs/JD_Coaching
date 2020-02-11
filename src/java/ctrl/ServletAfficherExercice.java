@@ -8,24 +8,19 @@ package ctrl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import static java.util.stream.DoubleStream.builder;
-import javax.persistence.criteria.Root;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import metier.Exercice;
-import metier.Seance;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.CriteriaQuery;
 import orm.HibernateUtil;
 
 /**
  *
- * @author Administrateur
+ * @author alied
  */
-public class ServletAfficherSeance extends HttpServlet {
+public class ServletAfficherExercice extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,9 +31,8 @@ public class ServletAfficherSeance extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)//recherche des elements de la seance
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)//requete exercice en fction seance
             throws ServletException, IOException {
-
         response.setContentType("application/xml;charset=UTF-8");
         response.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -51,16 +45,21 @@ public class ServletAfficherSeance extends HttpServlet {
 
             try {
                 int para = Integer.parseInt(id);
-                List<Object[]> seance = session.createQuery("select s.idSeance, s.nomSeance, s.typeSeance, d.nomDifficulte from Programme p, Seance s, metier.ContenirSeance cs, Difficulte d   where p.idProgramme=cs.programme.idProgramme and cs.seance.idSeance=s.idSeance and d.idDifficulte = s.difficulte.idDifficulte and p.idProgramme =" + para + " order by cs.id.numOrdre asc").list();
+                List<Object[]> exercice = session.createQuery("select e.idExercice, e.nomExercice, e.descriptionExercice, e.imageExercice, e.videoExercice "
+                        + " from Seance s, metier.ContenirExercice ce, Exercice e   "
+                        + " where e.idExercice=ce.exercice.idExercice and ce.seance.idSeance=s.idSeance "
+                        + " and s.idSeance =" + para + " "
+                        + " order by ce.id.numOrdre asc").list();
                 out.println("<elements>");
 
-                for (int i = 0; i < seance.size(); i++) {//affichage element seance
+                for (int i = 0; i < exercice.size(); i++) {//affichage element d'un exo
 
                     out.println("<element>");
-                    out.println("<id>" + seance.get(i)[0] + "</id>");
-                    out.println("<nom>" + seance.get(i)[1] + "</nom>");
-                    out.println("<type>" + seance.get(i)[2] + "</type>");
-                    out.println("<diff>" + seance.get(i)[3] + "</diff>");
+                    out.println("<id>" + exercice.get(i)[0] + "</id>");
+                    out.println("<nom>" + exercice.get(i)[1] + "</nom>");
+                    out.println("<description>" + exercice.get(i)[2] + "</description>");
+                    out.println("<image>" + exercice.get(i)[3] + "</image>");
+                    out.println("<video>" + exercice.get(i)[4] + "</video>");
                     out.println("</element>");
 
                 }

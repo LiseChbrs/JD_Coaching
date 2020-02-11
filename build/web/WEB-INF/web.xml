@@ -56,6 +56,10 @@
         <servlet-name>confirmation</servlet-name>
         <jsp-file>/confirmation.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>ServletAfficherExercice</servlet-name>
+        <servlet-class>ctrl.ServletAfficherExercice</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreationSeance</servlet-name>
         <url-pattern>/creationSeance</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>confirmation</servlet-name>
         <url-pattern>/confirmation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAfficherExercice</servlet-name>
+        <url-pattern>/ServletAfficherExercice</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
