@@ -60,6 +60,10 @@
         <servlet-name>ServletEnregistrementSession</servlet-name>
         <servlet-class>ctrl.ServletEnregistrementSession</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletAfficherExercice</servlet-name>
+        <servlet-class>ctrl.ServletAfficherExercice</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreationSeance</servlet-name>
         <url-pattern>/creationSeance</url-pattern>
@@ -119,6 +123,10 @@
     <servlet-mapping>
         <servlet-name>ServletEnregistrementSession</servlet-name>
         <url-pattern>/ServletEnregistrementSession</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAfficherExercice</servlet-name>
+        <url-pattern>/ServletAfficherExercice</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

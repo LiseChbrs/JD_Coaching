@@ -39,8 +39,8 @@
     <body>
 
 
-        <div class="brand" ><p><img src="boots/image/logojd.jpg"  alt="logojd" width="150" height="150"  ></p>JD Coaching</div>
-        <div class="address-bar">Coach sportif diplômé</div>
+        <!--        <div class="brand" ><p><img src="boots/image/logojd.jpg"  alt="logojd" width="150" height="150"  ></p>JD Coaching</div>
+                <div class="address-bar">Coach sportif diplômé</div>-->
 
         <!-- Navigation -->
         <nav class="navbar navbar-default" role="navigation">
@@ -83,64 +83,58 @@
             <div class="row">
                 <div class="box">
                     <div class="col-lg-12 text-center">
-                        <div id="carousel-example-generic" class="carousel slide">
+                        <h2>Programmes</h2></br></br>
 
-
-                            <!-- Wrapper for slides -->
-
-                            <h2>Programmes</h2></br></br>
+                        <div style=width:100%;>
                             <%
                                 List<Programme> prog = (List<Programme>) request.getAttribute("programme");
                                 for (int i = 0; i < prog.size(); i++) {
-                                    System.out.println(prog.get(i));
-                                    System.out.println((prog.get(i).getClass()));
                                     Programme p = (Programme) prog.get(i);
-                                    out.println("<button id=\"huitre\" class=\"tet\" name=" + p.getIdProgramme() + ">" + p.getNomProgramme() + "</button></br>");
-                                    out.println("<div id=" + p.getIdProgramme() + "></div>");
+
+                                    out.println("<div class=\"card\" style=\"width: 20%;float=\"left\";\">");
+                                    out.println("<div class=\"card-header\" id=\"headingOne\">");
+                                    out.println(" <li class=\"list-group-item\"><button name=" + p.getIdProgramme() + " id=\"prog\" class=\"btn btn-outline-warning\" type=\"button\" "
+                                            + "data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"false\" "
+                                            + "aria-controls=\"collapseOne\">" + p.getNomProgramme() + "</li>");
+                                    out.println("</button></div>");
+                                    out.println("<div id=" + p.getIdProgramme() + " style =\"display: none\">");
+                                    out.println("</div>");
+                                    out.println("</div>");
                                 }
-                                out.println("</br>");
 
 
                             %>
-
                         </div>
 
-                    </div>
-                </div>
-            </div>
+
+                        <!-- /.container -->
+
+                        <footer>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12 text-center">
+                                        <p>Copyright &copy; Your Website 2020</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </footer>
+
+                        <!-- jQuery -->
+                        <script src="boots/js/jquery.js"></script>
+                        <script src="boots/js/bootstrap.js"></script>
+
+                        <!-- Bootstrap Core JavaScript -->
+                        <script src="boots/js/bootstrap.min.js"></script>
 
 
+                        <style type="text/css">
 
+                            .button {border-radius: 2px;
+                                     background-color: #555555;
+                            }
+                        </style>
+                        <script type="text/JavaScript" src="jsfonction/pageafficheprog.js"></script>
 
+                        </body>
 
-        </div>
-        <!-- /.container -->
-
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <p>Copyright &copy; Your Website 2020</p>
-                    </div>
-                </div>
-            </div>
-        </footer>
-
-        <!-- jQuery -->
-        <script src="boots/js/jquery.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="boots/js/bootstrap.min.js"></script>
-
-
-        <style type="text/css">
-
-            .button {border-radius: 2px;
-                     background-color: #555555;
-            }
-        </style>
-        <script type="text/JavaScript" src="jsfonction/pageafficheprog.js"></script>
-
-    </body>
-
-</html>
+                        </html>

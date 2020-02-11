@@ -36,8 +36,8 @@ public class ServletProgramme extends HttpServlet {
         List<Programme> queryProgramme = session.createCriteria(Programme.class)
                 .list();
         
-        request.setAttribute("programme", queryProgramme); // Je met mon arrayListe "list" en tant qu'attribut du reques
-
+        request.setAttribute("programme", queryProgramme); // Je mets mon arrayList "list" en tant qu'attribut du request
+        session.close();
         rd.forward(request, response);
 
     }
