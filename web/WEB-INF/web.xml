@@ -56,6 +56,10 @@
         <servlet-name>confirmation</servlet-name>
         <jsp-file>/confirmation.jsp</jsp-file>
     </servlet>
+    <servlet>
+        <servlet-name>ServletEnregistrementSession</servlet-name>
+        <servlet-class>ctrl.ServletEnregistrementSession</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreationSeance</servlet-name>
         <url-pattern>/creationSeance</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>confirmation</servlet-name>
         <url-pattern>/confirmation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletEnregistrementSession</servlet-name>
+        <url-pattern>/ServletEnregistrementSession</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

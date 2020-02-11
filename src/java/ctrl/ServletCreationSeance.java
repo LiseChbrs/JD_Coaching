@@ -63,6 +63,7 @@ public class ServletCreationSeance extends HttpServlet {
                     request.setAttribute("listeCategorie", queryCategorieSeance);
                     request.setAttribute("listeDifficulte", queryDifficulte);
                     request.setAttribute("listeCategorieExercice", queryCategorieExercice);
+                    session.close();
                     rd.forward(request, response);
 
                 } catch (Exception e) {
