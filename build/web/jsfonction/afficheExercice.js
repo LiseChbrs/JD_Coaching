@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 
+/*
+ * Cette fonction prend id d'une categorie d'exercice afin d'afficher les exercices qui en font partie
+ */
 function afficherExercice(id) {
     var xhr = new XMLHttpRequest();
     var url = "ServletListeExercices?id=" + id;
@@ -44,6 +47,9 @@ function afficherExercice(id) {
     xhr.send();
 }
 
+/*
+ * Cette fonction permet d'afficher les deux radio button qui permettent de choisir si l'exercice choisi est chronométré ou non
+ */
 function choixChrono() {
     var doc = document.getElementById("choix_chrono");
     doc.innerHTML = "<label for=\"chrono_1\"  >Chrono</label><input type=\"radio\" name=\"choix\" value=\"chrono_1\" id =\"chrono_1\">"
@@ -53,7 +59,9 @@ function choixChrono() {
     document.getElementById("chrono_2").addEventListener("click", choixExo2);
 
 }
-
+/*
+ * Cette fonction permet s'active au click sur le boutton correspondant à chrono et affiches les textbox correspondant
+ */
 function choixExo1() {
 
     var doc = document.getElementById("affiche_champs");
@@ -63,6 +71,9 @@ function choixExo1() {
             + "<input type=\"hidden\" name=\"nbrepetition\" id=\"nbrepetition\" value=\"\" />"
             + "<input type=\"button\" id=\"btnEnregistrerExo\" onClick=\"enregistrementSession()\" value=\"Enregistrer l'exercice\" > ";
 }
+/*
+ * Cette fonction permet s'active au click sur le boutton correspondant à  standard et affiches les textbox correspondant
+ */
 
 function choixExo2() {
     var doc = document.getElementById("affiche_champs");
@@ -74,6 +85,9 @@ function choixExo2() {
 
 
 }
+/*
+ * En cliquant sue enregistrer exercice, on va mettre l'exercice correspondant en session via une servlet afin de pouvoir récupérer le numéro d'ordre de l'exercice dans une séance
+ */
 
 function enregistrementSession() {
 

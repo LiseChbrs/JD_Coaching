@@ -101,7 +101,7 @@
                     <form method="GET" action="ServletCreationSeance">
                         Nom : <input type="text" name="nomSeance" id="idNomSeance"/>
                         Séance bilan <input type="checkbox" name="typeSeance" id="idTypeSeance"/> 
-                        Difficulté : Catégorie : <select name="categorie" >
+                        Difficulté : <select name="categorie" >
                             <option></option>
                             <%  List<Difficulte> lstDifficulte = (List<Difficulte>) request.getAttribute("listeDifficulte");
                                 for (Difficulte d : lstDifficulte) {
@@ -124,14 +124,18 @@
                             <input type="button" value="Enregistrer la categorie"/>     </P>    
 
                         Exercice :</br>
-                        Categorie de l'exercice : 
+                        Categorie de l'exercice : <div id="listCatEx">
                         <% List<CategorieExercice> lstCategorieExercice = (List<CategorieExercice>) request.getAttribute("listeCategorieExercice");
                             for (CategorieExercice ce : lstCategorieExercice) {
-                                out.print("<input type=\"button\" id=" + ce.getIdCategorieExercice() + " onClick='afficherExercice(this.id)' value=" + ce.getNomCategorieExercice() + ">");
+                                if (ce.getNomCategorieExercice().equals("Echauffement")){
+                                    out.print("<input type=\"button\" id=" + ce.getIdCategorieExercice() + " onClick='afficherExercice(this.id)' value=" + ce.getNomCategorieExercice() + ">");
+                                    break;
+                                    
+                                }
                             }
 
                         %>
-                        <span id="zoneExercice"></span>
+                        </div><span id="zoneExercice"></span>
                         </br><input type="submit" value="Enregistrer la séance"/>
                     </form>
                     <hr class="visible-xs">

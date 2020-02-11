@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import metier.ContenirExercice;
 import metier.Exercice;
-import metier.SessionClassement;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import orm.HibernateUtil;
@@ -37,7 +37,7 @@ public class ServletEnregistrementSession extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession sessionHttp = request.getSession();
-        ArrayList<SessionClassement> listeCE = (ArrayList<SessionClassement>) sessionHttp.getAttribute("listeCE");
+        ArrayList<ContenirExercice> listeCE = (ArrayList<ContenirExercice>) sessionHttp.getAttribute("listeCE");
         int nboccurence = Integer.valueOf(request.getParameter("nboccurence"));
         Float tempspause = Float.valueOf(request.getParameter("tempspause"));
         int idEx = Integer.valueOf(request.getParameter("idEx"));
@@ -46,18 +46,20 @@ public class ServletEnregistrementSession extends HttpServlet {
         Transaction t = session.beginTransaction();
         Exercice ex = (Exercice) session.load(Exercice.class, idEx);
 
-        SessionClassement ce;
+        ContenirExercice ce;
         if (request.getParameter("nbrepetition").equals("")) {
             Float duree = Float.valueOf(request.getParameter("duree"));
-            ce = new SessionClassement(ex, null, nboccurence, tempspause, duree);
+            ce = new ContenirExercice(ex, null, nboccurence, tempspause, duree);
         } else {
             int nbrepetition = Integer.valueOf(request.getParameter("nbrepetition"));
-            ce = new SessionClassement(ex, nbrepetition, nboccurence, tempspause, null);
+            ce = new ContenirExercice(ex, nbrepetition, nboccurence, tempspause, null);
         }
 
         listeCE.add(ce);
         sessionHttp.setAttribute("listeCE", ce);
+        System.out.println(ce.toString());
         session.close();
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
