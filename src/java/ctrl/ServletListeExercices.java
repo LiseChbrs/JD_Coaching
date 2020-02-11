@@ -70,6 +70,7 @@ public class ServletListeExercices extends HttpServlet {
 			list2.add(new  metier.Exercice((Integer)objet[0],(String)objet[1],(String)objet[2]));
  
 		}
+                                        session.close();
                                             out.println("<listelement>");
 
                     for(Exercice ex : list2){

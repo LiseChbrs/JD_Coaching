@@ -35,6 +35,14 @@ public class ContenirExercice  implements java.io.Serializable {
        this.tempsPause = tempsPause;
        this.duree = duree;
     }
+
+    public ContenirExercice(Exercice exercice, Integer nbRepetitions, Integer nbOccurenceRepetitions, Float tempsPause, Float duree) {
+        this.exercice = exercice;
+        this.nbRepetitions = nbRepetitions;
+        this.nbOccurenceRepetitions = nbOccurenceRepetitions;
+        this.tempsPause = tempsPause;
+        this.duree = duree;
+    }
    
     public ContenirExerciceId getId() {
         return this.id;
@@ -86,7 +94,10 @@ public class ContenirExercice  implements java.io.Serializable {
         this.duree = duree;
     }
 
-
+    @Override
+    public String toString() {
+        return "ContenirExercice{" + "id=" + id + ", exercice=" + exercice + ", seance=" + seance + ", nbRepetitions=" + nbRepetitions + ", nbOccurenceRepetitions=" + nbOccurenceRepetitions + ", tempsPause=" + tempsPause + ", duree=" + duree + '}';
+    }
 
 
 }

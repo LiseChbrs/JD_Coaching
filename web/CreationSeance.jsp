@@ -4,6 +4,9 @@
     Author     : alied
 --%>
 
+<%@page import="metier.SessionClassement"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="metier.CategorieExercice"%>
 <%@page import="metier.Difficulte"%>
 <%@page import="java.util.List"%>
@@ -43,7 +46,8 @@
     </head>
 
     <body>
-
+        <% session.setAttribute("listeCE", new ArrayList<SessionClassement>()); %>
+        
         <div class="brand" ><p><img src="boots/image/logojd.jpg"  alt="logojd" width="150" height="150"  ></p>JD Coaching</div>
         <div class="address-bar">Coach sportif diplômé</div>
 
