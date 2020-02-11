@@ -39,41 +39,38 @@ public class ServletAfficherSeance extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        
-         response.setContentType("application/xml;charset=UTF-8");
-            response.setCharacterEncoding("UTF-8");
-            try (PrintWriter out = response.getWriter()) 
-                {
-                out.println("<?xml version=\"1.0\"?>");
-                    /*----- Ouverture de la session et de la transaction -----*/
-                    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-                    Transaction t = session.beginTransaction();
+        response.setContentType("application/xml;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<?xml version=\"1.0\"?>");
+            /*----- Ouverture de la session et de la transaction -----*/
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction t = session.beginTransaction();
 
-                String id = request.getParameter("id");
-                
-                try {
-                   int para = Integer.parseInt(id);
-                List<Object[]> seance = session.createQuery("select s.idSeance, s.nomSeance, s.typeSeance, d.nomDifficulte from Programme p, Seance s, metier.ContenirSeance cs, Difficulte d   where p.idProgramme=cs.programme.idProgramme and cs.seance.idSeance=s.idSeance and d.idDifficulte = s.difficulte.idDifficulte and p.idProgramme ="+para).list();
+            String id = request.getParameter("id");
+
+            try {
+                int para = Integer.parseInt(id);
+                List<Object[]> seance = session.createQuery("select s.idSeance, s.nomSeance, s.typeSeance, d.nomDifficulte from Programme p, Seance s, metier.ContenirSeance cs, Difficulte d   where p.idProgramme=cs.programme.idProgramme and cs.seance.idSeance=s.idSeance and d.idDifficulte = s.difficulte.idDifficulte and p.idProgramme =" + para).list();
                 out.println("<elements>");
-                
-                 for (int i = 0; i<seance.size();i++){
-                     
-                     out.println("<element>");
-                     out.println("<id>"+seance.get(i)[0]+"</id>");
-                     out.println("<nom>"+seance.get(i)[1]+"</nom>");
-                     out.println("<type>"+seance.get(i)[2]+"</type>");
-                     out.println("<diff>"+seance.get(i)[3]+"</diff>");
-                     out.println("</element>");
-                 
-                 }
-                                 out.println("</elements>");
 
-                    
-                }catch(Exception ex) {
-                    out.println(ex.getMessage());
-                }
+                for (int i = 0; i < seance.size(); i++) {
+
+                    out.println("<element>");
+                    out.println("<id>" + seance.get(i)[0] + "</id>");
+                    out.println("<nom>" + seance.get(i)[1] + "</nom>");
+                    out.println("<type>" + seance.get(i)[2] + "</type>");
+                    out.println("<diff>" + seance.get(i)[3] + "</diff>");
+                    out.println("</element>");
 
                 }
+                out.println("</elements>");
+
+            } catch (Exception ex) {
+                out.println(ex.getMessage());
+            }
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

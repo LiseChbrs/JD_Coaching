@@ -52,8 +52,8 @@ public class ServletVerifExercice extends HttpServlet {
                 
                 try {
                    
-                    List<Object[]> exercices = session.createQuery("select ex.nomExercice from Exercice ex where ex.nomExercice = :para").setParameter("para", caractere).list();     
-                    
+                    List<Object[]> exercices = session.createQuery("select ex.nomExercice from Exercice ex where upper(ex.nomExercice) = :para").setParameter("para", caractere).list();     
+                    session.close();
                     if (exercices.isEmpty()) {
                         out.println("<element>true</element>"); 
                     }else {

@@ -68,12 +68,12 @@ public class ServletAddExercice extends HttpServlet {
 
             /*----- Enregistrer dans BD -----*/
 
-            /*----- Commit -----*/
+ /*----- Commit -----*/
             t.commit();
 
             RequestDispatcher rd1 = request.getRequestDispatcher("ServletCreationExercice");
             request.setAttribute("msg", "Exercice Ajouté!");
-                
+
             rd1.forward(request, response);
         } catch (Exception ex) {
             System.out.println("Erreur -" + ex.getMessage());

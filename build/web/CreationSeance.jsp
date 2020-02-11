@@ -68,43 +68,21 @@
                             <a href="index.html">Accueil</a>
                         </li>
                         <li>
-                            <a href="Exercice.jsp">Exercice</a>
+                            <a href="ServletCreationExercice">Exercice</a>
                         </li>
                         <li>
-                            <a href="CreationSeance.jsp">Séance</a>
+                            <a href="ServletCreationSeance?action=versForm">Séance</a>
                         </li>
                         <li>
-                            <a href="Programme.jsp">Programme</a>
+                            <a href="ServletProgramme">Programme</a>
                         </li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
             </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="index.html">Accueil</a>
-                    </li>
-                    <li>
-                        <a href="ServletCreationExercice">Exercice</a>
-                    </li>
-                    <li>
-                        <a href="ServletCreationSeance?action=versForm">Séance</a>
-                    </li>
-                    <li>
-                        <a href="Programme.jsp">Programme</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
             <!-- /.container -->
         </nav>
 
-        <div class="container">
 
 
         <div class="row">
@@ -121,71 +99,55 @@
                         Séance bilan <input type="checkbox" name="typeSeance" id="idTypeSeance"/> 
                         Difficulté : Catégorie : <select name="categorie" >
                             <option></option>
-                            <%  List<Difficulte> lstDifficulte = (List<Difficulte>)request.getAttribute("listeDifficulte");
-                            for(Difficulte d : lstDifficulte){
-                                out.println("<option>");
-                                out.println(d.getNomDifficulte());
-                                out.println("</option>");
-                            }
+                            <%  List<Difficulte> lstDifficulte = (List<Difficulte>) request.getAttribute("listeDifficulte");
+                                for (Difficulte d : lstDifficulte) {
+                                    out.println("<option>");
+                                    out.println(d.getNomDifficulte());
+                                    out.println("</option>");
+                                }
                             %>
                         </select>
                         <p>Catégorie : <select name="categorie" >
-                            <option></option>
-                            <%  List<CategorieSeance> lstCategorie = (List<CategorieSeance>)request.getAttribute("listeCategorie");
-                            for(CategorieSeance cs : lstCategorie){
-                                out.println("<option>");
-                                out.println(cs.getNomCategorieSeance());
-                                out.println("</option>");
-                            }
-                            %>
+                                <option></option>
+                                <%  List<CategorieSeance> lstCategorie = (List<CategorieSeance>) request.getAttribute("listeCategorie");
+                                    for (CategorieSeance cs : lstCategorie) {
+                                        out.println("<option>");
+                                        out.println(cs.getNomCategorieSeance());
+                                        out.println("</option>");
+                                    }
+                                %>
                             </select>
                             <input type="button" value="Enregistrer la categorie"/>     </P>    
-                        
+
                         Exercice :</br>
                         Categorie de l'exercice : 
-                        <% List<CategorieExercice> lstCategorieExercice = (List<CategorieExercice>)request.getAttribute("listeCategorieExercice");
-                            for(CategorieExercice ce : lstCategorieExercice){
-                                out.print("<input type=\"button\" id="+ce.getIdCategorieExercice()+" onClick='afficherExercice(this.id)' value="+ce.getNomCategorieExercice()+">");
+                        <% List<CategorieExercice> lstCategorieExercice = (List<CategorieExercice>) request.getAttribute("listeCategorieExercice");
+                            for (CategorieExercice ce : lstCategorieExercice) {
+                                out.print("<input type=\"button\" id=" + ce.getIdCategorieExercice() + " onClick='afficherExercice(this.id)' value=" + ce.getNomCategorieExercice() + ">");
                             }
-                            
+
                         %>
                         <span id="zoneExercice"></span>
                         </br><input type="submit" value="Enregistrer la séance"/>
                     </form>
+                    <hr class="visible-xs">
 
-            <div class="row">
-                <div class="box">
-                    <div class="col-lg-12">
-                        <hr>
-                        <h2 class="intro-text text-center">Création d'une
-                            <strong>séance</strong>
-                        </h2>
-                        <hr>
-                        <hr class="visible-xs">
-                        <form method="GET" action="ServletCreationSeance">
-                            Nom : <input type="text" name="nomSeance" id="idNomSeance"/>
-                            Séance bilan <input type="checkbox" name="typeSeance" id="idTypeSeance"/> 
-                        </form>
-                        <hr>
-                        <h2 class="intro-text text-center">Recherchez une
-                            <strong>séance</strong>
-                        </h2>
-                        <hr>
-                        <hr class="visible-xs">
-                        
-                        <%--
-                        Rechercher une séance avec AJAX
-                        --%>
-                            <input placeholder="Saisissez une séance" type="text" name="nomSeance" id="rechercherSeance"/>
-                            <button id="btnRecherche" value="Rechercher" type="button">Rechercher</button>                 
-                            <div id ="zoneAfficheSeance"></div>
-                    </div>
+                    <%--
+                    Rechercher une séance avec AJAX
+                    --%>
+                    <hr>
+                    <h2 class="intro-text text-center">Recherche d'une
+                        <strong>séance</strong>
+                    </h2>
+                    <hr>
+                    <input placeholder="Saisissez une séance" type="text" name="nomSeance" id="rechercherSeance"/>
+                    <button id="btnRecherche" value="Rechercher" type="button">Rechercher</button>                 
+                    <div id ="zoneAfficheSeance"></div>
+
                 </div>
             </div>
-
-
-
         </div>
+
         <!-- /.container -->
 
         <footer>
@@ -198,22 +160,17 @@
             </div>
         </div>
     </footer>
-<!--<script type="text/JavaScript" src="js/visuel.js"></script>-->
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-        </footer>
 
-        <!-- jQuery -->
-        <script src="boots/js/jquery.js"></script>
+<!-- jQuery -->
+<script src="boots/js/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-    
-    <script type="text/JavaScript" src="jsfonction/afficheExercice.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="boots/js/bootstrap.min.js"></script>
+
+<script type="text/JavaScript" src="jsfonction/afficheExercice.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="boots/js/bootstrap.min.js"></script>
 </body>
-        <!-- Bootstrap Core JavaScript -->
-        <script src="boots/js/bootstrap.min.js"></script>
-    </body>
 
 </html>
 

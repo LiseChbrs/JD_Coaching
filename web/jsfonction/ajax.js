@@ -10,54 +10,54 @@ function multichoice() {
 
     if (el.tagName.toLowerCase() === 'option' && el.parentNode.hasAttribute('multiple')) {
         event.preventDefault();
-           
+
         // toggle selection
         if (el.hasAttribute('selected')) {
-            
-            el.removeAttribute('selected');}
-        else {
+
+            el.removeAttribute('selected');
+        } else {
             el.setAttribute('selected', '');
-            }
+        }
 
     }
-    }
-	
+}
+
 
 function isExist() {
-    
-    
-       var xhr = new XMLHttpRequest();
-       var param = document.getElementById("zone").value ; 
-       var url = "ServletVerifExercice?caractere=" + param ;        
-       
-        xhr.open("GET",url);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    
-         xhr.onload = function()
-               {
-                   if (xhr.status === 200)
-                   {    
-                       var dom = document.getElementById("resultat");                     
-                       var existe = xhr.responseXML.getElementsByTagName("element")[0].firstChild.nodeValue; 
 
-                       if (existe === "Attention, le nom de l'exercice existe") {
-                           dom.innerHTML = existe ; 
-                           document.getElementById("btnajouter").disabled = "disabled" ; 
-                           
-                       }else {
-                           dom.innerHTML = "";
-                           document.getElementById("btnajouter").disabled =false ;
-                       }
-                   }
-               };
-               xhr.send(param);    
-     
-    }
-    
-    
+    var xhr = new XMLHttpRequest();
+    var param = document.getElementById("zone").value.toUpperCase();
+    var url = "ServletVerifExercice?caractere=" + param;
+
+    xhr.open("GET", url);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+
+    xhr.onload = function ()
+    {
+        if (xhr.status === 200)
+        {
+            var dom = document.getElementById("resultat");
+            var existe = xhr.responseXML.getElementsByTagName("element")[0].firstChild.nodeValue;
+
+            if (existe === "Attention, le nom de l'exercice existe") {
+                dom.innerHTML = existe;
+                document.getElementById("btnajouter").disabled = "disabled";
+
+            } else {
+                dom.innerHTML = "";
+                document.getElementById("btnajouter").disabled = false;
+            }
+        }
+    };
+    xhr.send(param);
+
+}
+
+
 function RechercherSeanceNom() {
-    
+
 //var xhr = new XMLHttpRequest();
 //
 //    //récupérer la valeur dans la zone de texte
@@ -94,16 +94,16 @@ function RechercherSeanceNom() {
 //        document.getElementById("zoneAfficheSeance").style.display = "none";
 //    }    
 
-    
-    
+
+
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 
-        document.getElementById("zone").addEventListener("keyup",isExist);
-        document.getElementById("catego").addEventListener("mousedown",multichoice);
-        document.getElementById("object").addEventListener("mousedown",multichoice);
-        //document.getElementById("btnRecherche").addEventListener("clic",RechercherSeanceNom);
-        
+    document.getElementById("zone").addEventListener("keyup", isExist);
+    document.getElementById("catego").addEventListener("mousedown", multichoice);
+    document.getElementById("object").addEventListener("mousedown", multichoice);
+    //document.getElementById("btnRecherche").addEventListener("clic",RechercherSeanceNom);
+
 });
 

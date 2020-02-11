@@ -7,11 +7,8 @@
 function afficherExercice(id) {
     var xhr = new XMLHttpRequest();
     var url = "ServletListeExercices?id=" + id;
-
     xhr.open("GET", url);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-
     xhr.onload = function ()
     {
         if (xhr.status === 200)
@@ -45,8 +42,7 @@ function afficherExercice(id) {
     };
     xhr.send();
 }
+function choixExo() {
 
-function choixExo(){
-    
 }
 

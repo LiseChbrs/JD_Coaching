@@ -24,48 +24,26 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.Programme;
 
+public class ServletProgramme extends HttpServlet {
 
-public class ServletProgramme extends HttpServlet{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = session.beginTransaction();
 
+        RequestDispatcher rd = request.getRequestDispatcher("programme"); // je récupère mon dispatche
 
-	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-		{
-                    
-                    
-                    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-                    Transaction t = session.beginTransaction();
-                    
-               RequestDispatcher rd = request.getRequestDispatcher("programme"); // je récupère mon dispatche
+        List<Programme> queryProgramme = session.createCriteria(Programme.class)
+                .list();
+        
+        request.setAttribute("programme", queryProgramme); // Je met mon arrayListe "list" en tant qu'attribut du reques
 
-              
+        rd.forward(request, response);
 
+    }
 
-                     List<Programme> queryProgramme = session.createCriteria(Programme.class)
-                        .list();
-
-                         request.setAttribute("programme", queryProgramme); // Je met mon arrayListe "list" en tant qu'attribut du reques
-
-
-                        rd.forward(request, response);
-      
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                            
-
-		}
-
-	@Override
-	protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { doGet(request, response); }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 }
-    
-    
-    

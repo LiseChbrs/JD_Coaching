@@ -62,7 +62,7 @@ public class ServletListeExercices extends HttpServlet {
 
                     SQLQuery q = session.createSQLQuery("Select ex.IdExercice, ex.NomExercice, ex.ImageExercice from Exercice ex, AvoirCategorieExercice av where ex.IdExercice = av.IdExercice and av.IdCategorieExercice ="+car);
                     List l = q.list();
-
+                    
                     Iterator it= l.iterator();
                     ArrayList<Exercice> list2=new ArrayList<Exercice>();
                     while(it.hasNext()){

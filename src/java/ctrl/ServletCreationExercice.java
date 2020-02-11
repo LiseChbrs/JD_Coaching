@@ -25,39 +25,30 @@ import orm.HibernateUtil;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+public class ServletCreationExercice extends HttpServlet {
 
-public class ServletCreationExercice extends HttpServlet{
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        Transaction t = session.beginTransaction();
 
+        RequestDispatcher rd = request.getRequestDispatcher("exercice"); // je récupère mon dispatche
 
-	protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-		{
-    
-                        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-                        Transaction t = session.beginTransaction();
+        List<CategorieExercice> categories = session.createCriteria(CategorieExercice.class)
+                .list();
 
-                        RequestDispatcher rd = request.getRequestDispatcher("exercice"); // je récupère mon dispatche
+        List<ObjectifExercice> objectifs = session.createCriteria(ObjectifExercice.class)
+                .list();
 
+        request.setAttribute("categories", categories); // Je met mon arrayListe "list" en tant qu'attribut du reques
 
-                        List<CategorieExercice> categories = session.createCriteria(CategorieExercice.class)
-                            .list();
+        request.setAttribute("objectifs", objectifs); // Je met mon arrayListe "list" en tant qu'attribut du request
+        rd.forward(request, response); // j'envoi le request ?
 
-                        List<ObjectifExercice> objectifs = session.createCriteria(ObjectifExercice.class)
-                       .list();
+    }
 
-                        request.setAttribute("categories", categories); // Je met mon arrayListe "list" en tant qu'attribut du reques
-
-                        request.setAttribute("objectifs", objectifs); // Je met mon arrayListe "list" en tant qu'attribut du request
-                        rd.forward(request, response); // j'envoi le request ?
-
-                    
-                    }
-                    
-                    
-
-	@Override
-	protected void doPost (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { doGet(request, response); }
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doGet(request, response);
+    }
 }
-    
-    
-    

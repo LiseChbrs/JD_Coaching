@@ -39,9 +39,9 @@
 
         <!-- lien pour le logo de notre site  -->
         <div class="brand" ><p><img src="boots/image/logojd.jpg"  alt="logojd" width="150" height="150"  ></p>JD Coaching</div>
-        <div class="address-bar">Coach sportif diplï¿½mï¿½</div>
-        
-        
+        <div class="address-bar">Coach sportif diplômé</div>
+
+
         <!-- Les onglets de navigation  -->
         <!-- Navigation -->
         <nav class="navbar navbar-default" role="navigation">
@@ -64,19 +64,19 @@
                             <a href="index.html">Accueil</a>
                         </li>
                         <li>
-                            <a href="Exercice.jsp">Exercice</a>
+                            <a href="ServletCreationExercice">Exercice</a>
                         </li>
                         <li>
-                            <a href="CreationSeance.jsp">Sï¿½ance</a>
+                            <a href="ServletCreationSeance?action=versForm">Séance</a>
                         </li>
                         <li>
-                            <a href="Programme.jsp">Programme</a>
+                            <a href="ServletProgramme">Programme</a>
                         </li>
                     </ul>
                 </div>
-               
+
             </div>
-            
+
         </nav>
 
         <div class="container">
@@ -85,21 +85,22 @@
                 <div class="box">
                     <div class="col-lg-12 text-center">
                         <div id="carousel-example-generic" class="carousel slide">
-
-
-                            
-                            <!-- Le formulaire de crï¿½ation d'exercice -->
+                            <!-- Le formulaire de création d'exercice -->
 
                             <!-- Wrapper for slides -->
 
-                            <h2>Entrez les champs suivants</h2></br></br>
-                            <form action="ServletCreationExercice">
-                                <input type="text" id="zone" name="nom" value="" placeholder="Nom" required/><br><br>
+                            <hr>
+                            <h1 >Création d'un
+                                <strong>exercice</strong>
+                            </h1>
+                            <hr>
+                            <form action="ServletAddExercice">
+                                <input type="text" id="zone" name="nom" value="" placeholder="Nom de l'exercice" required/><br><br>
                                 <div id="resultat"></div>
-                                <input type="text" name="description" placeholder="Mettez une description (optionnel)" value="" size="25" /></br><br>
-                                <input type="text" name="lienimg" value="" placeholder="rentrer l'URL de l'image" /><br><br>
-                                <input type="text" name="lienvid" value="" placeholder="rentrer l'URL de la vido"/><br><br>   
-                                
+                                <input type="text" name="description" placeholder="Description de l'exercice (optionnelle)" value="" size="40" /></br><br>
+                                <input type="text" name="lienimg" value="" placeholder="Lien de l'image" required/><br><br>
+                                <input type="text" name="lienvid" value="" placeholder="Lien de la vidéo" /><br><br>   
+
                                 <!-- Lecture de la BDD afin de rï¿½cupï¿½rer les catï¿½gories et les objectifs  -->
                                 <%
 
@@ -107,30 +108,9 @@
                                     List<CategorieExercice> categories = (List<CategorieExercice>) request.getAttribute("categories");
                                     List<ObjectifExercice> objectifs = (List<ObjectifExercice>) request.getAttribute("objectifs");
 
-                //creation tab
-           out.println("<h1> Categories </h1> ");
-                for(int i=0; i<categories.size();i++){
-                    CategorieExercice ce =(CategorieExercice)categories.get(i);
-                    out.println("<input type=\"checkbox\" name =\"cat\" value="+ce.getIdCategorieExercice()+">"+ce.getNomCategorieExercice() + "required");
-                          
-                }out.println("</br>");
-                
-				
-                //creation tab
-                 out.println("<h1> Objectifs </h1> ");
-                for(int i=0; i<objectifs.size();i++){
-                    ObjectifExercice ob =(ObjectifExercice)objectifs.get(i);
-                   out.println("<input type=\"checkbox\" name =\"obj\"  value="+ob.getIdObjectifExercice()+">"+ob.getNomObjectifExercice() + "required");
-                          
-                }out.println("</br>");
-                
-                
-                    
-                
-
                                     //creation tab
-                                    out.println("<h1> Categories </h1> ");
-                                    out.println("<select id=\"catego\" name=\"cat\" multiple >");
+                                    out.println("<h2> Categories </h2> ");
+                                    out.println("<select id=\"catego\" name=\"cat\" multiple required >");
                                     for (int i = 0; i < categories.size(); i++) {
                                         CategorieExercice ce = (CategorieExercice) categories.get(i);
                                         out.println("<option value=" + ce.getIdCategorieExercice() + ">" + ce.getNomCategorieExercice() + "</option>");
@@ -141,8 +121,8 @@
                                     out.println("</br>");
 
                                     //creation tab
-                                    out.println("<h1> Objectifs </h1> ");
-                                    out.println("<select id=\"object\" multiple name=\"obj\" >");
+                                    out.println("<h2> Objectifs </h2> ");
+                                    out.println("<select id=\"object\" multiple name=\"obj\" required>");
 
                                     for (int i = 0; i < objectifs.size(); i++) {
                                         ObjectifExercice ob = (ObjectifExercice) objectifs.get(i);
@@ -153,32 +133,20 @@
                                     out.println("</select>");
                                     out.println("</br>");
 
- 
                                     //message d'info sur l'ajout
-                                    String msg_info = (String)request.getAttribute("msg");
-                                    if (msg_info != null)
-
-                                    out.println("<p><strong> <font color=\"green\"></font>" + msg_info + "</strong></p>");
- %>                                    
-
-                                
+                                    String msg_info = (String) request.getAttribute("msg");
+                                    if (msg_info != null) {
+                                        out.println("<p><strong> <font color=\"green\"></font>" + msg_info + "</strong></p>");
+                                    }
+                                %>                                    
                                 <input type="submit" name="btnajouter" value="Enregistrer" id="btnajouter" />
                             </form>    
-
-
                         </div>
-
                     </div>
                 </div>
             </div>
-
-
-
-
-
         </div>
         <!-- /.container -->
-
         <footer>
             <div class="container">
                 <div class="row">
@@ -188,7 +156,6 @@
                 </div>
             </div>
         </footer>
-
         <!-- jQuery -->
         <script src="boots/js/jquery.js"></script>
 
@@ -196,8 +163,6 @@
         <script src="boots/js/bootstrap.min.js"></script>
 
         <script type="text/JavaScript" src="jsfonction/ajax.js"></script>
-
-
     </body>
 
 </html>
