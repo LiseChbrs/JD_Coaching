@@ -8,21 +8,17 @@ package ctrl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import static java.util.stream.DoubleStream.builder;
-import javax.persistence.criteria.Root;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import metier.Exercice;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.CriteriaQuery;
 import orm.HibernateUtil;
 
 /**
  *
- * @author Administrateur
+ * @author JALA-PC
  */
 public class ServletVerifExercice extends HttpServlet {
 
@@ -38,33 +34,29 @@ public class ServletVerifExercice extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        
-         response.setContentType("application/xml;charset=UTF-8");
-            response.setCharacterEncoding("UTF-8");
-            try (PrintWriter out = response.getWriter()) 
-                {
-                out.println("<?xml version=\"1.0\"?>");
-                    /*----- Ouverture de la session et de la transaction -----*/
-                    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-                    Transaction t = session.beginTransaction();
+        response.setContentType("application/xml;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<?xml version=\"1.0\"?>");
+            /*----- Ouverture de la session et de la transaction -----*/
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction t = session.beginTransaction();
+            String caractere = request.getParameter("caractere");
 
-                String caractere = request.getParameter("caractere");
-                
-                try {
-                   
-                    List<Object[]> exercices = session.createQuery("select ex.nomExercice from Exercice ex where upper(ex.nomExercice) = :para").setParameter("para", caractere).list();     
-                    session.close();
-                    if (exercices.isEmpty()) {
-                        out.println("<element>true</element>"); 
-                    }else {
-                        out.println("<element>Attention, le nom de l'exercice existe</element>");
-                    }
-                    
-                }catch(Exception ex) {
-                    out.println("Erreur " + ex.getMessage());
+            try {
+                List<Object[]> exercices = session.createQuery("select ex.nomExercice from Exercice ex where upper(ex.nomExercice) = :para").setParameter("para", caractere).list();
+                session.close();
+                if (exercices.isEmpty()) {
+                    out.println("<element>true</element>");
+                } else {
+                    out.println("<element>Attention, le nom de l'exercice existe</element>");
                 }
 
-                }
+            } catch (Exception ex) {
+                out.println("Erreur " + ex.getMessage());
+            }
+
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

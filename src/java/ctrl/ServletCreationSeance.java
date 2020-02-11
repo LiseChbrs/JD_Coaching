@@ -6,7 +6,6 @@
 package ctrl;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import metier.CategorieExercice;
 import metier.CategorieSeance;
 import metier.Difficulte;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import orm.HibernateUtil;

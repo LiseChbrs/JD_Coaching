@@ -6,14 +6,12 @@
 package ctrl;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import metier.ContenirExercice;
 import metier.Exercice;
 import metier.SessionClassement;
 import org.hibernate.Session;
@@ -22,7 +20,7 @@ import orm.HibernateUtil;
 
 /**
  *
- * @author ptitp
+ * @author JALA-PC
  */
 public class ServletEnregistrementSession extends HttpServlet {
 
@@ -37,36 +35,30 @@ public class ServletEnregistrementSession extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
-        System.out.println("Ok!!!!");
+
         HttpSession sessionHttp = request.getSession();
-        ArrayList<SessionClassement> listeCE = (ArrayList<SessionClassement>)sessionHttp.getAttribute("listeCE");
+        ArrayList<SessionClassement> listeCE = (ArrayList<SessionClassement>) sessionHttp.getAttribute("listeCE");
         int nboccurence = Integer.valueOf(request.getParameter("nboccurence"));
         Float tempspause = Float.valueOf(request.getParameter("tempspause"));
         int idEx = Integer.valueOf(request.getParameter("idEx"));
-        
+
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t = session.beginTransaction();
-        Exercice ex = (Exercice)session.load(Exercice.class, idEx);
-        
+        Exercice ex = (Exercice) session.load(Exercice.class, idEx);
 
         SessionClassement ce;
         if (request.getParameter("nbrepetition").equals("")) {
             Float duree = Float.valueOf(request.getParameter("duree"));
-            ce = new SessionClassement( ex,null ,nboccurence,tempspause,duree);
-        //System.out.println(ce.toString());
+            ce = new SessionClassement(ex, null, nboccurence, tempspause, duree);
         } else {
             int nbrepetition = Integer.valueOf(request.getParameter("nbrepetition"));
-            ce = new SessionClassement( ex,nbrepetition ,nboccurence,tempspause,null);
-        //System.out.println(ce.toString());
-        } 
-            
-            listeCE.add(ce);
-            sessionHttp.setAttribute("listeCE", ce);
-            session.close();
+            ce = new SessionClassement(ex, nbrepetition, nboccurence, tempspause, null);
+        }
+
+        listeCE.add(ce);
+        sessionHttp.setAttribute("listeCE", ce);
+        session.close();
     }
-    
-    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

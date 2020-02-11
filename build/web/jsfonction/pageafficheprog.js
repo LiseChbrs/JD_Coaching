@@ -18,12 +18,12 @@ function afficherSeance() { //affichage de la seance en fonction du programme
             if (elt.style.display === "none") {
                 elt.style.display = "block";
                 if (elt.firstChild.nodeName !== "DIV") {
-                    var existe = xhr.responseXML.getElementsByTagName("elements")
-                    var text1 = "<div class=\"accordion\" id=\"accordionExample\"><ul class=\"list-group list-group-flush\">"
+                    var existe = xhr.responseXML.getElementsByTagName("elements");
+                    var text1 = "<div class=\"accordion\" id=\"accordionExample\"><ul class=\"list-group list-group-flush\">";
                     for (i = 0; i < existe.length; i++) {//je rentre dans elements
                         for (j = 0; j < existe[i].children.length; j++) {//je rentre dans chaque seance et j'affiche
                             text1 += "<li class=\"list-group-item\"><div class=\"card\"><div class=\"card-header\" >  " +
-                                    "<button id = 0" + existe[i].children[j].children[0].firstChild.nodeValue +
+                                    "<button id =0" + existe[i].children[j].children[0].firstChild.nodeValue +
                                     " class=\"btn btn-link collapsed\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"false\" aria-controls=\"collapseOne\"> " +
                                     "Seance : " + existe[i].children[j].children[1].firstChild.nodeValue + " - "
                                     + existe[i].children[j].children[2].firstChild.nodeValue + " </br> "
@@ -60,8 +60,8 @@ function afficherExercice() {//affichage des exercices d'une séance
             if (elt.style.display === "none") {
                 elt.style.display = "block";
                 if (elt.firstChild.nodeName !== "DIV") {
-                    var existe = xhr.responseXML.getElementsByTagName("elements")
-                    var text1 = "<ul class=\"list-group list-group-flush\">"
+                    var existe = xhr.responseXML.getElementsByTagName("elements");
+                    var text1 = "<ul class=\"list-group list-group-flush\">";
                     for (i = 0; i < existe.length; i++) {//je rentre dans la séance
                         for (j = 0; j < existe[i].children.length; j++) {//je récupère les elements de chaque exercice
                             text1 += "<li class=\"list-group-item\">   " +

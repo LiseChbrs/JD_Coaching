@@ -8,17 +8,12 @@ package ctrl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
-import static java.util.stream.DoubleStream.builder;
-import javax.persistence.criteria.Root;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import metier.Exercice;
-import metier.Seance;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.CriteriaQuery;
 import orm.HibernateUtil;
 
 /**

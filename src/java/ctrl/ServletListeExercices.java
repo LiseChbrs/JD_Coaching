@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 package ctrl;
+
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import metier.Exercice;
-import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -23,7 +22,7 @@ import orm.HibernateUtil;
 
 /**
  *
- * @author ptitp
+ * @author JALA-PC
  */
 public class ServletListeExercices extends HttpServlet {
 
@@ -38,69 +37,52 @@ public class ServletListeExercices extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-            response.setContentType("application/xml;charset=UTF-8");
-            response.setCharacterEncoding("UTF-8");
-            try (PrintWriter out = response.getWriter()) 
-                {
-                out.println("<?xml version=\"1.0\"?>");
-                    /*----- Ouverture de la session et de la transaction -----*/
-                    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-                    Transaction t = session.beginTransaction();
+        response.setContentType("application/xml;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<?xml version=\"1.0\"?>");
+            /*----- Ouverture de la session et de la transaction -----*/
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction t = session.beginTransaction();
 
-                String caractere = request.getParameter("id");
-                System.out.println(caractere);
-                int car = Integer.valueOf(caractere);
-                
-                try {
+            String caractere = request.getParameter("id");
+            System.out.println(caractere);
+            int car = Integer.valueOf(caractere);
+
+            try {
 //                    Query q = session.createQuery("from Exercice ex "+
 //                                                                    "where ex.categorieExercices.contains("+ car+")");
 //                   List<Exercice> exercices = (List<Exercice>)q.list();
 //                    List<Exercice> exercices = (List<Exercice>)session.createQuery("select new metier.Exercice(ex.idExercice, ex.nomExercice, ex.imageExercice) "+
 //                                                                    "from Exercice ex "+
-//                                                                    "where ex.categorieExercices.idCategorieExercice = "+ car).list();     
-                    
+//                                                                    "where ex.categorieExercices.idCategorieExercice = "+ car).list();                        
+                SQLQuery q = session.createSQLQuery("Select ex.IdExercice, ex.NomExercice, ex.ImageExercice from Exercice ex, AvoirCategorieExercice av where ex.IdExercice = av.IdExercice and av.IdCategorieExercice =" + car);
+                List l = q.list();
 
-                    SQLQuery q = session.createSQLQuery("Select ex.IdExercice, ex.NomExercice, ex.ImageExercice from Exercice ex, AvoirCategorieExercice av where ex.IdExercice = av.IdExercice and av.IdCategorieExercice ="+car);
-                    List l = q.list();
-                    
-                    Iterator it= l.iterator();
-                    ArrayList<Exercice> list2=new ArrayList<Exercice>();
-                    while(it.hasNext()){
-			Object[] objet= (Object[]) it.next();
-			list2.add(new  metier.Exercice((Integer)objet[0],(String)objet[1],(String)objet[2]));
- 
-		}
-                                        session.close();
-                                            out.println("<listelement>");
+                Iterator it = l.iterator();
+                ArrayList<Exercice> list2 = new ArrayList<Exercice>();
+                while (it.hasNext()) {
+                    Object[] objet = (Object[]) it.next();
+                    list2.add(new metier.Exercice((Integer) objet[0], (String) objet[1], (String) objet[2]));
 
-                    for(Exercice ex : list2){
-                        out.println("<element>");
-                            out.println("<id>"+ex.getIdExercice()+"</id>");
-                            out.println("<name>"+ex.getNomExercice()+"</name>");
-                            out.println("<image>"+ex.getImageExercice()+"</image>");
-                        out.println("</element>");
-                    }                         out.println("</listelement>");
-
-                }catch(Exception ex) {
-                    out.println(ex.getMessage());
                 }
+                session.close();
+                out.println("<listelement>");
+
+                for (Exercice ex : list2) {
+                    out.println("<element>");
+                    out.println("<id>" + ex.getIdExercice() + "</id>");
+                    out.println("<name>" + ex.getNomExercice() + "</name>");
+                    out.println("<image>" + ex.getImageExercice() + "</image>");
+                    out.println("</element>");
+                }
+                out.println("</listelement>");
+
+            } catch (Exception ex) {
+                out.println(ex.getMessage());
+            }
         }
     }
-
-            private static void affichage (List l)
-		{
-		Iterator e = l.iterator();
-		while (e.hasNext())
-			{
-			Object[] tab_obj = ((Object[]) e.next());
-
-			for (Object obj : tab_obj)
-				System.out.print(obj + " ");
-
-			System.out.println("");
-			}
-		}
-
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
