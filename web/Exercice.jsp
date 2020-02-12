@@ -37,11 +37,6 @@
 
     <body>
 
-        <!-- lien pour le logo de notre site  -->
-        <div class="brand" ><p><img src="boots/image/logojd.jpg"  alt="logojd" width="150" height="150"  ></p>JD Coaching</div>
-        <div class="address-bar">Coach sportif diplômé</div>
-
-
         <!-- Les onglets de navigation  -->
         <!-- Navigation -->
         <nav class="navbar navbar-default" role="navigation">
@@ -61,7 +56,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="index.html">Accueil</a>
+                            <a href="index.html">JD Coaching</a>
                         </li>
                         <li>
                             <a href="ServletCreationExercice">Exercice</a>
@@ -154,8 +149,10 @@
                                             <div id="popup" class="modal-body">
 
                                             </div>
-                                            <div class="modal-footer">
-                                                <input type="submit" value="Enregistrer" >
+                                            <div class="btn button-5" style="background-color: white;
+  color: black;
+  border: 2px solid #555555;">
+                                                <input type="submit" value="Enregistrer">
                                             </div>
                                         </div>
                                     </div>
@@ -166,15 +163,24 @@
             </div>
         </div>
         <!-- /.container -->
-        <footer>
-            <div class="container">
-                <div class="row">
+  
+          
                     <div class="col-lg-12 text-center">
                         <p>Copyright &copy; Your Website 2020</p>
                     </div>
-                </div>
-            </div>
-        </footer>
+               
+        <style>
+.button5 {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+
+.button5:hover {
+  background-color: #555555;
+  color: white;
+}</style>
+
         <!-- jQuery -->
         <script src="boots/js/jquery.js"></script>
 

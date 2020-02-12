@@ -28,22 +28,14 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
-
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
     </head>
-
     <body>
-
-
-        <!--        <div class="brand" ><p><img src="boots/image/logojd.jpg"  alt="logojd" width="150" height="150"  ></p>JD Coaching</div>
-                <div class="address-bar">Coach sportif diplï¿½mï¿½</div>-->
-
         <!-- Navigation -->
         <nav class="navbar navbar-default" role="navigation">
             <div class="container">
@@ -68,7 +60,7 @@
                             <a href="ServletCreationExercice">Exercice</a>
                         </li>
                         <li>
-                            <a href="ServletCreationSeance">Sï¿½ance</a>
+                            <a href="ServletCreationSeance">Séance</a>
                         </li>
                         <li>
                             <a href="ServletProgramme">Programme</a>
@@ -88,31 +80,16 @@
                         <h2>Programmes</h2></br></br>
 
                         <section style=width:100%;float:left;>
-                            <%
-                                List<Programme> prog = (List<Programme>) request.getAttribute("programme");
-                                for (int i = 0; i < prog.size(); i++) {
-                                    Programme p = (Programme) prog.get(i);
-                        <input type="text" id="rechercherProg" onkeyup="RechercherProgramme()" placeholder="Rechercher des programmes..." >
-                        <ul id="listeProg">                        
-                            <div style=width:100%;>
+                            <input type="text" id="rechercherProg" onkeyup="RechercherProgramme()" placeholder="Rechercher des programmes..." style=width:50%; >
+                            <ul id="listeProg">   
                                 <%
                                     List<Programme> prog = (List<Programme>) request.getAttribute("programme");
                                     for (int i = 0; i < prog.size(); i++) {
                                         Programme p = (Programme) prog.get(i);
 
-                                    out.println("<div class=\"card\" style=\"width:23em;float:left;margin:2%;\">");
-                                    out.println("<div class=\"card-header\" id=\"headingOne\">");
-                                    out.println(" <li class=\"list-group-item\"><button style=\"width: 100%;background-color:white;\" name=" + p.getIdProgramme() + " id=\"prog\" class=\"btn btn-outline-warning\" type=\"button\" "
-                                            + "data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"false\" "
-                                            + "aria-controls=\"collapseOne\">" + p.getNomProgramme() + "</li>");
-                                    out.println("</button></div>");
-                                    out.println("<div id=" + p.getIdProgramme() + " style =\"display: none\">");
-                                    out.println("</div>");
-                                    out.println("</div>");
-                                }
-                                        out.println("<div class=\"card\" style=\"width: 20%;float=\"left\";\">");
+                                        out.println("<div class=\"card\" style=\"width:22em;float:left;margin:2%;\">");
                                         out.println("<div class=\"card-header\" id=\"headingOne\">");
-                                        out.println(" <li class=\"list-group-item\"><button name=" + p.getIdProgramme() + " id=\"prog\" class=\"btn btn-outline-warning\" type=\"button\" "
+                                        out.println(" <li class=\"list-group-item\"><button style=\"width: 100%;background-color:white;\" name=" + p.getIdProgramme() + " id=\"prog\" class=\"btn btn-outline-warning\" type=\"button\" "
                                                 + "data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"false\" "
                                                 + "aria-controls=\"collapseOne\">" + p.getNomProgramme() + "</li>");
                                         out.println("</button></div>");
@@ -120,98 +97,57 @@
                                         out.println("</div>");
                                         out.println("</div>");
                                     }
-
-
-                            %>
-                        </section>
                                 %>
-                            </div>
-                        </ul>
+                            </ul>
+                        </section>
+                    </div>
 
+
+
+                    <h2>Création de programme</h2>
+                    <input type="text" id="nomProg" placeholder="Rentrer un nom de programme" > 
+
+                    <%
+                        List<Profil> listeProfil = (List<Profil>) request.getAttribute("profil");
+                        out.println("<input list=\"listeProgramme\" name=\"monProg\">");
+                        out.println("<datalist id=\"listeProgramme\">");
+                        for (int i = 0; i < listeProfil.size(); i++) {
+                            out.println("<option value=\"" + listeProfil.get(i).getNomProfil() + "\"></option>");
+                        }
+                        out.println("</datalist>");
+                    %>
+                    <div>
+                        <h3>Sélectionnez vos séances</h3>
+                        <p>bilan</p>
+
+                        <p>standard</p> 
                     </div>
                 </div>
             </div>
         </div>
-    
+        <!-- /.footer -->
+
+                    <div class="col-lg-12 text-center">
+                        <p>Copyright &copy; Your Website 2020</p>
                     </div>
-                            <h2>Crï¿½ation de programme</h2>
-                            <input type="text" id="nomProg" placeholder="Rentrer un nom de programme" >       
-                                
-                                
-                                <% List<Profil> listeProfil = (List<Profil>) request.getAttribute("profil");
-                                    
-                                    out.println("<input list=\"listeProgramme\" name=\"monProg\">");
-                                    out.println("<datalist id=\"listeProgramme\">");
-                                    
-                                    for(int i = 0; i < listeProfil.size(); i++) {
-                                        out.println("<option value=\"" + listeProfil.get(i).getNomProfil()+"\"></option>");
-                                    }      
-                                    out.println("</datalist>");
-                                    
-                                %>
-                                <div>
-                                <h3>Sï¿½lectionnez vos sï¿½ances</h3>
-                                <p>bilan</p>
-                                <% List<Seance> listeBilan = (List<Seance>) request.getAttribute("seancebilan");
-                                
-                                out.println("<select name=\"lstbilan\" >");
-                                
-                                for(int i = 0; i < listeBilan.size(); i++) {
-                                    out.println("<option value=\"" + listeBilan.get(i).getNomSeance() + "\"></option>");
-                                }
-                                
-                                out.println("</select>");
+  
 
-                                %>
-                               
-                                <p>standard</p>
-                                
-                                <%
-                                List<Seance> listeStand = (List<Seance>) request.getAttribute("seancestand");
-                                for(Seance ls : listeStand) {
-                                    out.println("<option value=\"" + ls.getNomSeance() + "\"></option>");
-                                }                                    
-                                    
-                                %>    
-                                </div>
-                                
-                           
+        <!-- jQuery -->
+        <script src="boots/js/jquery.js"></script>
+        <script src="boots/js/bootstrap.js"></script>
 
-                        <!-- /.container -->
-
-                        
-                            
-                                <div class="row">
-                                    <div class="col-lg-12 text-center">
-                                        <p>Copyright &copy; Your Website 2020</p>
-                                    </div>
-                                </div>
-                           
-                        
-                    
-                            
-                            </div>
-                            
-                            
-                           
-                        </footer>
-
-                        <!-- jQuery -->
-                        <script src="boots/js/jquery.js"></script>
-                        <script src="boots/js/bootstrap.js"></script>
-
-                        <!-- Bootstrap Core JavaScript -->
-                        <script src="boots/js/bootstrap.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="boots/js/bootstrap.min.js"></script>
 
 
-                        <style type="text/css">
+        <style type="text/css">
 
-                            .button {border-radius: 2px;
-                                     background-color: #555555;
-                            }
-                        </style>
-                        <script type="text/JavaScript" src="jsfonction/pageafficheprog.js"></script>
-                        
-                        </body>
+            .button {border-radius: 2px;
+                     background-color: #555555;
+            }
+        </style>
+        <script type="text/JavaScript" src="jsfonction/pageafficheprog.js"></script>
 
-                        </html>
+    </body>
+
+</html>
