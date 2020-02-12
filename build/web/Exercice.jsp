@@ -62,7 +62,7 @@
                             <a href="ServletCreationExercice">Exercice</a>
                         </li>
                         <li>
-                            <a href="ServletCreationSeance">Séance</a>
+                            <a href="ServletCreationSeance">Sï¿½ance</a>
                         </li>
                         <li>
                             <a href="ServletProgramme">Programme</a>
@@ -80,7 +80,7 @@
                 <div class="box">
                     <div class="col-lg-12 text-center">
                         <div id="carousel-example-generic" class="carousel slide">
-                            <!-- Le formulaire de création d'exercice -->
+                            <!-- Le formulaire de crï¿½ation d'exercice -->
 
                             <!-- Wrapper for slides -->
                             <%
@@ -91,7 +91,7 @@
                                 }
                             %>
                             <hr>
-                            <h1 >Création d'un
+                            <h1 >Crï¿½ation d'un
                                 <strong>exercice</strong>
                             </h1>
                             <hr>
@@ -100,7 +100,7 @@
                                 <div id="resultat"></div>
                                 <input type="text" id="desc" name="description" placeholder="Description de l'exercice (optionnelle)" value="" size="40" /></br><br>
                                 <input type="text" id="img" name="lienimg" value="" placeholder="Lien de l'image" required/><br><br>
-                                <input type="text" id="vid" name="lienvid" value="" placeholder="Lien de la vidéo" /><br><br>   
+                                <input type="text" id="vid" name="lienvid" value="" placeholder="Lien de la vidï¿½o" /><br><br>   
 
                                 <!-- Lecture de la BDD afin de rï¿½cupï¿½rer les catï¿½gories et les objectifs  -->
                                 <%

@@ -62,6 +62,48 @@ function valid(){
     
 }
 
+function RechercherSeanceNom() {
+
+//var xhr = new XMLHttpRequest();
+//
+//    //récupérer la valeur dans la zone de texte
+//    var recherche = encodeURIComponent(document.getElementById("rechercherSeance").value);
+//
+//    //si le textbox n'est pas vide, on recherche ce mot dans les séances
+//    if (recherche !== "") {
+//        xhr.open("GET", "ServletRechercherSeance?nomSeance=" + recherche);
+//        xhr.onload = function () {
+//            if (xhr.status === 200) {
+//
+//                //Cacher le zone de texte par défaut
+//                document.getElementById("zoneAfficheSeance").style.display = "none";
+//
+//                //récupérer la réponse de servlet
+//                var texte = xhr.responseText;
+//
+//                //s'il y a pas de réponse, on cache le zone de texte. Sinon, on affiche le nom de la séance                
+//                if (texte === "") {
+//                    document.getElementById("zoneAfficheSeance").style.display = "none";
+//                } else {
+//                    document.getElementById("zoneAfficheSeance").style.display = "block";
+//                }
+//
+//                //afficher les séances sur l'interface
+//                var elt = document.getElementById("zoneAfficheSeance");
+//                elt.innerHTML = texte;
+//
+//                
+//            }
+//        };
+//        xhr.send();
+//    } else {
+//        document.getElementById("zoneAfficheSeance").style.display = "none";
+//    }    
+
+
+
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("btnajouter").addEventListener("click", valid);
 

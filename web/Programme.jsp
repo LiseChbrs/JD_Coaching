@@ -60,7 +60,7 @@
                             <a href="ServletCreationExercice">Exercice</a>
                         </li>
                         <li>
-                            <a href="ServletCreationSeance">Séance</a>
+                            <a href="ServletCreationSeance">Sï¿½ance</a>
                         </li>
                         <li>
                             <a href="ServletProgramme">Programme</a>
@@ -103,22 +103,55 @@
                     </div>
 
 
+                                %>
+                            </div>
+                        </ul>
 
-                    <h2>Création de programme</h2>
-                    <input type="text" id="nomProg" placeholder="Rentrer un nom de programme" > 
+                    </div>
+                            <h2>Crï¿½ation de programme</h2>
+                            <input type="text" id="nomProg" placeholder="Rentrer un nom de programme" >       
+                                
+                                
+                                <% List<Profil> listeProfil = (List<Profil>) request.getAttribute("profil");
+                                    
+                                    out.println("<input list=\"listeProgramme\" name=\"monProg\">");
+                                    out.println("<datalist id=\"listeProgramme\">");
+                                    
+                                    for(int i = 0; i < listeProfil.size(); i++) {
+                                        out.println("<option value=\"" + listeProfil.get(i).getNomProfil()+"\"></option>");
+                                    }      
+                                    out.println("</datalist>");
+                                    
+                                %>
+                                <div>
+                                <h3>Sï¿½lectionnez vos sï¿½ances</h3>
+                                <p>bilan</p>
+                                <% List<Seance> listeBilan = (List<Seance>) request.getAttribute("seancebilan");
+                                
+                                out.println("<select name=\"lstbilan\" >");
+                                
+                                for(int i = 0; i < listeBilan.size(); i++) {
+                                    out.println("<option value=\"" + listeBilan.get(i).getNomSeance() + "\"></option>");
+                                }
+                                
+                                out.println("</select>");
 
-                    <%
-                        List<Profil> listeProfil = (List<Profil>) request.getAttribute("profil");
-                        out.println("<input list=\"listeProgramme\" name=\"monProg\">");
-                        out.println("<datalist id=\"listeProgramme\">");
-                        for (int i = 0; i < listeProfil.size(); i++) {
-                            out.println("<option value=\"" + listeProfil.get(i).getNomProfil() + "\"></option>");
-                        }
-                        out.println("</datalist>");
-                    %>
-                    <div>
-                        <h3>Sélectionnez vos séances</h3>
-                        <p>bilan</p>
+                                %>
+                               
+                                <p>standard</p>
+                                
+                                <%
+                                List<Seance> listeStand = (List<Seance>) request.getAttribute("seancestand");
+                                for(Seance ls : listeStand) {
+                                    out.println("<option value=\"" + ls.getNomSeance() + "\"></option>");
+                                }                                    
+                                    
+                                %>    
+                                </div>
+                                
+                           
+
+                        <!-- /.container -->
 
                         <p>standard</p> 
                     </div>
@@ -126,6 +159,20 @@
             </div>
         </div>
         <!-- /.footer -->
+                        <footer>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-12 text-center">
+                                        <p>Copyright &copy; Your Website 2020</p>
+                                    </div>
+                                </div>
+                    
+                            
+                            </div>
+                            
+                            
+                           
+                        </footer>
 
                     <div class="col-lg-12 text-center">
                         <p>Copyright &copy; Your Website 2020</p>
