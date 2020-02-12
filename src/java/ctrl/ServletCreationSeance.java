@@ -56,11 +56,10 @@ public class ServletCreationSeance extends HttpServlet {
                             + " from CategorieSeance cs").list();
                     List<CategorieExercice> queryCategorieExercice = (List<CategorieExercice>) session.createQuery(
                             "select new metier.CategorieExercice(ce.idCategorieExercice"
-                            + " ,ce.nomCategorieExercice)"
+                            + " ,ce.nomCategorieExercice) "
                             + " from CategorieExercice ce").list();
                     List<Seance> querySeance = (List<Seance>) session.createQuery(
-                            "select new metier.Seance(s.idSeance"
-                            + " ,s.nomSeance)"
+                            "select new metier.Seance(s.idSeance,s.nomSeance)"
                             + " from Seance s").list();                    
                     RequestDispatcher rd = request.getRequestDispatcher("creationSeance");
                     request.setAttribute("listeCategorie", queryCategorieSeance);

@@ -3,6 +3,41 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+   /**
+    * Fonction de recherce d'un programme avec filtrage
+    */
+function RechercherProgramme() {
+    
+    /**
+     * 
+     * @type Element
+     */
+    
+    var input, filter, ul, elt, a, i, txtValue;
+    
+    
+    input = document.getElementById("rechercherProg");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("listeProg");
+    elt = ul.getElementsByTagName("li");
+    
+    for (i = 0; i < elt.length; i++) {
+        a = elt[i].getElementsByTagName("button")[0];
+        txtValue = a.textContent || a.innerText;
+        
+        
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            elt[i].style.display = "";
+        } else {
+            elt[i].style.display = "none";
+        }
+    }
+}
+
+
+
+
 //Cette fonction nous permet d'afficher une séance par rapport à un programme sélectionné
 function afficherSeance() { //affichage de la seance en fonction du programme
     var id = event.target.getAttribute("name");
