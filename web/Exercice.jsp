@@ -67,7 +67,7 @@
                             <a href="ServletCreationExercice">Exercice</a>
                         </li>
                         <li>
-                            <a href="ServletCreationSeance?action=versForm">Séance</a>
+                            <a href="ServletCreationSeance">Séance</a>
                         </li>
                         <li>
                             <a href="ServletProgramme">Programme</a>
@@ -88,7 +88,13 @@
                             <!-- Le formulaire de création d'exercice -->
 
                             <!-- Wrapper for slides -->
-
+                            <%
+                                //message d'info sur l'ajout
+                                String msg_info = (String) request.getAttribute("msg");
+                                if (msg_info != null) {
+                                    out.println("<p><strong> <font color=\"green\"></font>" + msg_info + "</strong></p>");
+                                }
+                            %>
                             <hr>
                             <h1 >Création d'un
                                 <strong>exercice</strong>
@@ -97,13 +103,12 @@
                             <form action="ServletAddExercice">
                                 <input type="text" id="zone" name="nom" value="" placeholder="Nom de l'exercice" required/><br><br>
                                 <div id="resultat"></div>
-                                <input type="text" name="description" placeholder="Description de l'exercice (optionnelle)" value="" size="40" /></br><br>
-                                <input type="text" name="lienimg" value="" placeholder="Lien de l'image" required/><br><br>
-                                <input type="text" name="lienvid" value="" placeholder="Lien de la vidéo" /><br><br>   
+                                <input type="text" id="desc" name="description" placeholder="Description de l'exercice (optionnelle)" value="" size="40" /></br><br>
+                                <input type="text" id="img" name="lienimg" value="" placeholder="Lien de l'image" required/><br><br>
+                                <input type="text" id="vid" name="lienvid" value="" placeholder="Lien de la vidéo" /><br><br>   
 
                                 <!-- Lecture de la BDD afin de rï¿½cupï¿½rer les catï¿½gories et les objectifs  -->
                                 <%
-
                                     //rï¿½cup attribut
                                     List<CategorieExercice> categories = (List<CategorieExercice>) request.getAttribute("categories");
                                     List<ObjectifExercice> objectifs = (List<ObjectifExercice>) request.getAttribute("objectifs");
@@ -133,14 +138,28 @@
                                     out.println("</select>");
                                     out.println("</br>");
 
-                                    //message d'info sur l'ajout
-                                    String msg_info = (String) request.getAttribute("msg");
-                                    if (msg_info != null) {
-                                        out.println("<p><strong> <font color=\"green\"></font>" + msg_info + "</strong></p>");
-                                    }
+
                                 %>                                    
-                                <input type="submit" name="btnajouter" value="Enregistrer" id="btnajouter" />
-                            </form>    
+                                <input type="button"  id="btnajouter"  name="btnajouter" value="Enregistrer"  />
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id ="popupctrl" style="display:none;"> 
+                                </button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Vous allez ajouter un exercice</h5>
+                                                <h6 class="modal-title" id="exampleModalLabel">Vous pouvez annuler en sortant de la fenetre</h6>
+                                            </div>
+                                            <div id="popup" class="modal-body">
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <input type="submit" value="Enregistrer" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div></form>    
                         </div>
                     </div>
                 </div>

@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import metier.CategorieExercice;
 import metier.CategorieSeance;
 import metier.Difficulte;
+import metier.Seance;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import orm.HibernateUtil;
@@ -39,9 +41,7 @@ public class ServletCreationSeance extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String action = request.getParameter("action");
-        switch (action) {
-            case "versForm":
+     
                 try {
                     Session session = HibernateUtil.getSessionFactory().getCurrentSession();
                     Transaction t = session.beginTransaction();
@@ -55,11 +55,15 @@ public class ServletCreationSeance extends HttpServlet {
                             + " from CategorieSeance cs").list();
                     List<CategorieExercice> queryCategorieExercice = (List<CategorieExercice>) session.createQuery(
                             "select new metier.CategorieExercice(ce.idCategorieExercice"
-                            + " ,ce.nomCategorieExercice)"
+                            + " ,ce.nomCategorieExercice) "
                             + " from CategorieExercice ce").list();
+                    List<Seance> querySeance = (List<Seance>) session.createQuery(
+                            "select new metier.Seance(s.idSeance,s.nomSeance)"
+                            + " from Seance s").list();                    
                     RequestDispatcher rd = request.getRequestDispatcher("creationSeance");
                     request.setAttribute("listeCategorie", queryCategorieSeance);
                     request.setAttribute("listeDifficulte", queryDifficulte);
+                    request.setAttribute("listeSeance", querySeance);    
                     request.setAttribute("listeCategorieExercice", queryCategorieExercice);
                     session.close();
                     rd.forward(request, response);
@@ -68,7 +72,7 @@ public class ServletCreationSeance extends HttpServlet {
                     System.out.println(e.getMessage());
                 }
 
-        }
+        
 
         //String nomSeance = request.getParameter("nomSeance");
         //String typeSeance = request.getParameter("typeSeance");

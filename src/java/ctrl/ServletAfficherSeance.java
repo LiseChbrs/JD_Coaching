@@ -62,6 +62,8 @@ public class ServletAfficherSeance extends HttpServlet {
 
                 }
                 out.println("</elements>");
+                
+                
                 session.close();
             } catch (Exception ex) {
                 out.println(ex.getMessage());

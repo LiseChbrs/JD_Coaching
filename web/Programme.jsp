@@ -1,3 +1,5 @@
+<%@page import="metier.Seance"%>
+<%@page import="metier.Profil"%>
 <%@page import="metier.Programme"%>
 <%@page import="org.hibernate.Session"%>
 <%@page import="orm.HibernateUtil"%>
@@ -12,7 +14,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Saisie d'une séance">
+        <meta name="description" content="Saisie d'une sï¿½ance">
         <meta name="author" content="JALA-PC">
 
         <title>JD Coaching</title>
@@ -40,7 +42,7 @@
 
 
         <!--        <div class="brand" ><p><img src="boots/image/logojd.jpg"  alt="logojd" width="150" height="150"  ></p>JD Coaching</div>
-                <div class="address-bar">Coach sportif diplômé</div>-->
+                <div class="address-bar">Coach sportif diplï¿½mï¿½</div>-->
 
         <!-- Navigation -->
         <nav class="navbar navbar-default" role="navigation">
@@ -66,7 +68,7 @@
                             <a href="ServletCreationExercice">Exercice</a>
                         </li>
                         <li>
-                            <a href="ServletCreationSeance?action=versForm">Séance</a>
+                            <a href="ServletCreationSeance">Sï¿½ance</a>
                         </li>
                         <li>
                             <a href="ServletProgramme">Programme</a>
@@ -90,6 +92,13 @@
                                 List<Programme> prog = (List<Programme>) request.getAttribute("programme");
                                 for (int i = 0; i < prog.size(); i++) {
                                     Programme p = (Programme) prog.get(i);
+                        <input type="text" id="rechercherProg" onkeyup="RechercherProgramme()" placeholder="Rechercher des programmes..." >
+                        <ul id="listeProg">                        
+                            <div style=width:100%;>
+                                <%
+                                    List<Programme> prog = (List<Programme>) request.getAttribute("programme");
+                                    for (int i = 0; i < prog.size(); i++) {
+                                        Programme p = (Programme) prog.get(i);
 
                                     out.println("<div class=\"card\" style=\"width:23em;float:left;margin:2%;\">");
                                     out.println("<div class=\"card-header\" id=\"headingOne\">");
@@ -101,16 +110,73 @@
                                     out.println("</div>");
                                     out.println("</div>");
                                 }
+                                        out.println("<div class=\"card\" style=\"width: 20%;float=\"left\";\">");
+                                        out.println("<div class=\"card-header\" id=\"headingOne\">");
+                                        out.println(" <li class=\"list-group-item\"><button name=" + p.getIdProgramme() + " id=\"prog\" class=\"btn btn-outline-warning\" type=\"button\" "
+                                                + "data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"false\" "
+                                                + "aria-controls=\"collapseOne\">" + p.getNomProgramme() + "</li>");
+                                        out.println("</button></div>");
+                                        out.println("<div id=" + p.getIdProgramme() + " style =\"display: none\">");
+                                        out.println("</div>");
+                                        out.println("</div>");
+                                    }
 
 
                             %>
                         </section>
+                                %>
+                            </div>
+                        </ul>
 
                     </div>
                 </div>
             </div>
         </div>
     
+                    </div>
+                            <h2>Crï¿½ation de programme</h2>
+                            <input type="text" id="nomProg" placeholder="Rentrer un nom de programme" >       
+                                
+                                
+                                <% List<Profil> listeProfil = (List<Profil>) request.getAttribute("profil");
+                                    
+                                    out.println("<input list=\"listeProgramme\" name=\"monProg\">");
+                                    out.println("<datalist id=\"listeProgramme\">");
+                                    
+                                    for(int i = 0; i < listeProfil.size(); i++) {
+                                        out.println("<option value=\"" + listeProfil.get(i).getNomProfil()+"\"></option>");
+                                    }      
+                                    out.println("</datalist>");
+                                    
+                                %>
+                                <div>
+                                <h3>Sï¿½lectionnez vos sï¿½ances</h3>
+                                <p>bilan</p>
+                                <% List<Seance> listeBilan = (List<Seance>) request.getAttribute("seancebilan");
+                                
+                                out.println("<select name=\"lstbilan\" >");
+                                
+                                for(int i = 0; i < listeBilan.size(); i++) {
+                                    out.println("<option value=\"" + listeBilan.get(i).getNomSeance() + "\"></option>");
+                                }
+                                
+                                out.println("</select>");
+
+                                %>
+                               
+                                <p>standard</p>
+                                
+                                <%
+                                List<Seance> listeStand = (List<Seance>) request.getAttribute("seancestand");
+                                for(Seance ls : listeStand) {
+                                    out.println("<option value=\"" + ls.getNomSeance() + "\"></option>");
+                                }                                    
+                                    
+                                %>    
+                                </div>
+                                
+                           
+
                         <!-- /.container -->
 
                         
@@ -122,6 +188,13 @@
                                 </div>
                            
                         
+                    
+                            
+                            </div>
+                            
+                            
+                           
+                        </footer>
 
                         <!-- jQuery -->
                         <script src="boots/js/jquery.js"></script>
@@ -138,7 +211,7 @@
                             }
                         </style>
                         <script type="text/JavaScript" src="jsfonction/pageafficheprog.js"></script>
-
+                        
                         </body>
 
                         </html>
