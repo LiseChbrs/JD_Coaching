@@ -46,7 +46,7 @@ public class ServletAfficherSeance extends HttpServlet {
 
             try {
                 int para = Integer.parseInt(id);
-                List<Object[]> seance = session.createQuery("select s.idSeance, s.nomSeance, s.typeSeance, d.nomDifficulte from Programme p, Seance s, metier.ContenirSeance cs, Difficulte d   where p.idProgramme=cs.programme.idProgramme and cs.seance.idSeance=s.idSeance and d.idDifficulte = s.difficulte.idDifficulte and p.idProgramme =" + para + " order by cs.id.numOrdre asc").list();
+                List<Object[]> seance = session.createQuery("select s.idSeance, s.nomSeance, s.typeSeance, d.nomDifficulte, cs.id.numOrdre from Programme p, Seance s, metier.ContenirSeance cs, Difficulte d   where p.idProgramme=cs.programme.idProgramme and cs.seance.idSeance=s.idSeance and d.idDifficulte = s.difficulte.idDifficulte and p.idProgramme =" + para + " order by cs.id.numOrdre asc").list();
                 out.println("<elements>");
 
                 for (int i = 0; i < seance.size(); i++) {//affichage element seance
@@ -56,6 +56,8 @@ public class ServletAfficherSeance extends HttpServlet {
                     out.println("<nom>" + seance.get(i)[1] + "</nom>");
                     out.println("<type>" + seance.get(i)[2] + "</type>");
                     out.println("<diff>" + seance.get(i)[3] + "</diff>");
+                    out.println("<numO>" + seance.get(i)[4] + "</numO>");
+
                     out.println("</element>");
 
                 }

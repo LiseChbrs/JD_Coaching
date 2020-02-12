@@ -60,7 +60,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="index.html">Accueil</a>
+                            <a href="index.html">JD Coaching</a>
                         </li>
                         <li>
                             <a href="ServletCreationExercice">Exercice</a>
@@ -85,15 +85,15 @@
                     <div class="col-lg-12 text-center">
                         <h2>Programmes</h2></br></br>
 
-                        <div style=width:100%;>
+                        <section style=width:100%;float:left;>
                             <%
                                 List<Programme> prog = (List<Programme>) request.getAttribute("programme");
                                 for (int i = 0; i < prog.size(); i++) {
                                     Programme p = (Programme) prog.get(i);
 
-                                    out.println("<div class=\"card\" style=\"width: 20%;float=\"left\";\">");
+                                    out.println("<div class=\"card\" style=\"width:23em;float:left;margin:2%;\">");
                                     out.println("<div class=\"card-header\" id=\"headingOne\">");
-                                    out.println(" <li class=\"list-group-item\"><button name=" + p.getIdProgramme() + " id=\"prog\" class=\"btn btn-outline-warning\" type=\"button\" "
+                                    out.println(" <li class=\"list-group-item\"><button style=\"width: 100%;background-color:white;\" name=" + p.getIdProgramme() + " id=\"prog\" class=\"btn btn-outline-warning\" type=\"button\" "
                                             + "data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"false\" "
                                             + "aria-controls=\"collapseOne\">" + p.getNomProgramme() + "</li>");
                                     out.println("</button></div>");
@@ -104,20 +104,24 @@
 
 
                             %>
-                        </div>
+                        </section>
 
-
+                    </div>
+                </div>
+            </div>
+        </div>
+    
                         <!-- /.container -->
 
-                        <footer>
-                            <div class="container">
+                        
+                            
                                 <div class="row">
                                     <div class="col-lg-12 text-center">
                                         <p>Copyright &copy; Your Website 2020</p>
                                     </div>
                                 </div>
-                            </div>
-                        </footer>
+                           
+                        
 
                         <!-- jQuery -->
                         <script src="boots/js/jquery.js"></script>

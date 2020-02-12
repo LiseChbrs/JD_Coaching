@@ -1123,8 +1123,6 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
- margin-right:auto;
- margin-left:auto;
 }
 .img-rounded {
   border-radius: 6px;
