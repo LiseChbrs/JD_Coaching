@@ -4,7 +4,7 @@
     Author     : alied
 --%>
 
-<%@page import="metier.SessionClassement"%>
+<%@page import="metier.ContenirExercice"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="metier.CategorieExercice"%>
@@ -46,7 +46,7 @@
     </head>
 
     <body>
-        <% session.setAttribute("listeCE", new ArrayList<SessionClassement>()); %>
+        <% session.setAttribute("listeCE", new ArrayList<ContenirExercice>()); %>
         
         <div class="brand" ><p><img src="boots/image/logojd.jpg"  alt="logojd" width="150" height="150"  ></p>JD Coaching</div>
         <div class="address-bar">Coach sportif diplômé</div>
@@ -98,24 +98,24 @@
                     </h2>
                     <hr>
                     <hr class="visible-xs">
-                    <form method="GET" action="ServletCreationSeance">
+                    <form method="GET" action="ServletEnregistrementSeance">
                         Nom : <input type="text" name="nomSeance" id="idNomSeance"/>
-                        Séance bilan <input type="checkbox" name="typeSeance" id="idTypeSeance"/> 
-                        Difficulté : <select name="categorie" >
-                            <option></option>
+                        Séance bilan <input type="radio" style="display: ;" value="Basic" name="typeSeance" id="typeSeanceCache" checked="true" />
+                        <input type="radio" name="typeSeance" value="Bilan" id="typeSeanceVisible" checked="false" onclick="switchRadio()"/> 
+                        Difficulté : <select name="difficulte" id="selectDifficulte">
+                            <option value="0"></option>
                             <%  List<Difficulte> lstDifficulte = (List<Difficulte>) request.getAttribute("listeDifficulte");
                                 for (Difficulte d : lstDifficulte) {
-                                    out.println("<option>");
+                                    out.println("<option value=\""+ d.getIdDifficulte()+"\">");
                                     out.println(d.getNomDifficulte());
                                     out.println("</option>");
                                 }
                             %>
                         </select>
                         <p>Catégorie : <select name="categorie" >
-                                <option></option>
                                 <%  List<CategorieSeance> lstCategorie = (List<CategorieSeance>) request.getAttribute("listeCategorie");
                                     for (CategorieSeance cs : lstCategorie) {
-                                        out.println("<option>");
+                                        out.println("<option value=\""+ cs.getIdCategorieSeance()+"\">");
                                         out.println(cs.getNomCategorieSeance());
                                         out.println("</option>");
                                     }
@@ -123,20 +123,30 @@
                             </select>
                             <input type="button" value="Enregistrer la categorie"/>     </P>    
 
-                        Exercice :</br>
+                        </br>
                         Categorie de l'exercice : <div id="listCatEx">
                         <% List<CategorieExercice> lstCategorieExercice = (List<CategorieExercice>) request.getAttribute("listeCategorieExercice");
                             for (CategorieExercice ce : lstCategorieExercice) {
                                 if (ce.getNomCategorieExercice().equals("Echauffement")){
-                                    out.print("<input type=\"button\" id=" + ce.getIdCategorieExercice() + " onClick='afficherExercice(this.id)' value=" + ce.getNomCategorieExercice() + ">");
-                                    break;
-                                    
+                                    out.print("<input type=\"button\" id=" + ce.getIdCategorieExercice() + " style=\" display:block;\" onClick='afficherExercice(this.id)' value=" + ce.getNomCategorieExercice() + ">");    
+                                } else {
+                                    out.print("<input type=\"button\" id=" + ce.getIdCategorieExercice() + " style=\" display:none;\" onClick='afficherExercice(this.id)' value=" + ce.getNomCategorieExercice() + ">");
                                 }
                             }
 
                         %>
-                        </div><span id="zoneExercice"></span>
-                        </br><input type="submit" value="Enregistrer la séance"/>
+                        </div>
+                        Exercice :</br>
+                        <span id="zoneExercice"></span>
+                        
+                        
+                        <div  id="global"><span id="gauche"></span><span id="centrale"></span><span id="droite"></span></div>
+              
+                        <input type="hidden" value="" name="imgSession" id="cpt"/>
+                        
+                        
+                        
+                        </br><input type="submit" id="btnEnregistrerSeance" disabled="disabled" value="Enregistrer la séance"/>
                     </form>
                     <hr class="visible-xs">
 

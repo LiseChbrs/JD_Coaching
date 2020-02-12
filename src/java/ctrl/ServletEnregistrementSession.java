@@ -56,8 +56,8 @@ public class ServletEnregistrementSession extends HttpServlet {
         }
 
         listeCE.add(ce);
-        sessionHttp.setAttribute("listeCE", ce);
-        System.out.println(ce.toString());
+        sessionHttp.setAttribute("listeCE", listeCE);
+        System.out.println(listeCE.size());
         session.close();
         
     }
