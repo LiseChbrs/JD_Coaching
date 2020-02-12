@@ -6,7 +6,6 @@
 package ctrl;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import metier.CategorieExercice;
 import metier.CategorieSeance;
 import metier.Difficulte;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import orm.HibernateUtil;
@@ -41,52 +39,47 @@ public class ServletCreationSeance extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String action = request.getParameter("action");
-        switch (action) {
-            case "versForm":
-                try {
-                    Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-                    Transaction t = session.beginTransaction();
-                    List<Difficulte> queryDifficulte = (List<Difficulte>) session.createQuery(
-                            "select new metier.Difficulte(d.idDifficulte"
-                            + " ,d.nomDifficulte)"
-                            + " from Difficulte d").list();
-                    List<CategorieSeance> queryCategorieSeance = (List<CategorieSeance>) session.createQuery(
-                            "select new metier.CategorieSeance(cs.idCategorieSeance"
-                            + " ,cs.nomCategorieSeance)"
-                            + " from CategorieSeance cs").list();
-                    List<CategorieExercice> queryCategorieExercice = (List<CategorieExercice>) session.createQuery(
-                            "select new metier.CategorieExercice(ce.idCategorieExercice"
-                            + " ,ce.nomCategorieExercice)"
-                            + " from CategorieExercice ce").list();
-                    RequestDispatcher rd = request.getRequestDispatcher("creationSeance");
-                    request.setAttribute("listeCategorie", queryCategorieSeance);
-                    request.setAttribute("listeDifficulte", queryDifficulte);
-                    request.setAttribute("listeCategorieExercice", queryCategorieExercice);
-                    session.close();
-                    rd.forward(request, response);
+        try {
+            Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+            Transaction t = session.beginTransaction();
+            List<Difficulte> queryDifficulte = (List<Difficulte>) session.createQuery(
+                    "select new metier.Difficulte(d.idDifficulte"
+                    + " ,d.nomDifficulte)"
+                    + " from Difficulte d").list();
+            List<CategorieSeance> queryCategorieSeance = (List<CategorieSeance>) session.createQuery(
+                    "select new metier.CategorieSeance(cs.idCategorieSeance"
+                    + " ,cs.nomCategorieSeance)"
+                    + " from CategorieSeance cs").list();
+            List<CategorieExercice> queryCategorieExercice = (List<CategorieExercice>) session.createQuery(
+                    "select new metier.CategorieExercice(ce.idCategorieExercice"
+                    + " ,ce.nomCategorieExercice)"
+                    + " from CategorieExercice ce").list();
+            RequestDispatcher rd = request.getRequestDispatcher("creationSeance");
+            request.setAttribute("listeCategorie", queryCategorieSeance);
+            request.setAttribute("listeDifficulte", queryDifficulte);
+            request.setAttribute("listeCategorieExercice", queryCategorieExercice);
+            session.close();
+            rd.forward(request, response);
 
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
-        //String nomSeance = request.getParameter("nomSeance");
-        //String typeSeance = request.getParameter("typeSeance");
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+
+
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+/**
+ * Handles the HTTP <code>GET</code> method.
+ *
+ * @param request servlet request
+ * @param response servlet response
+ * @throws ServletException if a servlet-specific error occurs
+ * @throws IOException if an I/O error occurs
+ */
+@Override
+        protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -100,7 +93,7 @@ public class ServletCreationSeance extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
@@ -111,7 +104,7 @@ public class ServletCreationSeance extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo() {
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

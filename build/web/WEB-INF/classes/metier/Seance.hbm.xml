@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8 f?vr. 2020 16:33:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.Seance" table="Seance" catalog="db_21305092" optimistic-lock="version">
+        <id name="idSeance" type="java.lang.Integer">
+            <column name="IdSeance" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="difficulte" class="metier.Difficulte" fetch="select">
+            <column name="IdDifficulte" />
+        </many-to-one>
+        <property name="nomSeance" type="string">
+            <column name="NomSeance" length="50" not-null="true" />
+        </property>
+        <property name="typeSeance" type="string">
+            <column name="TypeSeance" length="50" not-null="true" />
+        </property>
+        <set name="contenirExercices" table="ContenirExercice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdSeance" not-null="true" />
+            </key>
+            <one-to-many class="metier.ContenirExercice" />
+        </set>
+        <set name="categorieSeances" table="AvoirCategorieSeance" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="IdSeance" not-null="true" />
+            </key>
+            <many-to-many entity-name="metier.CategorieSeance">
+                <column name="IdCategorieSeance" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="contenirSeances" table="ContenirSeance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdSeance" not-null="true" />
+            </key>
+            <one-to-many class="metier.ContenirSeance" />
+        </set>
+    </class>
+</hibernate-mapping>
