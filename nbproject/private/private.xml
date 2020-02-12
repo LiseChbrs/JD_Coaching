@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/JD_Coaching/src/java/ctrl/ServletCreationSeance.java</file>
-            <file>file:/F:/JD_Coaching/web/CreationSeance.jsp</file>
-            <file>file:/F:/JD_Coaching/web/jsfonction/afficheExercice.js</file>
-            <file>file:/F:/JD_Coaching/src/java/ctrl/ServletEnregistrementSession.java</file>
-            <file>file:/F:/JD_Coaching/src/java/metier/ContenirExercice.java</file>
-            <file>file:/F:/JD_Coaching/web/Exercice.jsp</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/web/jsfonction/pageafficheprog.js</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/web/Programme.jsp</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/web/index.html</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/src/java/ctrl/ServletProgramme.java</file>
         </group>
     </open-files>
 </project-private>

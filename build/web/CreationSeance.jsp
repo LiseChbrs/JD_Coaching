@@ -5,6 +5,7 @@
 --%>
 
 <%@page import="metier.ContenirExercice"%>
+<%@page import="metier.Seance"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="metier.CategorieExercice"%>
@@ -158,9 +159,27 @@
                         <strong>séance</strong>
                     </h2>
                     <hr>
-                    <input placeholder="Saisissez une séance" type="text" name="nomSeance" id="rechercherSeance"/>
-                    <button id="btnRecherche" value="Rechercher" type="button">Rechercher</button>                 
-                    <div id ="zoneAfficheSeance"></div>
+
+                    <input type="text" id="rechercherSeance" onkeyup="RechercherSeance()" placeholder="Rechercher des séances..." >
+                    <ul id="listeSeance">
+                        <% List<Seance> lstSeance = (List<Seance>) request.getAttribute("listeSeance");
+
+
+                            for (int i = 0; i < lstSeance.size(); i++) {
+                                Seance s = (Seance) lstSeance.get(i);
+
+                                out.println("<div class=\"card\" style=\"width: 20%;float=\"left\";\">");
+                                out.println("<div class=\"card-header\" id=\"headingOne\">");
+                                out.println(" <li class=\"list-group-item\"><button id= " + s.getIdSeance() + " class=\"btn btn-outline-warning\" type=\"button\" "
+                                        + "data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"false\" "
+                                        + "aria-controls=\"collapseOne\" >" + s.getIdSeance() + " - " + s.getNomSeance() + "</button></li>");
+                                out.println("</div>");
+                                out.println("<div id=0" +s.getIdSeance() + " style =\"display: none\">");
+                                out.println("</div></div>");
+                            }
+
+                        %>
+                    </ul>
 
                 </div>
             </div>
@@ -179,15 +198,17 @@
         </div>
     </footer>
 
-<!-- jQuery -->
-<script src="boots/js/jquery.js"></script>
+    <!-- jQuery -->
+    <script src="boots/js/jquery.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="boots/js/bootstrap.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="boots/js/bootstrap.min.js"></script>
 
-<script type="text/JavaScript" src="jsfonction/afficheExercice.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="boots/js/bootstrap.min.js"></script>
+    <script type="text/JavaScript" src="jsfonction/afficheExercice.js"></script>
+    <script type="text/JavaScript" src="jsfonction/afficherSeance.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="boots/js/bootstrap.min.js"></script>
 </body>
 
 </html>

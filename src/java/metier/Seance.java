@@ -22,6 +22,12 @@ public class Seance  implements java.io.Serializable {
 
     public Seance() {
     }
+
+    public Seance(Integer idSeance, String nomSeance) {
+        this.idSeance = idSeance;
+        this.nomSeance = nomSeance;
+    }    
+    
 	
     public Seance(String nomSeance, String typeSeance) {
         this.nomSeance = nomSeance;

@@ -42,9 +42,28 @@ function isExist() {
     xhr.send(param);
 
 }
-
+function valid(){
+    var zone= document.getElementById("zone").value;
+    var desc =document.getElementById("desc").value;
+    var img = document.getElementById("img").value;
+    var vid = document.getElementById("vid").value;
+    var text = "Nom exercice : "+zone ;
+    if (desc!=null){
+        text+= " Description : "+desc+" ";
+    }
+    text+="</br><IMG style=\"max-width: 100%;\" src=" + img
+                                    + " border=\"0\" alt=\"Votre navigateur ne charge pas l'image.\" > ";
+    if (vid!=null){
+        text+= "<iframe src=" + vid + " width=\"100%\" frameborder=\"0\" allowfullscreen></iframe>";
+    }
+    alert(text);
+    document.getElementById("popup").innerHTML = text;
+    document.getElementById("popupctrl").click();
+    
+}
 
 document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("btnajouter").addEventListener("click", valid);
 
     document.getElementById("zone").addEventListener("keyup", isExist);
     document.getElementById("catego").addEventListener("mousedown", multichoice);

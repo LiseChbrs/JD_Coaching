@@ -37,11 +37,6 @@
 
     <body>
 
-        <!-- lien pour le logo de notre site  -->
-        <div class="brand" ><p><img src="boots/image/logojd.jpg"  alt="logojd" width="150" height="150"  ></p>JD Coaching</div>
-        <div class="address-bar">Coach sportif diplômé</div>
-
-
         <!-- Les onglets de navigation  -->
         <!-- Navigation -->
         <nav class="navbar navbar-default" role="navigation">
@@ -61,13 +56,13 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="index.html">Accueil</a>
+                            <a href="index.html">JD Coaching</a>
                         </li>
                         <li>
                             <a href="ServletCreationExercice">Exercice</a>
                         </li>
                         <li>
-                            <a href="ServletCreationSeance?action=versForm">Séance</a>
+                            <a href="ServletCreationSeance">Séance</a>
                         </li>
                         <li>
                             <a href="ServletProgramme">Programme</a>
@@ -88,7 +83,13 @@
                             <!-- Le formulaire de création d'exercice -->
 
                             <!-- Wrapper for slides -->
-
+                            <%
+                                //message d'info sur l'ajout
+                                String msg_info = (String) request.getAttribute("msg");
+                                if (msg_info != null) {
+                                    out.println("<p><strong> <font color=\"green\"></font>" + msg_info + "</strong></p>");
+                                }
+                            %>
                             <hr>
                             <h1 >Création d'un
                                 <strong>exercice</strong>
@@ -97,13 +98,12 @@
                             <form action="ServletAddExercice">
                                 <input type="text" id="zone" name="nom" value="" placeholder="Nom de l'exercice" required/><br><br>
                                 <div id="resultat"></div>
-                                <input type="text" name="description" placeholder="Description de l'exercice (optionnelle)" value="" size="40" /></br><br>
-                                <input type="text" name="lienimg" value="" placeholder="Lien de l'image" required/><br><br>
-                                <input type="text" name="lienvid" value="" placeholder="Lien de la vidéo" /><br><br>   
+                                <input type="text" id="desc" name="description" placeholder="Description de l'exercice (optionnelle)" value="" size="40" /></br><br>
+                                <input type="text" id="img" name="lienimg" value="" placeholder="Lien de l'image" required/><br><br>
+                                <input type="text" id="vid" name="lienvid" value="" placeholder="Lien de la vidéo" /><br><br>   
 
                                 <!-- Lecture de la BDD afin de rï¿½cupï¿½rer les catï¿½gories et les objectifs  -->
                                 <%
-
                                     //rï¿½cup attribut
                                     List<CategorieExercice> categories = (List<CategorieExercice>) request.getAttribute("categories");
                                     List<ObjectifExercice> objectifs = (List<ObjectifExercice>) request.getAttribute("objectifs");
@@ -133,29 +133,54 @@
                                     out.println("</select>");
                                     out.println("</br>");
 
-                                    //message d'info sur l'ajout
-                                    String msg_info = (String) request.getAttribute("msg");
-                                    if (msg_info != null) {
-                                        out.println("<p><strong> <font color=\"green\"></font>" + msg_info + "</strong></p>");
-                                    }
+
                                 %>                                    
-                                <input type="submit" name="btnajouter" value="Enregistrer" id="btnajouter" />
-                            </form>    
+                                <input type="button"  id="btnajouter"  name="btnajouter" value="Enregistrer"  />
+
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id ="popupctrl" style="display:none;"> 
+                                </button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Vous allez ajouter un exercice</h5>
+                                                <h6 class="modal-title" id="exampleModalLabel">Vous pouvez annuler en sortant de la fenetre</h6>
+                                            </div>
+                                            <div id="popup" class="modal-body">
+
+                                            </div>
+                                            <div class="btn button-5" style="background-color: white;
+  color: black;
+  border: 2px solid #555555;">
+                                                <input type="submit" value="Enregistrer">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div></form>    
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- /.container -->
-        <footer>
-            <div class="container">
-                <div class="row">
+  
+          
                     <div class="col-lg-12 text-center">
                         <p>Copyright &copy; Your Website 2020</p>
                     </div>
-                </div>
-            </div>
-        </footer>
+               
+        <style>
+.button5 {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+
+.button5:hover {
+  background-color: #555555;
+  color: white;
+}</style>
+
         <!-- jQuery -->
         <script src="boots/js/jquery.js"></script>
 

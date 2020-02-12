@@ -72,6 +72,10 @@
         <servlet-name>ServletEnregistrementSeance</servlet-name>
         <servlet-class>ctrl.ServletEnregistrementSeance</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletCreationProg</servlet-name>
+        <servlet-class>ctrl.ServletCreationProg</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreationSeance</servlet-name>
         <url-pattern>/creationSeance</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>ServletEnregistrementSeance</servlet-name>
         <url-pattern>/ServletEnregistrementSeance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletCreationProg</servlet-name>
+        <url-pattern>/ServletCreationProg</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
