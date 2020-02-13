@@ -65,6 +65,17 @@
         <servlet-class>ctrl.ServletAfficherExercice</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
+=======
+        <servlet-name>ServletSuppressionSession</servlet-name>
+        <servlet-class>ctrl.ServletSuppressionSession</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletEnregistrementSeance</servlet-name>
+        <servlet-class>ctrl.ServletEnregistrementSeance</servlet-class>
+    </servlet>
+    <servlet>
+>>>>>>> master
         <servlet-name>ServletCreationProg</servlet-name>
         <servlet-class>ctrl.ServletCreationProg</servlet-class>
     </servlet>
@@ -133,6 +144,17 @@
         <url-pattern>/ServletAfficherExercice</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
+=======
+        <servlet-name>ServletSuppressionSession</servlet-name>
+        <url-pattern>/ServletSuppressionSession</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletEnregistrementSeance</servlet-name>
+        <url-pattern>/ServletEnregistrementSeance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+>>>>>>> master
         <servlet-name>ServletCreationProg</servlet-name>
         <url-pattern>/ServletCreationProg</url-pattern>
     </servlet-mapping>

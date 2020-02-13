@@ -95,6 +95,11 @@ public class Seance  implements java.io.Serializable {
         return this.categorieSeances;
     }
     
+    public void addCategorieSeance(CategorieSeance cs){
+        this.categorieSeances.add(cs);
+        cs.getSeances().add(this);
+    }
+    
     public void setCategorieSeances(Set categorieSeances) {
         this.categorieSeances = categorieSeances;
     }
@@ -132,6 +137,15 @@ public class Seance  implements java.io.Serializable {
         return true;
     }
 
+    public Seance(Difficulte difficulte, String nomSeance, String typeSeance) {
+        this.difficulte = difficulte;
+        this.nomSeance = nomSeance;
+        this.typeSeance = typeSeance;
+    }
+
+    
+    
+    
     @Override
     public String toString() {
         return "Seance{" + "idSeance=" + idSeance + ", difficulte=" + difficulte + ", nomSeance=" + nomSeance + ", typeSeance=" + typeSeance + ", contenirExercices=" + contenirExercices + ", categorieSeances=" + categorieSeances + ", contenirSeances=" + contenirSeances + '}';

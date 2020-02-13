@@ -6,19 +6,14 @@
 package ctrl;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import metier.CategorieExercice;
-import metier.ObjectifExercice;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Projections;
 import orm.HibernateUtil;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,14 +33,24 @@ public class ServletProgramme extends HttpServlet {
                 .list();
         List<Profil> queryProfil = session.createCriteria(Profil.class)
                 .list();        
+<<<<<<< HEAD
         //     List<Object[]> querySeanceBilan = session.createQuery("select s.idSeance, s.nomSeance, s.typeSeance, s.difficulte.nomDifficulte from  Seance s where s.typeSeance= \"Bilan\"").list();
        // List<Object[]> querySeanceStand = session.createQuery("select s.idSeance, s.nomSeance, s.typeSeance, s.difficulte.nomDifficulte from  Seance s where s.typeSeance<>\"Bilan\"").list();
+=======
+        List<Object[]> querySeanceBilan = session.createQuery("select s.idSeance, s.nomSeance, s.typeSeance, s.difficulte.nomDifficulte from  Seance s where s.typeSeance= \"Bilan\"").list();
+        List<Object[]> querySeanceStand = session.createQuery("select s.idSeance, s.nomSeance, s.typeSeance, s.difficulte.nomDifficulte from  Seance s where s.typeSeance<>\"Bilan\"").list();
+>>>>>>> master
         
         
         request.setAttribute("programme", queryProgramme); // Je mets mon arrayList "list" en tant qu'attribut du request
         request.setAttribute("profil", queryProfil); // Je mets mon arrayList "list" en tant qu'attribut du request
+<<<<<<< HEAD
      //   request.setAttribute("seancebilan", querySeanceBilan); 
      //   request.setAttribute("seancestand", querySeanceStand); 
+=======
+        request.setAttribute("seancebilan", querySeanceBilan); 
+        request.setAttribute("seancestand", querySeanceStand); 
+>>>>>>> master
         session.close();
         rd.forward(request, response);
         

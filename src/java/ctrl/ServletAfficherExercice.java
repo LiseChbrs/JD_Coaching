@@ -45,7 +45,8 @@ public class ServletAfficherExercice extends HttpServlet {
 
             try {
                 int para = Integer.parseInt(id);
-                List<Object[]> exercice = session.createQuery("select e.idExercice, e.nomExercice, e.descriptionExercice, e.imageExercice, e.videoExercice "
+                List<Object[]> exercice = session.createQuery("select e.idExercice, e.nomExercice, e.descriptionExercice, "
+                        + " e.imageExercice, e.videoExercice, ce.id.numOrdre, ce.nbOccurenceRepetitions, ce.nbRepetitions, ce.duree, ce.tempsPause "
                         + " from Seance s, metier.ContenirExercice ce, Exercice e   "
                         + " where e.idExercice=ce.exercice.idExercice and ce.seance.idSeance=s.idSeance "
                         + " and s.idSeance =" + para + " "
@@ -60,6 +61,11 @@ public class ServletAfficherExercice extends HttpServlet {
                     out.println("<description>" + exercice.get(i)[2] + "</description>");
                     out.println("<image>" + exercice.get(i)[3] + "</image>");
                     out.println("<video>" + exercice.get(i)[4] + "</video>");
+                    out.println("<numO>" + exercice.get(i)[5] + "</numO>");
+                    out.println("<nbOcc>" + exercice.get(i)[6] + "</nbOcc>");
+                    out.println("<nbRep>" + exercice.get(i)[7] + "</nbRep>");
+                    out.println("<duree>" + exercice.get(i)[8] + "</duree>");
+                    out.println("<tmpsPause>" + exercice.get(i)[9] + "</tmpsPause>");
                     out.println("</element>");
 
                 }

@@ -51,8 +51,6 @@
 
     <body>
 
-
-
         <!-- lien pour le logo de notre site  -->
         <!-- Les onglets de navigation  -->
         <!-- Navigation -->
@@ -73,13 +71,13 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                         <li>
-                            <a href="index.html">Accueil</a>
+                            <a href="index.html">JD Coaching</a>
                         </li>
                         <li>
                             <a href="ServletCreationExercice">Exercice</a>
                         </li>
                         <li>
-                            <a href="ServletCreationSeance">Séance</a>
+                            <a href="ServletCreationSeance">Sï¿½ance</a>
                         </li>
                         <li>
                             <a href="ServletProgramme">Programme</a>
@@ -96,7 +94,7 @@
             <div class="row">
                 <div class="box">
                     <div class="col-lg-12 text-center">
-                            <!-- Le formulaire de création d'exercice -->
+                            <!-- Le formulaire de crï¿½ation d'exercice -->
 
                             <!-- Wrapper for slides -->
                             <%
@@ -133,7 +131,7 @@
                             </ul>       
                             </section>
 
-                            <h1 >Création d'un
+                            <h1 >Crï¿½ation d'un
                                 <strong>exercice</strong>
                             </h1>
                             <hr>
@@ -142,7 +140,7 @@
                                 <input type="text" id="zone" name="nom" value="" placeholder="Nom de l'exercice" required/>
                                 <input type="text" id="desc" name="description" placeholder="Description de l'exercice (optionnelle)" value="" size="40" /></br><br>
                                 <input type="text" id="img" name="lienimg" value="" placeholder="Lien de l'image" required/>
-                                <input type="text" id="vid" name="lienvid" value="" placeholder="Lien de la vidéo" /><br><br>   
+                                <input type="text" id="vid" name="lienvid" value="" placeholder="Lien de la vidï¿½o" /><br><br>   
 
                                 <!-- Lecture de la BDD afin de rï¿½cupï¿½rer les catï¿½gories et les objectifs  --><div >
                                     <%                                        //rï¿½cup attribut
@@ -212,15 +210,24 @@
             </div>
         </div>
         <!-- /.container -->
-        <footer>
-            <div class="container">
-                <div class="row">
+  
+          
                     <div class="col-lg-12 text-center">
                         <p>Copyright &copy; Your Website 2020</p>
                     </div>
-                </div>
-            </div>
-        </footer>
+               
+        <style>
+.button5 {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+}
+
+.button5:hover {
+  background-color: #555555;
+  color: white;
+}</style>
+
         <!-- jQuery -->
         <script src="boots/js/jquery.js"></script>
 
