@@ -84,7 +84,6 @@ function popup() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("btnajouter").addEventListener("click", valid);
 
     document.getElementById("btnajouter").addEventListener("click", popup);
     document.getElementById("zone").addEventListener("keyup", isExist);
