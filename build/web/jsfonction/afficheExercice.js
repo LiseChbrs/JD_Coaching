@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-function switchRadio(){
+function switchRadio() {
     var radioBtnCache = document.getElementById("typeSeanceCache");
     var radioBtnVisible = document.getElementById("typeSeanceVisible");
     var selection = document.getElementById("selectDifficulte");
 
-    if(radioBtnCache.checked){
+    if (radioBtnCache.checked) {
 //        radioBtnCache.checked = "";
 //        radioBtnVisible.checked = "checked";
         selection.disabled = "disabled";
@@ -150,10 +150,10 @@ function enregistrementSession() {
                         listCatEx[i].style = "display:none";
                     }
                 }
-            /*
-             * Si nombre === 2, alors on a un exercice de catégorie étirement
-             * Donc a enregistrer en dernier.
-             */
+                /*
+                 * Si nombre === 2, alors on a un exercice de catégorie étirement
+                 * Donc a enregistrer en dernier.
+                 */
             } else if (nombre === 2) {
                 zone = document.getElementById("droite");
                 for (var i = 1; i < listCatEx.length - 1; i++) {
@@ -164,12 +164,12 @@ function enregistrementSession() {
                     }
                 }
                 document.getElementById("btnEnregistrerSeance").disabled = "";
-            /*
-             * Sinon on ajoute les images dans la div centrale.
-             */
+                /*
+                 * Sinon on ajoute les images dans la div centrale.
+                 */
             } else {
                 zone = document.getElementById("centrale");
-                image.addEventListener("click",suppressionSession);
+                image.addEventListener("click", suppressionSession);
             }
 
             zone.appendChild(image);
@@ -199,11 +199,11 @@ function suppressionSession() {
         if (xhr.status === 200) {
             var zone = document.getElementById("centrale").childNodes;
             var aleat = document.getElementById("centrale");
-            aleat.removeChild(zone[imgSupp-3]);
-            
+            aleat.removeChild(zone[imgSupp - 3]);
+
             for (var i = 0; i < zone.length; i++) {
-                zone[i].id = parseInt(i+3,16);
-                alert("zone[i].value"+zone[i].id);
+                zone[i].id = parseInt(i + 3, 16);
+                alert("zone[i].value" + zone[i].id);
             }
         }
     };

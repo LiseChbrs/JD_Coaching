@@ -35,23 +35,28 @@
         <![endif]-->
 
         <style type="text/css">
-        input {
-	border:2px solid #456879;
-	border-radius:10px;
-	height: 30px;
-	width: 300px;
-        }
+            input {
+                border:2px solid #456879;
+                border-radius:10px;
+                height: 30px;
+                width: 300px;
+            }
 
-        select {
-        width : 15em; 
-        }    
+            select {
+                width : 15em; 
+            }    
         </style>
 
     </head>
 
     <body>
 
+        <<<<<<< HEAD
+
+
         <!-- lien pour le logo de notre site  -->
+        =======
+        >>>>>>> master
         <!-- Les onglets de navigation  -->
         <!-- Navigation -->
         <nav class="navbar navbar-default" role="navigation">
@@ -77,7 +82,11 @@
                             <a href="ServletCreationExercice">Exercice</a>
                         </li>
                         <li>
+                            <<<<<<< HEAD
+                            <a href="ServletCreationSeance">Séance</a>
+                            =======
                             <a href="ServletCreationSeance">Sï¿½ance</a>
+                            >>>>>>> master
                         </li>
                         <li>
                             <a href="ServletProgramme">Programme</a>
@@ -94,7 +103,12 @@
             <div class="row">
                 <div class="box">
                     <div class="col-lg-12 text-center">
+                        <<<<<<< HEAD
+                        <!-- Le formulaire de création d'exercice -->
+                        =======
+                        <div id="carousel-example-generic" class="carousel slide">
                             <!-- Le formulaire de crï¿½ation d'exercice -->
+                            >>>>>>> master
 
                             <!-- Wrapper for slides -->
                             <%
@@ -105,6 +119,7 @@
                                 }
                             %>
                             <hr>
+                            <<<<<<< HEAD
                             <h1>Exercices</h1>
 
                             <%--
@@ -112,44 +127,96 @@
                             visualisation exercice
                             --%>
                             <section style=width:100%;float:left;>
-                            <ul class="list-group list-group-horizontal" id="listeExo">
-                                <% List<Exercice> lstExo = (List<Exercice>) request.getAttribute("exercices");
+                                <ul class="list-group list-group-horizontal" id="listeExo">
+                                    <% List<Exercice> lstExo = (List<Exercice>) request.getAttribute("exercices");
 
-                                    for (int i = 0; i < lstExo.size(); i++) {
-                                        Exercice e = (Exercice) lstExo.get(i);
+                                        for (int i = 0; i < lstExo.size(); i++) {
+                                            Exercice e = (Exercice) lstExo.get(i);
 
-                                        out.println("<div class=\"card\" style=\"width: 20em;float=left;margin:2%;display: inline-block;\">");
-                                        out.println("<div class=\"card-header\" id=\"headingOne\" style=\"width:100%;\">");
-                                        out.println("<li class=\"list-group-item\">" + e.getNomExercice() + " - " + "<IMG style=\"max-width: 100%;\" src=" + e.getImageExercice()
-                                                + " border=\"0\" alt=\"Votre navigateur ne charge pas l'image.\">" + "</li>" );
-                                        out.println("</div>");
-                                        out.println("<div id=0" + e.getIdExercice() + " style =\"display: none\">");
-                                        out.println("</div></div>");
-                                    }
+                                            out.println("<div class=\"card\" style=\"width: 20em;float=left;margin:2%;display: inline-block;\">");
+                                            out.println("<div class=\"card-header\" id=\"headingOne\" style=\"width:100%;\">");
+                                            out.println("<li class=\"list-group-item\">" + e.getNomExercice() + " - " + "<IMG style=\"max-width: 100%;\" src=" + e.getImageExercice()
+                                                    + " border=\"0\" alt=\"Votre navigateur ne charge pas l'image.\">" + "</li>");
+                                            out.println("</div>");
+                                            out.println("<div id=0" + e.getIdExercice() + " style =\"display: none\">");
+                                            out.println("</div></div>");
+                                        }
 
-                                %>
-                            </ul>       
+                                    %>
+                                </ul>       
                             </section>
 
-                            <h1 >Crï¿½ation d'un
-                                <strong>exercice</strong>
-                            </h1>
-                            <hr>
-                            
-                            <form action="ServletAddExercice">
-                                <input type="text" id="zone" name="nom" value="" placeholder="Nom de l'exercice" required/>
-                                <input type="text" id="desc" name="description" placeholder="Description de l'exercice (optionnelle)" value="" size="40" /></br><br>
-                                <input type="text" id="img" name="lienimg" value="" placeholder="Lien de l'image" required/>
-                                <input type="text" id="vid" name="lienvid" value="" placeholder="Lien de la vidï¿½o" /><br><br>   
+                            <h1 >Création d'un
+                                =======
+                                <h1 >Crï¿½ation d'un
+                                    >>>>>>> master
+                                    <strong>exercice</strong>
+                                </h1>
+                                <hr>
 
-                                <!-- Lecture de la BDD afin de rï¿½cupï¿½rer les catï¿½gories et les objectifs  --><div >
-                                    <%                                        //rï¿½cup attribut
+                                <form action="ServletAddExercice">
+                                    <<<<<<< HEAD
+                                    <input type="text" id="zone" name="nom" value="" placeholder="Nom de l'exercice" required/>
+                                    <input type="text" id="desc" name="description" placeholder="Description de l'exercice (optionnelle)" value="" size="40" /></br><br>
+                                    <input type="text" id="img" name="lienimg" value="" placeholder="Lien de l'image" required/>
+                                    <input type="text" id="vid" name="lienvid" value="" placeholder="Lien de la vidéo" /><br><br>   
+
+                                    <!-- Lecture de la BDD afin de rï¿½cupï¿½rer les catï¿½gories et les objectifs  --><div >
+                                        <%                                        //rï¿½cup attribut
+                                            List<CategorieExercice> categories = (List<CategorieExercice>) request.getAttribute("categories");
+                                            List<ObjectifExercice> objectifs = (List<ObjectifExercice>) request.getAttribute("objectifs");
+
+                                            //creation tab
+                                            out.println("<div style=\"float:left;margin-left:25%;\"><h2> Categories </h2> ");
+
+                                            out.println("<select id=\"catego\" name=\"cat\" multiple required >");
+                                            for (int i = 0; i < categories.size(); i++) {
+                                                CategorieExercice ce = (CategorieExercice) categories.get(i);
+                                                out.println("<option value=" + ce.getIdCategorieExercice() + ">" + ce.getNomCategorieExercice() + "</option>");
+
+                                            }
+                                            out.println("</select>");
+                                            out.println("</div >");
+                                            out.println("<div  style=\"float:right;margin-right:25%;\">");
+                                            //creation tab
+                                            out.println("<h2> Objectifs </h2> ");
+                                            out.println("<select id=\"object\" multiple name=\"obj\" required>");
+
+                                            for (int i = 0; i < objectifs.size(); i++) {
+                                                ObjectifExercice ob = (ObjectifExercice) objectifs.get(i);
+                                                out.println("<option value=" + ob.getIdObjectifExercice() + ">" + ob.getNomObjectifExercice() + "</option>");
+
+                                            }
+
+                                            out.println("</select>");
+                                            out.println("</div>");
+
+                                            out.println("</br>");
+
+
+                                        %> </div>     
+                                    </br> 
+                                    </br> 
+                                    </br> 
+                                    </br> 
+                                    </br> 
+                                    </br> 
+                                    </br> 
+                                    </br> 
+                                    =======
+                                    <input type="text" id="zone" name="nom" value="" placeholder="Nom de l'exercice" required/><br><br>
+                                    <div id="resultat"></div>
+                                    <input type="text" id="desc" name="description" placeholder="Description de l'exercice (optionnelle)" value="" size="40" /></br><br>
+                                    <input type="text" id="img" name="lienimg" value="" placeholder="Lien de l'image" required/><br><br>
+                                    <input type="text" id="vid" name="lienvid" value="" placeholder="Lien de la vidï¿½o" /><br><br>   
+
+                                    <!-- Lecture de la BDD afin de rï¿½cupï¿½rer les catï¿½gories et les objectifs  -->
+                                    <%                                    //rï¿½cup attribut
                                         List<CategorieExercice> categories = (List<CategorieExercice>) request.getAttribute("categories");
                                         List<ObjectifExercice> objectifs = (List<ObjectifExercice>) request.getAttribute("objectifs");
 
                                         //creation tab
-                                        out.println("<div style=\"float:left;margin-left:25%;\"><h2> Categories </h2> ");
-
+                                        out.println("<h2> Categories </h2> ");
                                         out.println("<select id=\"catego\" name=\"cat\" multiple required >");
                                         for (int i = 0; i < categories.size(); i++) {
                                             CategorieExercice ce = (CategorieExercice) categories.get(i);
@@ -157,8 +224,9 @@
 
                                         }
                                         out.println("</select>");
-                                        out.println("</div >");
-                                        out.println("<div  style=\"float:right;margin-right:25%;\">");
+
+                                        out.println("</br>");
+
                                         //creation tab
                                         out.println("<h2> Objectifs </h2> ");
                                         out.println("<select id=\"object\" multiple name=\"obj\" required>");
@@ -170,63 +238,65 @@
                                         }
 
                                         out.println("</select>");
-                                        out.println("</div>");
-
                                         out.println("</br>");
 
 
-                                    %> </div>     
-                                </br> 
-                                </br> 
-                                </br> 
-                                </br> 
-                                </br> 
-                                </br> 
-                                </br> 
-                                </br> 
-                                <input type="button"  id="btnajouter"  name="btnajouter" value="Enregistrer"  />
+                                    %>                                    
+                                    >>>>>>> master
+                                    <input type="button"  id="btnajouter"  name="btnajouter" value="Enregistrer"  />
 
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id ="popupctrl" style="display:none;"> 
-                                </button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Vous allez ajouter un exercice</h5>
-                                                <h6 class="modal-title" id="exampleModalLabel">Vous pouvez annuler en sortant de la fenetre</h6>
-                                            </div>
-                                            <div id="popup" class="modal-body">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id ="popupctrl" style="display:none;"> 
+                                    </button>
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Vous allez ajouter un exercice</h5>
+                                                    <h6 class="modal-title" id="exampleModalLabel">Vous pouvez annuler en sortant de la fenetre</h6>
+                                                </div>
+                                                <div id="popup" class="modal-body">
 
+                                                </div>
+                                                <<<<<<< HEAD
+                                                <div class="modal-footer">
+                                                    <input type="submit" value="Enregistrer" >
+                                                    =======
+                                                    <div class="btn button-5" style="background-color: white;
+                                                         color: black;
+                                                         border: 2px solid #555555;">
+                                                        <input type="submit" value="Enregistrer">
+                                                        >>>>>>> master
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="modal-footer">
-                                                <input type="submit" value="Enregistrer" >
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div></form>    
-                       
+                                        </div></form>    
+                                <<<<<<< HEAD
+
+                                =======
+                        </div>
+                        >>>>>>> master
                     </div>
                 </div>
             </div>
         </div>
         <!-- /.container -->
-  
-          
-                    <div class="col-lg-12 text-center">
-                        <p>Copyright &copy; Your Website 2020</p>
-                    </div>
-               
-        <style>
-.button5 {
-  background-color: white;
-  color: black;
-  border: 2px solid #555555;
-}
 
-.button5:hover {
-  background-color: #555555;
-  color: white;
-}</style>
+
+        <div class="col-lg-12 text-center">
+            <p>Copyright &copy; Your Website 2020</p>
+        </div>
+
+        <style>
+            .button5 {
+                background-color: white;
+                color: black;
+                border: 2px solid #555555;
+            }
+
+            .button5:hover {
+                background-color: #555555;
+                color: white;
+            }</style>
 
         <!-- jQuery -->
         <script src="boots/js/jquery.js"></script>
