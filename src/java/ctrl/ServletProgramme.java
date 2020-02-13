@@ -32,28 +32,18 @@ public class ServletProgramme extends HttpServlet {
         List<Programme> queryProgramme = session.createCriteria(Programme.class)
                 .list();
         List<Profil> queryProfil = session.createCriteria(Profil.class)
-                .list();        
-<<<<<<< HEAD
-        //     List<Object[]> querySeanceBilan = session.createQuery("select s.idSeance, s.nomSeance, s.typeSeance, s.difficulte.nomDifficulte from  Seance s where s.typeSeance= \"Bilan\"").list();
-       // List<Object[]> querySeanceStand = session.createQuery("select s.idSeance, s.nomSeance, s.typeSeance, s.difficulte.nomDifficulte from  Seance s where s.typeSeance<>\"Bilan\"").list();
-=======
-        List<Object[]> querySeanceBilan = session.createQuery("select s.idSeance, s.nomSeance, s.typeSeance, s.difficulte.nomDifficulte from  Seance s where s.typeSeance= \"Bilan\"").list();
-        List<Object[]> querySeanceStand = session.createQuery("select s.idSeance, s.nomSeance, s.typeSeance, s.difficulte.nomDifficulte from  Seance s where s.typeSeance<>\"Bilan\"").list();
->>>>>>> master
-        
-        
+                .list();
+        //List<Object[]> querySeanceBilan = session.createQuery("select s.idSeance, s.nomSeance, s.typeSeance, s.difficulte.nomDifficulte from  Seance s where s.typeSeance= \"Bilan\"").list();
+        // List<Object[]> querySeanceStand = session.createQuery("select s.idSeance, s.nomSeance, s.typeSeance, s.difficulte.nomDifficulte from  Seance s where s.typeSeance<>\"Bilan\"").list();
+
         request.setAttribute("programme", queryProgramme); // Je mets mon arrayList "list" en tant qu'attribut du request
         request.setAttribute("profil", queryProfil); // Je mets mon arrayList "list" en tant qu'attribut du request
-<<<<<<< HEAD
-     //   request.setAttribute("seancebilan", querySeanceBilan); 
-     //   request.setAttribute("seancestand", querySeanceStand); 
-=======
-        request.setAttribute("seancebilan", querySeanceBilan); 
-        request.setAttribute("seancestand", querySeanceStand); 
->>>>>>> master
+        //   request.setAttribute("seancebilan", querySeanceBilan); 
+        //   request.setAttribute("seancestand", querySeanceStand); 
+
         session.close();
         rd.forward(request, response);
-        
+
     }
 
     @Override

@@ -35,16 +35,14 @@
         <![endif]-->
 
         <style type="text/css">
-        input {
-	border:2px solid #456879;
-	border-radius:10px;
-	height: 30px;
-	width: 300px;
-        }
+            input {
+                border:2px solid #456879;
+                border-radius:10px;
+                height: 30px;
+                width: 300px;
+            }
 
-        select {
-        width : 15em; 
-        }    
+  
         </style>
 
     </head>
@@ -52,6 +50,7 @@
     <body>
 
         <!-- lien pour le logo de notre site  -->
+
         <!-- Les onglets de navigation  -->
         <!-- Navigation -->
         <nav class="navbar navbar-default" role="navigation">
@@ -77,7 +76,8 @@
                             <a href="ServletCreationExercice">Exercice</a>
                         </li>
                         <li>
-                            <a href="ServletCreationSeance">Sï¿½ance</a>
+                            <a href="ServletCreationSeance">Séance</a>
+
                         </li>
                         <li>
                             <a href="ServletProgramme">Programme</a>
@@ -94,9 +94,10 @@
             <div class="row">
                 <div class="box">
                     <div class="col-lg-12 text-center">
-                            <!-- Le formulaire de crï¿½ation d'exercice -->
 
-                            <!-- Wrapper for slides -->
+                        <div id="carousel-example-generic" class="carousel slide">
+                            <!-- Le formulaire de création d'exercice -->
+
                             <%
                                 //message d'info sur l'ajout
                                 String msg_info = (String) request.getAttribute("msg");
@@ -112,39 +113,38 @@
                             visualisation exercice
                             --%>
                             <section style=width:100%;float:left;>
-                            <ul class="list-group list-group-horizontal" id="listeExo">
-                                <% List<Exercice> lstExo = (List<Exercice>) request.getAttribute("exercices");
+                                <ul class="list-group list-group-horizontal" id="listeExo">
+                                    <% List<Exercice> lstExo = (List<Exercice>) request.getAttribute("exercices");
 
-                                    for (int i = 0; i < lstExo.size(); i++) {
-                                        Exercice e = (Exercice) lstExo.get(i);
+                                        for (int i = 0; i < lstExo.size(); i++) {
+                                            Exercice e = (Exercice) lstExo.get(i);
 
-                                        out.println("<div class=\"card\" style=\"width: 20em;float=left;margin:2%;display: inline-block;\">");
-                                        out.println("<div class=\"card-header\" id=\"headingOne\" style=\"width:100%;\">");
-                                        out.println("<li class=\"list-group-item\">" + e.getNomExercice() + " - " + "<IMG style=\"max-width: 100%;\" src=" + e.getImageExercice()
-                                                + " border=\"0\" alt=\"Votre navigateur ne charge pas l'image.\">" + "</li>" );
-                                        out.println("</div>");
-                                        out.println("<div id=0" + e.getIdExercice() + " style =\"display: none\">");
-                                        out.println("</div></div>");
-                                    }
+                                            out.println("<div class=\"card\" style=\"width: 20em;float=left;margin:2%;display: inline-block;\">");
+                                            out.println("<div class=\"card-header\" id=\"headingOne\" style=\"width:100%;\">");
+                                            out.println("<li class=\"list-group-item\">" + e.getNomExercice() + " - " + "<IMG style=\"max-width: 100%;\" src=" + e.getImageExercice()
+                                                    + " border=\"0\" alt=\"Votre navigateur ne charge pas l'image.\">" + "</li>");
+                                            out.println("</div>");
+                                            out.println("<div id=0" + e.getIdExercice() + " style =\"display: none\">");
+                                            out.println("</div></div>");
+                                        }
 
-                                %>
-                            </ul>       
+                                    %>
+                                </ul>       
                             </section>
 
-                            <h1 >Crï¿½ation d'un
+                            <h1 >Création d'un
                                 <strong>exercice</strong>
                             </h1>
                             <hr>
-                            
+
                             <form action="ServletAddExercice">
                                 <input type="text" id="zone" name="nom" value="" placeholder="Nom de l'exercice" required/>
                                 <input type="text" id="desc" name="description" placeholder="Description de l'exercice (optionnelle)" value="" size="40" /></br><br>
                                 <input type="text" id="img" name="lienimg" value="" placeholder="Lien de l'image" required/>
-                                <input type="text" id="vid" name="lienvid" value="" placeholder="Lien de la vidï¿½o" /><br><br>   
+                                <input type="text" id="vid" name="lienvid" value="" placeholder="Lien de la vidéo" /><br><br>   
 
-                                <!-- Lecture de la BDD afin de rï¿½cupï¿½rer les catï¿½gories et les objectifs  --><div >
-                                    <%                                        //rï¿½cup attribut
-                                        List<CategorieExercice> categories = (List<CategorieExercice>) request.getAttribute("categories");
+                                <!-- Lecture de la BDD afin de recuperer les categories et les objectifs  --><div >
+                                    <%  List<CategorieExercice> categories = (List<CategorieExercice>) request.getAttribute("categories");
                                         List<ObjectifExercice> objectifs = (List<ObjectifExercice>) request.getAttribute("objectifs");
 
                                         //creation tab
@@ -184,6 +184,7 @@
                                 </br> 
                                 </br> 
                                 </br> 
+
                                 <input type="button"  id="btnajouter"  name="btnajouter" value="Enregistrer"  />
 
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id ="popupctrl" style="display:none;"> 
@@ -198,35 +199,39 @@
                                             <div id="popup" class="modal-body">
 
                                             </div>
-                                            <div class="modal-footer">
-                                                <input type="submit" value="Enregistrer" >
+
+                                            <div class="btn button-5" style="background-color: white;
+                                                 color: black;
+                                                 border: 2px solid #555555;">
+                                                <input type="submit" value="Enregistrer">
                                             </div>
                                         </div>
                                     </div>
                                 </div></form>    
-                       
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- /.container -->
-  
-          
-                    <div class="col-lg-12 text-center">
-                        <p>Copyright &copy; Your Website 2020</p>
-                    </div>
-               
-        <style>
-.button5 {
-  background-color: white;
-  color: black;
-  border: 2px solid #555555;
-}
 
-.button5:hover {
-  background-color: #555555;
-  color: white;
-}</style>
+
+        <div class="col-lg-12 text-center">
+            <p>Copyright &copy; Your Website 2020</p>
+        </div>
+
+        <style>
+            .button5 {
+                background-color: white;
+                color: black;
+                border: 2px solid #555555;
+            }
+
+            .button5:hover {
+                background-color: #555555;
+                color: white;
+            }</style>
 
         <!-- jQuery -->
         <script src="boots/js/jquery.js"></script>

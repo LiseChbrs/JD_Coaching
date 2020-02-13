@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import metier.CategorieExercice;
+import metier.Exercice;
 import metier.ObjectifExercice;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -32,16 +33,16 @@ public class ServletCreationExercice extends HttpServlet {
 
         List<ObjectifExercice> objectifs = session.createCriteria(ObjectifExercice.class)
                 .list();
-        
+
         List<Exercice> exercices = session.createCriteria(Exercice.class)
-        .list();
-        
+                .list();
+
         session.close();
 
         request.setAttribute("categories", categories); // Je met mon arrayListe "list" en tant qu'attribut du reques
         request.setAttribute("objectifs", objectifs);
         request.setAttribute("exercices", exercices);
-        
+
         rd.forward(request, response); // j'envoi le request ?
 
     }

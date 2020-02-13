@@ -1,3 +1,5 @@
 src/java/hibernate.cfg.xml
 
 src/java/hibernate.cfg
+
+build/web/WEB-INF/classes/hibernate.cfg.xml
