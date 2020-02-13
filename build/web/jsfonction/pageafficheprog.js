@@ -20,16 +20,13 @@ function afficherSeanceBilan(){
             for(var i = 0; i < list.length; i++) { 
                  text +="<div class=\"card\" name=\"carte\"style=\"width: 20%;float=\"left\";\">" +
                         "<div class=\"card-header\" id=\"headingOne\">" +
-                        "<label name=\"labelle\"  for=\"000000"+ zone.getElementsByTagName("id")[i].firstChild.nodeValue +"\" >" +
                         " <li class=\"list-group-item\"><button id= \"" + zone.getElementsByTagName("id")[i].firstChild.nodeValue + "\"" + 
                         " class=\"btn btn-outline-warning\" i=\"000000"+ zone.getElementsByTagName("id")[i].firstChild.nodeValue +"\" onclick=\"afficherExerciceSeance()\" type=\"button\" " + 
                         "data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"false\" " +
-                        "aria-controls=\"collapseOne\" > Seance " + zone.getElementsByTagName("id")[i].firstChild.nodeValue + " : " + zone.getElementsByTagName("nom")[i].firstChild.nodeValue + " </button></li></label>" +
+                        "aria-controls=\"collapseOne\" > Seance " + zone.getElementsByTagName("id")[i].firstChild.nodeValue + " : " + zone.getElementsByTagName("nom")[i].firstChild.nodeValue + " </button></li>" +
                         "</div>" +
                         "<div id=\"zone_" + zone.getElementsByTagName("id")[i].firstChild.nodeValue + "\" style =\"display: none\">" +
-                        "</div></div><input name=\"rbt\" type=\"radio\" style=\"display : inline\" id=\"000000"+ zone.getElementsByTagName("id")[i].firstChild.nodeValue +"\"/>";
-            }for(i=0;i<document.getElementsByName("labelle").length;i++){
-                document.getElementsByName("labelle")[i].addEventListener("click",selectionradio)
+                        "</div></div><input name=\"radioBtn\" type=\"radio\" style=\"display : none\" id=\"000000"+ zone.getElementsByTagName("id")[i].firstChild.nodeValue +"\"/>";
             }
             doc.innerHTML = text ;
         }
@@ -37,11 +34,6 @@ function afficherSeanceBilan(){
     xhr.send();
 }         
 
-
-function selectionradio(){
-    var e =event.target.getAttribute("i");
-    document.getElementById(e).checked;
-}
 /**
  * 
  * fonction qui affiche le détails des exercices lors du choix de la seance a integrer dans le programme 
@@ -54,9 +46,11 @@ function afficherExerciceSeance() {
      * @type type
      */
     var id = event.target.getAttribute("id");
-    
+    var radio = event.target.getAttribute("i");
+    document.getElementById(radio).click();
     var xhr = new XMLHttpRequest();
     var url = " ServletAfficherExercice?id=" + id;
+
 
     xhr.open("GET", url);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -116,7 +110,7 @@ function afficherExerciceSeance() {
                             text1 += "</li>";
                         
                     }
-                    text1 += "<button id=\"choixSeance\" value=\"" + existe[i].children[0].firstChild.nodeValue + "\" onclick=\"ChoixSeance()\" type=\"button\">Choisir cette seance</button>";
+                    text1 += "<button id=\"choixSeance\" value=\"" + id + "\" onclick=\"ChoixSeance()\" type=\"button\">Choisir cette seance</button>";
                     text1 += "</ul>";
                     
                     elt.innerHTML = text1;
@@ -138,7 +132,7 @@ function ChoixSeance() {
     var param = document.getElementById("choixSeance").value;
     
     var xhr = new XMLHttpRequest();
-    var url = " ServletChoixSeance?choix=" + param;
+    var url = " ServletChoixSeanceProgramme?choix=" + param;
     
     xhr.open("GET", url);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -146,25 +140,35 @@ function ChoixSeance() {
     {
         if (xhr.status === 200)
         {
+            alert("OK 1");
+            var idSeance = document.querySelector('input[name="radioBtn"]:checked').value;
+            var cloneSeance = document.getElementById(idSeance).cloneNode(true);
+            alert(cloneSeance);
+            cloneSeance.name = "programmeSession";
+            var number = document.getElementsByName("programmeSession").length;
+            cloneSeance.position = number;
+            cloneSeance.id = "session_"+number;
+            cloneSeance.typeseance = xhr.responseXML.getElementsByTagName("type")[0].firstChild.nodeValue;
+            if(cloneSeance.typeseance === "Bilan"){
+                document.getElementById("valeurCachee").value = "0";
+            }
+            alert(cloneSeance.typeseance);
+            document.getElementById("sessionProgrammes").insertAdjacentHtml("beforeend", cloneSeance);
             document.getElementById("champsProgrammes").innerHTML = "";
+            alert(document.getElementById("valeurCachee").value.length);
             if(document.getElementById("valeurCachee").value.length === "1"){
                 document.getElementById("btnTypeStandard").style.display = "inline";
+                document.getElementById("btnTypeBilan").style.display = "none";
             } else if(document.getElementById("valeurCachee").value.length === "5"){
                 document.getElementById("btnTypeStandard").style.display = "none";   
             } else {
                 document.getElementById("valeurCachee").value += "0";
+                document.getElementById("btnTypeBilan").style.display = "inline";
             }
             
-            var idEx = document.querySelector('input[name="carte"]:checked').value;
-            
-            var nombre = document.getElementsByName("imgSession").length;
-            var listCatEx = document.getElementById("listCatEx").childNodes;
-            var image = document.getElementById("image_" + idEx).cloneNode(true);
-            image.id = nombre;
-            image.name = "imgSession";
-            
         }
-    } 
+    };
+    xhr.send();
 } 
 
 /**

@@ -39,11 +39,22 @@ public class ServletChoixSeanceProgramme extends HttpServlet {
 
         HttpSession sessionHttp = request.getSession();
         ArrayList<ContenirSeance> listeCS = (ArrayList<ContenirSeance>)sessionHttp.getAttribute("listeCS");
-        int idS = Integer.valueOf(request.getParameter("idSeance"));
+        int idS = Integer.valueOf(request.getParameter("choix"));
         
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         Transaction t = session.beginTransaction();
-        ContenirSeance cs = new ContenirSeance((Seance)session.get(Seance.class, idS));
+        Seance s = (Seance)session.get(Seance.class, idS);
+        ContenirSeance cs = new ContenirSeance(s);
+        
+        response.setContentType("application/xml;charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<?xml version=\"1.0\"?>");
+            out.println("<element>");
+            out.println("<type>"+s.getTypeSeance()+"</type>");
+            out.println("</element>");
+        }
+        
         listeCS.add(cs);
         sessionHttp.setAttribute("listeCS", listeCS);
         session.close();

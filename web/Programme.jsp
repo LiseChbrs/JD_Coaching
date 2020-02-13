@@ -144,6 +144,7 @@
                         </br>
 
                         <div id="champsProgrammes"></div>
+                        <div id="sessionProgrammes"></div>
                         <input type="hidden" id="valeurCachee" value="0" />
                         
                      <%--  
