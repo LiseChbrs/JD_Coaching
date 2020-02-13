@@ -18,13 +18,13 @@ function afficherSeanceBilan(){
             var zone = xhr.responseXML;
             var list = zone.getElementsByTagName("element");
             for(var i = 0; i < list.length; i++) { 
-                text += "<label name=\"labelle\"  for=\"000000"+ zone.getElementsByTagName("id")[i].firstChild.nodeValue +"\" >" +
-                        "<div class=\"card\" name=\"carte\"style=\"width: 20%;float=\"left\";\">" +
+                 text +="<div class=\"card\" name=\"carte\"style=\"width: 20%;float=\"left\";\">" +
                         "<div class=\"card-header\" id=\"headingOne\">" +
+                        "<label name=\"labelle\"  for=\"000000"+ zone.getElementsByTagName("id")[i].firstChild.nodeValue +"\" >" +
                         " <li class=\"list-group-item\"><button id= \"" + zone.getElementsByTagName("id")[i].firstChild.nodeValue + "\"" + 
                         " class=\"btn btn-outline-warning\" i=\"000000"+ zone.getElementsByTagName("id")[i].firstChild.nodeValue +"\" onclick=\"afficherExerciceSeance()\" type=\"button\" " + 
                         "data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"false\" " +
-                        "aria-controls=\"collapseOne\" > Seance " + zone.getElementsByTagName("id")[i].firstChild.nodeValue + " : " + zone.getElementsByTagName("nom")[i].firstChild.nodeValue + " </button></li>" +
+                        "aria-controls=\"collapseOne\" > Seance " + zone.getElementsByTagName("id")[i].firstChild.nodeValue + " : " + zone.getElementsByTagName("nom")[i].firstChild.nodeValue + " </button></li></label>" +
                         "</div>" +
                         "<div id=\"zone_" + zone.getElementsByTagName("id")[i].firstChild.nodeValue + "\" style =\"display: none\">" +
                         "</div></div><input name=\"rbt\" type=\"radio\" style=\"display : inline\" id=\"000000"+ zone.getElementsByTagName("id")[i].firstChild.nodeValue +"\"/>";
