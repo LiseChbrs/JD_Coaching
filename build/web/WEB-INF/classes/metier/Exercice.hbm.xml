@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 8 f?vr. 2020 16:33:04 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="metier.Exercice" table="Exercice" catalog="db_21305092" optimistic-lock="version">
+        <id name="idExercice" type="java.lang.Integer">
+            <column name="IdExercice" />
+            <generator class="identity" />
+        </id>
+        <property name="nomExercice" type="string">
+            <column name="NomExercice" length="50" not-null="true" />
+        </property>
+        <property name="descriptionExercice" type="string">
+            <column name="DescriptionExercice" length="250" not-null="true" />
+        </property>
+        <property name="imageExercice" type="string">
+            <column name="ImageExercice" length="250" not-null="true" />
+        </property>
+        <property name="videoExercice" type="string">
+            <column name="VideoExercice" length="250" />
+        </property>
+        <set name="objectifExercices" table="AvoirObjectifExercice" cascade="all" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="IdExercice" not-null="true" />
+            </key>
+            <many-to-many entity-name="metier.ObjectifExercice">
+                <column name="IdObjectifExercice" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="categorieExercices" table="AvoirCategorieExercice" cascade="all" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="IdExercice" not-null="true" />
+            </key>
+            <many-to-many entity-name="metier.CategorieExercice">
+                <column name="IdCategorieExercice" not-null="true" />
+            </many-to-many>
+        </set>
+        <set name="contenirExercices" table="ContenirExercice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IdExercice" not-null="true" />
+            </key>
+            <one-to-many class="metier.ContenirExercice" />
+        </set>
+    </class>
+</hibernate-mapping>

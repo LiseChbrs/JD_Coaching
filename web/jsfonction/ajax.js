@@ -3,6 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+/**
+ * 
+ * ==================Page javascript de Exercice.jsp=======================
+ */
+
+
+/**
+ * 
+ * fonction qui gère les listes déroulantes multichoix 
+ */
 function multichoice() {
 
     var el = event.target;
@@ -22,7 +33,10 @@ function multichoice() {
     }
 }
 
-
+/**
+ * 
+ * fonction qui vérifie qu'un exercice est unique 
+ */
 function isExist() {
 
 
@@ -55,55 +69,35 @@ function isExist() {
 
 }
 
-
-function RechercherSeanceNom() {
-
-//var xhr = new XMLHttpRequest();
-//
-//    //récupérer la valeur dans la zone de texte
-//    var recherche = encodeURIComponent(document.getElementById("rechercherSeance").value);
-//
-//    //si le textbox n'est pas vide, on recherche ce mot dans les séances
-//    if (recherche !== "") {
-//        xhr.open("GET", "ServletRechercherSeance?nomSeance=" + recherche);
-//        xhr.onload = function () {
-//            if (xhr.status === 200) {
-//
-//                //Cacher le zone de texte par défaut
-//                document.getElementById("zoneAfficheSeance").style.display = "none";
-//
-//                //récupérer la réponse de servlet
-//                var texte = xhr.responseText;
-//
-//                //s'il y a pas de réponse, on cache le zone de texte. Sinon, on affiche le nom de la séance                
-//                if (texte === "") {
-//                    document.getElementById("zoneAfficheSeance").style.display = "none";
-//                } else {
-//                    document.getElementById("zoneAfficheSeance").style.display = "block";
-//                }
-//
-//                //afficher les séances sur l'interface
-//                var elt = document.getElementById("zoneAfficheSeance");
-//                elt.innerHTML = texte;
-//
-//                
-//            }
-//        };
-//        xhr.send();
-//    } else {
-//        document.getElementById("zoneAfficheSeance").style.display = "none";
-//    }    
-
-
+/**
+ * 
+ * fonction popup qui récapitule les informations saisies 
+ */
+function popup() {
+    var zone = document.getElementById("zone").value;
+    var desc = document.getElementById("desc").value;
+    var img = document.getElementById("img").value;
+    var vid = document.getElementById("vid").value;
+    var text = "Nom exercice : " + zone;
+    if (desc != "") {
+        text += "</br> Description : " + desc + " ";
+    }
+    text += "</br><IMG style=\"max-width: 100%;\" src=" + img
+            + " border=\"0\" alt=\"Votre navigateur ne charge pas l'image.\" > ";
+    if (vid != "") {
+        text += "<iframe src=" + vid + " width=\"100%\" frameborder=\"0\" allowfullscreen></iframe>";
+    }
+    document.getElementById("popup").innerHTML = text;
+    document.getElementById("popupctrl").click();
 
 }
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    document.getElementById("btnajouter").addEventListener("click", popup);
     document.getElementById("zone").addEventListener("keyup", isExist);
     document.getElementById("catego").addEventListener("mousedown", multichoice);
     document.getElementById("object").addEventListener("mousedown", multichoice);
-    //document.getElementById("btnRecherche").addEventListener("clic",RechercherSeanceNom);
 
 });
 

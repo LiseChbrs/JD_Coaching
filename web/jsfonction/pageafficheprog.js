@@ -3,6 +3,41 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+   /**
+    * Fonction de recherce d'un programme avec filtrage
+    */
+function RechercherProgramme() {
+    
+    /**
+     * 
+     * @type Element
+     */
+    
+    var input, filter, ul, elt, a, i, txtValue;
+    
+    
+    input = document.getElementById("rechercherProg");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("listeProg");
+    elt = ul.getElementsByTagName("li");
+    
+    for (i = 0; i < elt.length; i++) {
+        a = elt[i].getElementsByTagName("button")[0];
+        txtValue = a.textContent || a.innerText;
+        
+        
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            elt[i].style.display = "";
+        } else {
+            elt[i].style.display = "none";
+        }
+    }
+}
+
+
+
+
 //Cette fonction nous permet d'afficher une séance par rapport à un programme sélectionné
 function afficherSeance() { //affichage de la seance en fonction du programme
     var id = event.target.getAttribute("name");
@@ -65,11 +100,18 @@ function afficherExercice() {//affichage des exercices d'une séance
                     for (i = 0; i < existe.length; i++) {//je rentre dans la séance
                         for (j = 0; j < existe[i].children.length; j++) {//je récupère les elements de chaque exercice
                             text1 += "<li class=\"list-group-item\">   " +
-                                    "Exercice : " + existe[i].children[j].children[1].firstChild.nodeValue + " - " + existe[i].children[j].children[2].firstChild.nodeValue
-                                    + " </br><IMG style=\"max-width: 100%;\" src=" + existe[i].children[j].children[3].firstChild.nodeValue
-                                    + " border=\"0\" alt=\"Votre navigateur ne charge pas l'image.\" > " +
-                                    "<iframe src=" + existe[i].children[j].children[4].firstChild.nodeValue + " width=\"100%\" frameborder=\"0\" allowfullscreen></iframe> " +
-                                    "</li>";
+                                    "Exercice : " + existe[i].children[j].children[1].firstChild.nodeValue  
+                                if(existe[i].children[j].children[2].firstChild.nodeValue!=="null"){
+                                    text1+=" - " + existe[i].children[j].children[2].firstChild.nodeValue
+                                }
+                                    
+                                  text1+= " </br><IMG style=\"max-width: 100%;\" src=" + existe[i].children[j].children[3].firstChild.nodeValue
+                                    + " border=\"0\" alt=\"Votre navigateur ne charge pas l'image.\" > " 
+                                if( existe[i].children[j].children[4].firstChild.nodeValue !=="null"){
+                                    text1+="<iframe src=" + existe[i].children[j].children[4].firstChild.nodeValue + " width=\"100%\" frameborder=\"0\" allowfullscreen></iframe> " 
+                                }   
+                                    
+                                    text1+="</li>";
                         }
                     }
                     text1 += "</ul>";
