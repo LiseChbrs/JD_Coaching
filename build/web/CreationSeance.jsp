@@ -49,8 +49,6 @@
     <body>
         <% session.setAttribute("listeCE", new ArrayList<SessionClassement>()); %>
 
-        <div class="brand" ><p><img src="boots/image/logojd.jpg"  alt="logojd" width="150" height="150"  ></p>JD Coaching</div>
-        <div class="address-bar">Coach sportif diplômé</div>
 
         <!-- Navigation -->
         <nav class="navbar navbar-default" role="navigation">
@@ -148,7 +146,7 @@
 
                     <input type="text" id="rechercherSeance" onkeyup="RechercherSeance()" placeholder="Rechercher des séances..." >
                     <ul id="listeSeance">
-                        <% List<Seance> lstSeance = (List<Seance>) request.getAttribute("listeSeance");
+                        <%List<Seance> lstSeance = (List<Seance>) request.getAttribute("listeSeance");
 
 
                             for (int i = 0; i < lstSeance.size(); i++) {
@@ -158,13 +156,13 @@
                                 out.println("<div class=\"card-header\" id=\"headingOne\">");
                                 out.println(" <li class=\"list-group-item\"><button id= " + s.getIdSeance() + " class=\"btn btn-outline-warning\" type=\"button\" "
                                         + "data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"false\" "
-                                        + "aria-controls=\"collapseOne\" >" + s.getIdSeance() + " - " + s.getNomSeance() + "</button></li>");
+                                        + "aria-controls=\"collapseOne\" > Seance " + s.getIdSeance() + " : " + s.getNomSeance() + " </button></li>");
                                 out.println("</div>");
-                                out.println("<div id=0" +s.getIdSeance() + " style =\"display: none\">");
+                                out.println("<div id=0" +s.getIdSeance() +" style =\"display: none\">");
                                 out.println("</div></div>");
                             }
 
-                        %>
+                       %>
                     </ul>
 
                 </div>

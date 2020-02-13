@@ -38,9 +38,9 @@ public class ServletAddExercice extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        try {
             Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        try {
+
             Transaction t = session.beginTransaction();
             /*----- Récupérer les éléments saisies -----*/
             String nom = request.getParameter("nom");
@@ -79,6 +79,7 @@ public class ServletAddExercice extends HttpServlet {
             System.out.println("Erreur -" + ex.getMessage());
             RequestDispatcher rd1 = request.getRequestDispatcher("erreur");
             request.setAttribute("msg", ex.getMessage());
+            session.close();
             rd1.forward(request, response);
         }
 

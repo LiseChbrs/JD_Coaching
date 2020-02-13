@@ -130,7 +130,7 @@
                                 <div>
                                 <h3>Sélectionnez vos séances</h3>
                                 <p>bilan</p>
-                                <% List<Seance> listeBilan = (List<Seance>) request.getAttribute("seancebilan");
+                      <%-- List<Seance> listeBilan = (List<Seance>) request.getAttribute("seancebilan");
                                 
                                 out.println("<select name=\"lstbilan\" >");
                                 
@@ -150,7 +150,7 @@
                                     out.println("<option value=\"" + ls.getNomSeance() + "\"></option>");
                                 }                                    
                                     
-                                %>    
+                                --%>    
                                 </div>
                                 
                            

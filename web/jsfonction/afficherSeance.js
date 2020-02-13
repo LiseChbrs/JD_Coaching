@@ -65,12 +65,19 @@ function afficherExerciceSeance() {
                     var text1 = "<ul class=\"list-group list-group-flush\">"
                     for (i = 0; i < existe.length; i++) {//je rentre dans la séance
                         for (j = 0; j < existe[i].children.length; j++) {//je récupère les elements de chaque exercice
-                            text1 += "<li class=\"list-group-item\">   " +
-                                    "Exercice : " + existe[i].children[j].children[1].firstChild.nodeValue + " - " + existe[i].children[j].children[2].firstChild.nodeValue
-                                    + " </br><IMG style=\"max-width: 100%;\" src=" + existe[i].children[j].children[3].firstChild.nodeValue
-                                    + " border=\"0\" alt=\"Votre navigateur ne charge pas l'image.\" > " +
-                                    "<iframe src=" + existe[i].children[j].children[4].firstChild.nodeValue + " width=\"100%\" frameborder=\"0\" allowfullscreen></iframe> " +
-                                    "</li>";
+                           text1 += "<li class=\"list-group-item\">   " +
+                                    "Exercice : " + existe[i].children[j].children[1].firstChild.nodeValue  
+                                if(existe[i].children[j].children[2].firstChild.nodeValue!=="null"){
+                                    text1+=" - " + existe[i].children[j].children[2].firstChild.nodeValue
+                                }
+                                    
+                                  text1+= " </br><IMG style=\"max-width: 100%;\" src=" + existe[i].children[j].children[3].firstChild.nodeValue
+                                    + " border=\"0\" alt=\"Votre navigateur ne charge pas l'image.\" > " 
+                                if( existe[i].children[j].children[4].firstChild.nodeValue !=="null"){
+                                    text1+="<iframe src=" + existe[i].children[j].children[4].firstChild.nodeValue + " width=\"100%\" frameborder=\"0\" allowfullscreen></iframe> " 
+                                }   
+                                    
+                                    text1+="</li>";
                         }
                     }
                     text1 += "</ul>";

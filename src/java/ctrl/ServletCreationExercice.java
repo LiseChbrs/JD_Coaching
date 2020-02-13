@@ -39,10 +39,16 @@ public class ServletCreationExercice extends HttpServlet {
 
         List<ObjectifExercice> objectifs = session.createCriteria(ObjectifExercice.class)
                 .list();
+        
+        List<Exercice> exercices = session.createCriteria(Exercice.class)
+        .list();
+        
+        session.close();
 
         request.setAttribute("categories", categories); // Je met mon arrayListe "list" en tant qu'attribut du reques
-
-        request.setAttribute("objectifs", objectifs); // Je met mon arrayListe "list" en tant qu'attribut du request
+        request.setAttribute("objectifs", objectifs);
+        request.setAttribute("exercices", exercices);
+        
         rd.forward(request, response); // j'envoi le request ?
 
     }

@@ -33,6 +33,12 @@ public class Seance  implements java.io.Serializable {
         this.nomSeance = nomSeance;
         this.typeSeance = typeSeance;
     }
+    
+    public Seance(String nomSeance, String typeSeance, Difficulte diff) {
+        this.nomSeance = nomSeance;
+        this.typeSeance = typeSeance;
+        this.difficulte = diff;
+    }
     public Seance(Difficulte difficulte, String nomSeance, String typeSeance, Set contenirExercices, Set categorieSeances, Set contenirSeances) {
        this.difficulte = difficulte;
        this.nomSeance = nomSeance;
@@ -100,6 +106,7 @@ public class Seance  implements java.io.Serializable {
         this.contenirSeances = contenirSeances;
     }
 
+    
     @Override
     public int hashCode() {
         int hash = 5;
