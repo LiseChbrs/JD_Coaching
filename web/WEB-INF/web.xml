@@ -76,6 +76,14 @@
         <servlet-name>ServletCreationProg</servlet-name>
         <servlet-class>ctrl.ServletCreationProg</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletSeanceBilan</servlet-name>
+        <servlet-class>ctrl.ServletSeanceBilan</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletChoixSeanceProgramme</servlet-name>
+        <servlet-class>ctrl.ServletChoixSeanceProgramme</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreationSeance</servlet-name>
         <url-pattern>/creationSeance</url-pattern>
@@ -151,6 +159,14 @@
     <servlet-mapping>
         <servlet-name>ServletCreationProg</servlet-name>
         <url-pattern>/ServletCreationProg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletSeanceBilan</servlet-name>
+        <url-pattern>/ServletSeanceBilan</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletChoixSeanceProgramme</servlet-name>
+        <url-pattern>/ServletChoixSeanceProgramme</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
