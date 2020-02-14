@@ -84,6 +84,18 @@
         <servlet-name>ServletChoixSeanceProgramme</servlet-name>
         <servlet-class>ctrl.ServletChoixSeanceProgramme</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletSeanceStandard</servlet-name>
+        <servlet-class>ctrl.ServletSeanceStandard</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletEnregistrementProgramme</servlet-name>
+        <servlet-class>ctrl.ServletEnregistrementProgramme</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletSuppressionChoixSeanceProgramme</servlet-name>
+        <servlet-class>ctrl.ServletSuppressionChoixSeanceProgramme</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreationSeance</servlet-name>
         <url-pattern>/creationSeance</url-pattern>
@@ -167,6 +179,18 @@
     <servlet-mapping>
         <servlet-name>ServletChoixSeanceProgramme</servlet-name>
         <url-pattern>/ServletChoixSeanceProgramme</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletSeanceStandard</servlet-name>
+        <url-pattern>/ServletSeanceStandard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletEnregistrementProgramme</servlet-name>
+        <url-pattern>/ServletEnregistrementProgramme</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletSuppressionChoixSeanceProgramme</servlet-name>
+        <url-pattern>/ServletSuppressionChoixSeanceProgramme</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

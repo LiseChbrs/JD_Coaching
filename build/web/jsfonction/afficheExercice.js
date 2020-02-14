@@ -202,8 +202,7 @@ function suppressionSession() {
             aleat.removeChild(zone[imgSupp - 3]);
 
             for (var i = 0; i < zone.length; i++) {
-                zone[i].id = parseInt(i + 3, 16);
-                alert("zone[i].value" + zone[i].id);
+                zone[i].id = parseInt(i + 3, 10);
             }
         }
     };

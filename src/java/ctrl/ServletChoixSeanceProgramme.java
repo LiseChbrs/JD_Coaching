@@ -51,6 +51,7 @@ public class ServletChoixSeanceProgramme extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             out.println("<?xml version=\"1.0\"?>");
             out.println("<element>");
+            out.println("<nom>"+s.getNomSeance()+"</nom>");
             out.println("<type>"+s.getTypeSeance()+"</type>");
             out.println("</element>");
         }
