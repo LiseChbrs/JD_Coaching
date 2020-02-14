@@ -76,6 +76,14 @@
         <servlet-name>ServletCreationProg</servlet-name>
         <servlet-class>ctrl.ServletCreationProg</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletSupExo</servlet-name>
+        <servlet-class>ctrl.ServletSupExo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ServletSupDefPro</servlet-name>
+        <servlet-class>ctrl.ServletSupDefPro</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreationSeance</servlet-name>
         <url-pattern>/creationSeance</url-pattern>
@@ -151,6 +159,14 @@
     <servlet-mapping>
         <servlet-name>ServletCreationProg</servlet-name>
         <url-pattern>/ServletCreationProg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletSupExo</servlet-name>
+        <url-pattern>/ServletSupExo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletSupDefPro</servlet-name>
+        <url-pattern>/ServletSupDefPro</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

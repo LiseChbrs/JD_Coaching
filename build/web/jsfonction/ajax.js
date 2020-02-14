@@ -45,7 +45,6 @@ function isExist() {
         {
             var dom = document.getElementById("resultat");
             var existe = xhr.responseXML.getElementsByTagName("element")[0].firstChild.nodeValue;
-
             if (existe === "Attention, le nom de l'exercice existe") {
                 dom.innerHTML = existe;
                 document.getElementById("btnajouter").disabled = "disabled";
@@ -83,12 +82,99 @@ function popup() {
 
 }
 
+/**
+ * 
+ * fonction popup qui donne les séances impactées par la suppression si besoin
+ */
+function popSup(id) {
+
+
+    var xhr = new XMLHttpRequest();
+
+    var url = "ServletSupExo?id=" + id;
+    xhr.open("GET", url);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    var text;
+    var elt = document.getElementById("popup2");
+    xhr.onload = function ()
+    {
+        if (xhr.status === 200) {
+
+            var existe = xhr.responseXML.getElementsByTagName("elements")[0];
+            if (existe.children[0].firstChild.nodeValue === "true") {
+                var text = "Voulez-vous supprimer l'exercice?";
+                text += "</br></br><input type=\"button\" class=\"btn btn-secondary\" id=\"popupsup\" data-dismiss=\"modal\" name=\"btnsupPro\" value=\"Supprimer\" onClick='supPro(" + id + ")' />";
+                text+="</br></br><input type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" value=\"Annuler\"/>";
+            } else {
+                if (existe.children[0].firstChild.nodeValue === "false") {
+                    var text = "Cet exercice est un &eacutechauffement ou un &eacutetirement on ne peut pas le supprimer !";
+                    text += "</br></br><input type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" value=\"Ok\"/>";
+                } else {
+
+                    var text = "<div>Attention la suppression de l'exercice impacte les s&eacuteances suivantes : </div>";
+                    for (i = 0; i < existe.children.length; i++) {//je rentre dans elements            
+                        text += existe.children[i].children[2].firstChild.nodeValue + "</br>";
+                    }
+                    text += "</br></br><input type=\"button\"  class=\"btn btn-secondary\" id=\"popupsup\" name=\"btnsupPro\" value=\"Supprimer\" data-dismiss=\"modal\" onClick='supPro(" + id + ")' />";
+
+                    text += "</br></br><input type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\" value=\"Annuler\"/>";
+                }
+            }
+            elt.innerHTML = text;
+            document.getElementById("popupsup").click();
+        }
+    };
+    xhr.send();
+}
+
+/**
+ * 
+ * fonction de suppression d'un exercice
+ */
+
+function accessCollapse() {
+    var a = document.getElementById("zone").value;
+    var b = document.getElementById("img").value;
+    var c = document.getElementById("catego").value;
+    var d = document.getElementById("object").value;
+    if (a !== "" & b !== "" & c !== "" & d !== "") {
+        document.getElementById("").disabled = false;
+    }
+}
+
+//Cette fonction permet de supprimer un exercice sélectionné
+function supPro(id) {
+
+    var xhr = new XMLHttpRequest();
+    var url = "ServletSupDefPro?id=" + id;
+
+    xhr.open("GET", url);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    var text;
+    var elt = document.getElementById("popup2");
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+
+        } else {
+            alert("ne marche pas");
+        }
+
+        window.location.href = "ServletCreationExercice";
+    };
+    xhr.send();
+}
+//fonction qui permet de se rendre dans la zone de création d'exercice
+function creerexo(url){
+    window.location=url;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("btnajouter").addEventListener("click", popup);
     document.getElementById("zone").addEventListener("keyup", isExist);
     document.getElementById("catego").addEventListener("mousedown", multichoice);
     document.getElementById("object").addEventListener("mousedown", multichoice);
+    document.getElementById("zone").addEventListener("keyup", accessCollapse);
 
 });
 

@@ -91,9 +91,10 @@ public class ServletEnregistrementSeance extends HttpServlet {
         //On finit par tout commit.
         t.commit();
         sessionHttp.removeAttribute("listeCE");
-        
-        RequestDispatcher rd = request.getRequestDispatcher("ServletCreationSeance");
-        rd.forward(request, response);
+        request.setAttribute("msg", "Exercice Ajouté!");
+            response.sendRedirect("ServletCreationSeance");
+      //  RequestDispatcher rd = request.getRequestDispatcher("ServletCreationSeance");
+      //  rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
