@@ -70,10 +70,10 @@ public class ServletAddExercice extends HttpServlet {
  /*----- Commit -----*/
             t.commit();
 
-            RequestDispatcher rd1 = request.getRequestDispatcher("ServletCreationExercice");
+         //   RequestDispatcher rd1 = request.getRequestDispatcher("ServletCreationExercice");
             request.setAttribute("msg", "Exercice Ajouté!");
-
-            rd1.forward(request, response);
+            response.sendRedirect("ServletCreationExercice");
+         //   rd1.forward(request, response);
         } catch (Exception ex) {
             System.out.println("Erreur -" + ex.getMessage());
             RequestDispatcher rd1 = request.getRequestDispatcher("erreur");

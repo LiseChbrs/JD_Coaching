@@ -3,14 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Administrateur/Documents/NetBeansProjects/JD_Coaching/web/CreationSeance.jsp</file>
-            <file>file:/C:/Users/Administrateur/Documents/NetBeansProjects/JD_Coaching/src/java/metier/CategorieSeance.hbm.xml</file>
-            <file>file:/C:/Users/Administrateur/Documents/NetBeansProjects/JD_Coaching/web/jsfonction/afficheExercice.js</file>
-            <file>file:/C:/Users/Administrateur/Documents/NetBeansProjects/JD_Coaching/src/java/metier/CategorieExercice.java</file>
-            <file>file:/C:/Users/Administrateur/Documents/NetBeansProjects/JD_Coaching/web/jsfonction/afficherSeance.js</file>
-            <file>file:/C:/Users/Administrateur/Documents/NetBeansProjects/JD_Coaching/web/jsfonction/pageafficheprog.js</file>
-            <file>file:/C:/Users/Administrateur/Documents/NetBeansProjects/JD_Coaching/src/java/metier/ContenirExercice.java</file>
-            <file>file:/C:/Users/Administrateur/Documents/NetBeansProjects/JD_Coaching/src/java/metier/ContenirExercice.hbm.xml</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/web/Exercice.jsp</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/src/java/metier/Exercice.java</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/web/jsfonction/ajax.js</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/src/java/metier/CategorieExercice.java</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/src/java/metier/CategorieSeance.java</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/web/CreationSeance.jsp</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/src/java/metier/CategorieSeance.hbm.xml</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/web/index.html</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/src/java/metier/ContenirExercice.hbm.xml</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/src/java/ctrl/ServletSupDefPro.java</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/web/jsfonction/pageafficheprog.js</file>
+            <file>file:/C:/Users/alied/Documents/JD_Coaching/web/Programme.jsp</file>
         </group>
     </open-files>
 </project-private>
