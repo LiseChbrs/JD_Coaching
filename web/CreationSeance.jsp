@@ -45,15 +45,64 @@
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
+        <style type="text/css">
+           input[type=text]{
+               border:2px solid #456879;
+               border-radius:10px;
+               height: 30px;
+               width: 200px;
+           }
+           input[type=button]{
+               border:2px solid #456879;
+               
+               border-radius:10px;
+               height: 30px;
+               width: 150px;
+           }
+            
+               input[type=submit]{
+               border:2px solid #456879;
+               
+               border-radius:10px;
+               height: 30px;
+               width: 150px;
+           }
+            
+               input[type=number]{
+               border:1px solid #456879;
+               
+               border-radius:10px;
+               height: 30px;
+               width: 190px;
+           }
+           
+            
+           div#cssexo {
+                
+           border-radius: 25px;
+           background-color:#d4dcda;
+           margin-left: auto;
+           margin-right: auto;
+           width: 50em
+           }
+            
+           div#exoselect {
+           border-radius: 25px;
+           background-color:white;
+           margin-left: auto;
+           margin-right: auto;
+           
+           }
+
+
+        </style>
+
     </head>
 
     <body>
         <% session.setAttribute("listeCE", new ArrayList<ContenirExercice>()); %>
-
-        <div class="brand" ><p><img src="boots/image/logojd.jpg"  alt="logojd" width="150" height="150"  ></p>JD Coaching</div>
-        <div class="address-bar">Coach sportif diplômé</div>
-
-
+        
+        
         <!-- Navigation -->
         <nav class="navbar navbar-default" role="navigation">
             <div class="container">
@@ -93,113 +142,166 @@
 
 
         <div class="row">
-            <div class="box">
+            <div class="box" style="height :1200px;"  >
                 <div class="col-lg-12">
-                    <hr>
-                    <h2 class="intro-text text-center">Création d'une
-                        <strong>séance</strong>
-                    </h2>
-                    <hr>
+
                     <hr class="visible-xs">
-                    <form method="GET" action="ServletEnregistrementSeance">
-                        Nom : <input type="text" name="nomSeance" id="idNomSeance"/>
-                        Séance bilan <input type="radio" style="display: inline;" value="Basic" name="typeSeance" id="typeSeanceCache" checked="true" />
-                        <input type="radio" name="typeSeance" value="Bilan" id="typeSeanceVisible" checked="false" onclick="switchRadio()"/> 
-                        Difficulté : <select name="difficulte" id="selectDifficulte">
-                            <option value="0"></option>
-                            <%  List<Difficulte> lstDifficulte = (List<Difficulte>) request.getAttribute("listeDifficulte");
-                                for (Difficulte d : lstDifficulte) {
-                                    out.println("<option value=\"" + d.getIdDifficulte() + "\">");
-                                    out.println(d.getNomDifficulte());
-                                    out.println("</option>");
-                                }
-                            %>
-                        </select>
-                        <p>Catégorie : <select name="categorie" >
-                                <%  List<CategorieSeance> lstCategorie = (List<CategorieSeance>) request.getAttribute("listeCategorie");
-                                    for (CategorieSeance cs : lstCategorie) {
-                                        out.println("<option value=\"" + cs.getIdCategorieSeance() + "\">");
-                                        out.println(cs.getNomCategorieSeance());
-                                        out.println("</option>");
-                                    }
-                                %>
-                            </select>
-                            <input type="button" value="Enregistrer la categorie"/>     </P>    
-
-                        </br>
-                        Categorie de l'exercice : <div id="listCatEx">
-                            <% List<CategorieExercice> lstCategorieExercice = (List<CategorieExercice>) request.getAttribute("listeCategorieExercice");
-                                for (CategorieExercice ce : lstCategorieExercice) {
-                                    if (ce.getNomCategorieExercice().equals("Echauffement")) {
-                                        out.print("<input type=\"button\" id=" + ce.getIdCategorieExercice() + " style=\" display:block;\" onClick='afficherExercice(this.id)' value=" + ce.getNomCategorieExercice() + ">");
-                                    } else {
-                                        out.print("<input type=\"button\" id=" + ce.getIdCategorieExercice() + " style=\" display:none;\" onClick='afficherExercice(this.id)' value=" + ce.getNomCategorieExercice() + ">");
-                                    }
-                                }
-
-                            %>
-                        </div>
-                        Exercice :</br>
-                        <span id="zoneExercice"></span>
-
-
-                        <div  id="global"><span id="gauche"></span><span id="centrale"></span><span id="droite"></span></div>
-
-                        <input type="hidden" value="" name="imgSession" id="cpt"/>
-
-
-
-                        </br><input type="submit" id="btnEnregistrerSeance" disabled="disabled" value="Enregistrer la séance"/>
-                    </form>
                     <hr class="visible-xs">
 
                     <%--
                     Rechercher une séance avec AJAX
                     --%>
                     <hr>
-                    <h2 class="intro-text text-center">Recherche d'une
-                        <strong>séance</strong>
+                    <h2 class="intro-text text-center"><strong>Recherche d'une
+                            séance</strong>
+                    </h2>
+                    <hr>
+                    <div align="center" id="btnorange">
+                    <input type="button" class="btn btn-warning" onclick="creerseance('#idNomSeance')" value="Cr&eacute;er une s&eacute;ance"/>
+                    </div> </br>
+                    <section style=width:100%;float:left;>
+                        <div align="center" id="reseance">
+                            <input type="text" id="rechercherSeance" onkeyup="RechercherSeance()" placeholder="Rechercher des séances..." >
+                        </div>
+
+                        <ul id="listeSeance">
+
+                            <div style=width:100%;>
+
+                                <%List<Seance> lstSeance = (List<Seance>) request.getAttribute("listeSeance");
+
+                                    for (int i = 0; i < lstSeance.size(); i++) {
+                                        Seance s = (Seance) lstSeance.get(i);
+
+                                        out.println("<div class=\"card\" style=\"width:22em;float:left;margin:2%;\">");
+                                        out.println("<div class=\"card-header\" id=\"headingOne\">");
+                                        out.println(" <li class=\"list-group-item\"><button style=\"width: 100%;background-color:white;\" id= " + s.getIdSeance() + " class=\"btn btn-outline-warning\" type=\"button\" "
+                                                + "data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"false\" "
+                                                + "aria-controls=\"collapseOne\" > Seance " + s.getIdSeance() + " : " + s.getNomSeance() + " </button></li>");
+                                        out.println("</div>");
+                                        out.println("<div id=0" + s.getIdSeance() + " style =\"display: none\">");
+                                        out.println("</div></div>");
+                                    }
+
+                                %>
+                            </div>
+                        </ul>
+                    </section>
+
+                    <hr class="visible-xs">
+                    <hr class="visible-xs">
+
+                    <%--
+                    Rechercher une séance avec AJAX
+                    --%>
+                    <hr>
+                    
+                    <h2 class="intro-text text-center"><strong>Création d'une
+                            séance</strong>
                     </h2>
                     <hr>
 
-                    <input type="text" id="rechercherSeance" onkeyup="RechercherSeance()" placeholder="Rechercher des séances..." >
-                    <ul id="listeSeance">
+                    <form method="GET" action="ServletEnregistrementSeance">
 
-                        <%List<Seance> lstSeance = (List<Seance>) request.getAttribute("listeSeance");
 
-                            for (int i = 0; i < lstSeance.size(); i++) {
-                                Seance s = (Seance) lstSeance.get(i);
+                        <div  id="partigauche" style="height : 150px; width :250px; margin-left: 27%; float:left;  padding-top: 25px;">
 
-                                out.println("<div class=\"card\" style=\"width: 20%;float=\"left\";\">");
-                                out.println("<div class=\"card-header\" id=\"headingOne\">");
-                                out.println(" <li class=\"list-group-item\"><button id= " + s.getIdSeance() + " class=\"btn btn-outline-warning\" type=\"button\" "
-                                        + "data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"false\" "
-                                        + "aria-controls=\"collapseOne\" > Seance " + s.getIdSeance() + " : " + s.getNomSeance() + " </button></li>");
-                                out.println("</div>");
-                                out.println("<div id=0" + s.getIdSeance() + " style =\"display: none\">");
-                                out.println("</div></div>");
-                            }
+                            Nom : <input type="text" name="nomSeance" id="idNomSeance" required /></br>
+                            <input type="radio"  value="Basic" name="typeSeance" class="1" id="typeSeanceCache" a="1" checked style="display:none;"/></br>
+                            Séance bilan : <input type="radio" name="typeSeance" value="Bilan" id="typeSeanceVisible" checked="false" class="1"/></br>
+                            <input type="hidden" id="cacher" name="" value="">
+                            Difficulté : <select name="difficulte" disabled ="true" id="selectDifficulte">
+                                <option value="0" ></option>
+                                <%  List<Difficulte> lstDifficulte = (List<Difficulte>) request.getAttribute("listeDifficulte");
+                                    for (Difficulte d : lstDifficulte) {
+                                        out.println("<option value=\"" + d.getIdDifficulte() + "\">");
+                                        out.println(d.getNomDifficulte());
+                                        out.println("</option>");
+                                    }
+                                %>
+                            </select>
 
-                        %>
+                        </div>
 
-                    </ul>
+                        <div  style="height : 150px; width :300px; float:right; margin-right: 22%; " id="partiright">
 
+                            <%  List<CategorieSeance> categories = (List<CategorieSeance>) request.getAttribute("listeCategorie");
+
+                                //creation tab
+                                out.println("<div style=\" \"><h2 class=\"intro-text\"><strong>Catégories séances :</strong></h2> ");
+
+                                out.println("<select id=\"categorie1\" name=\"categorie\" multiple required >");
+                                for (CategorieSeance cs : categories) {
+                                    out.println("<option value=" + cs.getIdCategorieSeance() + ">" + cs.getNomCategorieSeance() + "</option>");
+                                }
+                                out.println("</select>");
+                                out.println("</div >");
+                                //creation tab
+
+                            %>
+
+                        </div>
+
+                        <div align="center" id="partibas" style="  padding-top: 180px; ">
+
+                            <h3 class="intro-text text-center">
+                                <strong>Catégories d'exercices :</strong>
+                            </h3>
+
+                            <div align="center" id="listCatEx">
+
+                                <% List<CategorieExercice> lstCategorieExercice = (List<CategorieExercice>) request.getAttribute("listeCategorieExercice");
+                                    for (CategorieExercice ce : lstCategorieExercice) {
+                                        if (ce.getNomCategorieExercice().equals("Echauffement")) {
+                                            out.print("<input type=\"button\" id=" + ce.getIdCategorieExercice() + " style=\" display:block;\" onClick='afficherExercice(this.id)' value=" + ce.getNomCategorieExercice() + " name=\"buttalpha\">");
+                                        } else {
+                                            out.print("<input type=\"button\" id=" + ce.getIdCategorieExercice() + " style=\" display:none;\" onClick='afficherExercice(this.id)' value=" + ce.getNomCategorieExercice() + " name=\"buttalpha\">");
+                                        }
+                                    }
+
+                                %>
+                            </div>
+
+
+
+
+
+                            <div id="cssexo">
+                                <div id="cssexo2">
+                                    <h3 class="intro-text text-center">
+                                        <strong>Exercices disponibles :</strong>
+                                    </h3>
+                                    <div align="center" id="exodispo">
+                                        <span  id="zoneExercice"></span>
+                                    </div>
+
+                                    <div align="center" id="exoselect"> <h2 class="intro-text text-center"><strong>Exercices selectionés :</strong></h2>
+                                        <div  id="global"><span id="gauche"></span><span id="centrale"></span><span id="droite"></span></div>
+                                    </div>
+                                    <input type="hidden" value="" name="imgSession" id="cpt"/>
+
+                                </div>
+                            </div>
+                            </br><input type="submit" id="btnEnregistrerSeance" disabled="disabled" value="Enregistrer la séance"/>
+                    </form>
                 </div>
+
+
+
+
+
             </div>
         </div>
+    </div>
 
-        <!-- /.container -->
 
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <p>Copyright &copy; Your Website 2020</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- /.container -->
+
+    <div class="col-lg-12 text-center">
+        <p>Copyright &copy; Your Website 2020</p>
+    </div>
+
+
 
     <!-- jQuery -->
     <script src="boots/js/jquery.js"></script>
@@ -208,6 +310,7 @@
     <script src="boots/js/bootstrap.min.js"></script>
 
     <script type="text/JavaScript" src="jsfonction/afficheExercice.js"></script>
+
     <script type="text/JavaScript" src="jsfonction/afficherSeance.js"></script>
 
     <!-- Bootstrap Core JavaScript -->

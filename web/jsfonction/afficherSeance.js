@@ -42,7 +42,6 @@ function RechercherSeance() {
  * Fonction qui affiches les exercices d'une séances avec ses propriétés, pour un clic sur la séance 
  */
 function afficherExerciceSeance() {
-
     /**
      * 
      * @type type
@@ -67,7 +66,7 @@ function afficherExerciceSeance() {
                         for (j = 0; j < existe[i].children.length; j++) {//je récupère les elements de chaque exercice
 
                             text1 += "<li class=\"list-group-item\">   " +
-                                    "Exercice : " + existe[i].children[j].children[1].firstChild.nodeValue
+                                    "<strong>Exercice :</strong> " + existe[i].children[j].children[1].firstChild.nodeValue
                             if (existe[i].children[j].children[2].firstChild.nodeValue !== "null") {
                                 text1 += " - " + existe[i].children[j].children[2].firstChild.nodeValue
                             }
@@ -92,8 +91,101 @@ function afficherExerciceSeance() {
     };
     xhr.send();
 }
+/* fonction permettant de selectionner plusieurs choix dans une liste
+ * 
+ */
+function multichoice1() {
+    var el = event.target;
+    if (el.tagName.toLowerCase() === 'option' && el.parentNode.hasAttribute('multiple')) {
+        event.preventDefault();
+        if (el.hasAttribute('selected')) {
+
+            el.removeAttribute('selected');
+        } else {
+            el.setAttribute('selected', '');
+        }
+
+    }
+}
+
+/* fonction permettant de disable une liste si on en a pas besoin et la remettre à zéro
+ * 
+ */
+        
+function disablelist(){
+    if(document.getElementById("typeSeanceVisible").a==="1"){
+        document.getElementById("typeSeanceVisible").checked = true;
+        document.getElementById("typeSeanceVisible").a="0";
+        document.getElementById("cacher").name="difficulte";
+        document.getElementById("selectDifficulte").name="";
+document.getElementById("selectDifficulte").selectedIndex=0;        
+    }
+    else {
+        document.getElementById("typeSeanceCache").checked=true;
+
+        document.getElementById("typeSeanceVisible").a="1";
+        document.getElementById("cacher").name="";
+        document.getElementById("selectDifficulte").name="difficulte";
+
+
+    }
+    
+    if (document.getElementById("typeSeanceVisible").checked){
+        document.getElementById("selectDifficulte").disabled = true
+        
+    }else{
+        document.getElementById("selectDifficulte").disabled = false
+    }
+}
+/*
+ * fonction permettant de selectionner une image et changer son css
+ */
+
+function selection(){
+    for (i=0;i<document.getElementsByName("imgalpha").length;i++){
+        document.getElementsByName("imgalpha")[i].style="";
+
+    }
+        event.target.style="width:100px;height:100px;border:3px solid #1b7484;"
+}
+
+/* fonction permettant de selectionner un bouton
+ * 
+ */
+        
+function selectionbut(){
+    for (i=0;i<document.getElementsByName("buttalpha").length;i++){
+       slt=document.getElementsByName("buttalpha")[i].getAttribute("style")
+        if(slt.includes("block")){
+            document.getElementsByName("buttalpha")[i].setAttribute("style","");
+        }
+        
+
+    }
+        stl=event.target.getAttribute('style');
+       event.target.setAttribute("style",stl+"display:in-block;width:150px;height: 30px;border:2px solid #0fc61f;border-radius:10px;")
+}
+//fonction qui permet d'aller directement à la création d'une séance
+function creerseance(url){
+    window.location=url;
+}
+
+
+
+
+
 document.addEventListener("DOMContentLoaded", () => {
     for (i = 0; i < document.getElementsByClassName("btn btn-outline-warning").length; i++) {
         document.getElementsByClassName("btn btn-outline-warning")[i].addEventListener("click", afficherExerciceSeance);
+    }
+        document.getElementById("categorie1").addEventListener("mousedown", multichoice1);
+        
+        
+        for (i=0;i<document.getElementsByClassName("1").length;i++){
+            document.getElementsByClassName("1")[i].addEventListener("click",disablelist)
+        }
+        
+        for(i=0;i<document.getElementsByName("buttalpha").length;i++){
+        document.getElementsByName("buttalpha")[i].addEventListener("click",selectionbut)
     }
 });

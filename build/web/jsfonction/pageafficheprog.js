@@ -135,7 +135,9 @@ function afficherExercice() {//affichage des exercices d'une séance
     };
     xhr.send();
 }
+
 document.addEventListener("DOMContentLoaded", () => {
+   
     for (i = 0; i < document.getElementsByClassName("btn btn-outline-warning").length; i++) {
         document.getElementsByClassName("btn btn-outline-warning")[i].addEventListener("click", afficherSeance);
     }

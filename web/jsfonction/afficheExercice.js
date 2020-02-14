@@ -41,7 +41,7 @@ function afficherExercice(id) {
             } else {
                 var element = doc.getElementsByTagName("element");
                 if (element.length === 0) {
-                    elt.insertAdjacentHTML("beforeend", "<h1> Pas d'exercice correspondant. </h1>");
+                    elt.insertAdjacentHTML("beforeend", "<h3> Pas d'exercice correspondant. </h3>");
                 } else {
                     var id = doc.getElementsByTagName("id");
                     var name = doc.getElementsByTagName("name");
@@ -50,14 +50,16 @@ function afficherExercice(id) {
 
                     for (var i = 0; i < element.length; i++) {
                         chaine = "";
-                        chaine += "<label for=\"exo" + id[i].firstChild.nodeValue + "\"><IMG id=\"image_" + id[i].firstChild.nodeValue + "\"SRC=\"" + image[i].firstChild.nodeValue + "\" ALT=\"" + name[i].firstChild.nodeValue + "\" width=\"100\"height=\"100\" TITLE=\"" + name[i].firstChild.nodeValue + "\"></label>";
+                        chaine += "<label for=\"exo" + id[i].firstChild.nodeValue + "\"><IMG id=\"image_" + id[i].firstChild.nodeValue + "\"SRC=\"" + image[i].firstChild.nodeValue + "\" ALT=\"" + name[i].firstChild.nodeValue + "\" width=\"100\"height=\"100\" TITLE=\"" + name[i].firstChild.nodeValue + "\" name=\"imgalpha\"></label>";
                         chaine += "<input style=\"display:none;\" type=\"radio\" id=\"exo" + id[i].firstChild.nodeValue + "\" onClick=\"choixChrono()\" name=\"exercice\" value=\"" + id[i].firstChild.nodeValue + "\"/> &nbsp&nbsp&nbsp";
                         elt.insertAdjacentHTML("beforeend", chaine);
                     }
 
                     elt.insertAdjacentHTML("beforeend", "<div id=\"choix_chrono\" ></div>");
                 }
-            }
+            } for(i=0;i<document.getElementsByName("imgalpha").length;i++){
+        document.getElementsByName("imgalpha")[i].addEventListener("click",selection)
+    }
         }
     };
     xhr.send();
@@ -68,8 +70,8 @@ function afficherExercice(id) {
  */
 function choixChrono() {
     var doc = document.getElementById("choix_chrono");
-    doc.innerHTML = "<label for=\"chrono_1\"  >Chrono</label><input type=\"radio\" name=\"choix\" value=\"chrono_1\" id =\"chrono_1\">"
-            + "<label for=\"chrono_2\" >Standard</label><input type=\"radio\" name=\"choix\" value=\"chrono_2\" id =\"chrono_2\">";
+    doc.innerHTML = "<label for=\"chrono_1\"  >Chrono</label>&nbsp<input type=\"radio\" name=\"choix\" value=\"chrono_1\" id =\"chrono_1\"> &nbsp&nbsp&nbsp "
+            + "<label for=\"chrono_2\" >Standard</label>&nbsp<input type=\"radio\" name=\"choix\" value=\"chrono_2\" id =\"chrono_2\">";
     doc.insertAdjacentHTML("beforeend", "<div id=\"affiche_champs\"> </div> ");
     document.getElementById("chrono_1").addEventListener("click", choixExo1);
     document.getElementById("chrono_2").addEventListener("click", choixExo2);
@@ -203,7 +205,7 @@ function suppressionSession() {
 
             for (var i = 0; i < zone.length; i++) {
                 zone[i].id = parseInt(i + 3, 16);
-                alert("zone[i].value" + zone[i].id);
+                
             }
         }
     };
