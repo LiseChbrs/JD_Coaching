@@ -42,7 +42,6 @@ public class ServletSuppressionSession extends HttpServlet {
         int position = Integer.valueOf(request.getParameter("position"));
         listeCE.remove(position - 1);
         sessionHttp.setAttribute("listeCE", listeCE);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

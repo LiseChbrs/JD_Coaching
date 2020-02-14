@@ -27,7 +27,6 @@ public class Seance  implements java.io.Serializable {
         this.idSeance = idSeance;
         this.nomSeance = nomSeance;
     }    
-    
 	
     public Seance(String nomSeance, String typeSeance) {
         this.nomSeance = nomSeance;
@@ -39,6 +38,7 @@ public class Seance  implements java.io.Serializable {
         this.typeSeance = typeSeance;
         this.difficulte = diff;
     }
+    
     public Seance(Difficulte difficulte, String nomSeance, String typeSeance, Set contenirExercices, Set categorieSeances, Set contenirSeances) {
        this.difficulte = difficulte;
        this.nomSeance = nomSeance;
@@ -54,7 +54,12 @@ public class Seance  implements java.io.Serializable {
         this.nomSeance = nomSeance;
         this.typeSeance = typeSeance;
     }
-    
+
+    public Seance(Integer idSeance, String nomSeance, String typeSeance) {
+        this.idSeance = idSeance;
+        this.nomSeance = nomSeance;
+        this.typeSeance = typeSeance;
+    }
    
     public Integer getIdSeance() {
         return this.idSeance;

@@ -50,7 +50,7 @@ public class ServletEnregistrementSeance extends HttpServlet {
         ArrayList<ContenirExercice> listeCE = (ArrayList<ContenirExercice>) sessionHttp.getAttribute("listeCE");
         
         String nomSeance= request.getParameter("nomSeance");
-        String typeSeance = request.getParameter("typeSeance");;
+        String typeSeance = request.getParameter("typeSeance");
         String[] categorie= request.getParameterValues("categorie");
         int difficulte= Integer.valueOf(request.getParameter("difficulte"));
         

@@ -23,6 +23,12 @@ public class Programme  implements java.io.Serializable {
     public Programme(String nomProgramme) {
         this.nomProgramme = nomProgramme;
     }
+
+    public Programme(Profil profil, String nomProgramme) {
+        this.profil = profil;
+        this.nomProgramme = nomProgramme;
+    }
+    
     public Programme(Profil profil, String nomProgramme, Set contenirSeances) {
        this.profil = profil;
        this.nomProgramme = nomProgramme;

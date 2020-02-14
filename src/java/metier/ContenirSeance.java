@@ -13,6 +13,10 @@ public class ContenirSeance implements java.io.Serializable {
     public ContenirSeance() {
     }
 
+    public ContenirSeance(Seance seance) {
+        this.seance = seance;
+    }
+    
     public ContenirSeance(ContenirSeanceId id, Programme programme, Seance seance) {
         this.id = id;
         this.programme = programme;

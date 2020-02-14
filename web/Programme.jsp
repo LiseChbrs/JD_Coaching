@@ -1,3 +1,8 @@
+<%@page import="metier.ContenirSeance"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="metier.Difficulte"%>
+<%@page import="metier.CategorieSeance"%>
 <%@page import="metier.Seance"%>
 <%@page import="metier.Profil"%>
 <%@page import="metier.Programme"%>
@@ -106,89 +111,137 @@
 
                     <h2>Création de programme</h2>
 
-                    <input type="text" id="nomProg" placeholder="Rentrer un nom de programme" />       
-
-
-                    <% List<Profil> listeProfil = (List<Profil>) request.getAttribute("profil");
-
-                        out.println("<input list=\"listeProgramme\" name=\"monProg\">");
-                        out.println("<datalist id=\"listeProgramme\">");
-
-                        for (int i = 0; i < listeProfil.size(); i++) {
-                            out.println("<option value=\"" + listeProfil.get(i).getNomProfil() + "\"></option>");
-                        }
-                        out.println("</datalist>");
-
+                    <%
+                        HttpSession sessionHttp = request.getSession();
+                        ArrayList<ContenirSeance> listeCS = new ArrayList<ContenirSeance>();
+                        sessionHttp.setAttribute("listeCS", listeCS);
                     %>
-                    <div>
+
+                    <form action="ServletEnregistrementProgramme" method="GET" >
+                        <input type="text" required name="nomProg" id="nomProg" placeholder="Rentrer un nom de programme" />       
+
+
+                        <% List<Profil> listeProfil = (List<Profil>) request.getAttribute("profil");
+                            sessionHttp.setAttribute("listeProfil", listeProfil);
+                            out.println("<input list=\"listeProgramme\" name=\"monProg\" required>");
+                            out.println("<datalist id=\"listeProgramme\">");
+
+                            for (int i = 0; i < listeProfil.size(); i++) {
+                                out.println("<option value=\"" + listeProfil.get(i).getNomProfil() + "\">" + listeProfil.get(i).getNomProfil() + "</option>");
+                            }
+                            out.println("</datalist>");
+
+                        %>
 
                         <h3>Sélectionnez vos séances</h3>
-                        <p>bilan</p>
-                        <%-- List<Seance> listeBilan = (List<Seance>) request.getAttribute("seancebilan");
-                                  
-                                  out.println("<select name=\"lstbilan\" >");
-                                  
-                                  for(int i = 0; i < listeBilan.size(); i++) {
-                                      out.println("<option value=\"" + listeBilan.get(i).getNomSeance() + "\"></option>");
-                                  }
-                                  
-                                  out.println("</select>");
 
-                                %>
-                               
-                                <p>standard</p>
-                                
-                                <%
-                                List<Seance> listeStand = (List<Seance>) request.getAttribute("seancestand");
-                                for(Seance ls : listeStand) {
-                                    out.println("<option value=\"" + ls.getNomSeance() + "\"></option>");
-                                }                                    
+                        <input type="button" id="btnTypeBilan" value="Bilan" style="display: inline;" name="btnTypeProgramme" onclick="afficherSeanceBilan()"/>
 
-                        --%>    
+
+
+
+                        <input type="button" id="btnTypeStandard" value="Standard" style="display: none;" name="btnTypeProgramme" onclick="afficherSeanceStandard()"/>
+                        </br>
+
+                        <div id="champsProgrammes"></div>
+                        <input type="submit" id="btnEnregistrer" style="display:none;"value="Enregistrer le programme" /> 
+                        <div id="sessionProgrammes"></div>
+                        <input type="hidden" id="valeurCachee" value="0" />
+                    </form>
+
+                    <%--  
+                   <form method="GET" action="ServletEnregistrementSeance">
+                       Nom : <input type="text" name="nomSeance" id="idNomSeance"/>
+                       Séance bilan <input type="radio" style="display: inline;" value="Basic" name="typeSeance" id="typeSeanceCache" checked="true" />
+                       <input type="radio" name="typeSeance" value="Bilan" id="typeSeanceVisible" checked="false" onclick="switchRadio()"/> 
+                       Difficulté : <select name="difficulte" id="selectDifficulte">
+                           <option value="0"></option>
+                           <%  List<Difficulte> lstDifficulte = (List<Difficulte>) request.getAttribute("listeDifficulte");
+                               for (Difficulte d : lstDifficulte) {
+                                   out.println("<option value=\"" + d.getIdDifficulte() + "\">");
+                                   out.println(d.getNomDifficulte());
+                                   out.println("</option>");
+                               }
+                           %>
+                       </select>
+                       <p>Catégorie : <select name="categorie" >
+                               <%  List<CategorieSeance> lstCategorie = (List<CategorieSeance>) request.getAttribute("listeCategorie");
+                                   for (CategorieSeance cs : lstCategorie) {
+                                       out.println("<option value=\"" + cs.getIdCategorieSeance() + "\">");
+                                       out.println(cs.getNomCategorieSeance());
+                                       out.println("</option>");
+                                   }
+                               %>
+                           </select>
+                           <input type="button" value="Enregistrer la categorie"/>     </P>    
+
+                        </br>
+                        Categorie de l'exercice : <div id="listCatEx">
+                            <% List<CategorieExercice> lstCategorieExercice = (List<CategorieExercice>) request.getAttribute("listeCategorieExercice");
+                                for (CategorieExercice ce : lstCategorieExercice) {
+                                    if (ce.getNomCategorieExercice().equals("Echauffement")) {
+                                        out.print("<input type=\"button\" id=" + ce.getIdCategorieExercice() + " style=\" display:block;\" onClick='afficherExercice(this.id)' value=" + ce.getNomCategorieExercice() + ">");
+                                    } else {
+                                        out.print("<input type=\"button\" id=" + ce.getIdCategorieExercice() + " style=\" display:none;\" onClick='afficherExercice(this.id)' value=" + ce.getNomCategorieExercice() + ">");
+                                    }
+                                }
+
+                            %>
+                        </div>
+                        Exercice :</br>
+                        <span id="zoneExercice"></span>
+
+
+                        <div  id="global"><span id="gauche"></span><span id="centrale"></span><span id="droite"></span></div>
+
+                        <input type="hidden" value="" name="imgSession" id="cpt"/>
+
+
+
+                        </br><input type="submit" id="btnEnregistrerSeance" disabled="disabled" value="Enregistrer la séance"/>
+                    </form>
                     </div>
-
+                    --%>
 
 
                     <!-- /.container -->
 
-                    <p>standard</p> 
                 </div>
             </div>
-        </div>
-        <!-- /.footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <p>Copyright &copy; Your Website 2020</p>
+            <!-- /.footer -->
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <p>Copyright &copy; Your Website 2020</p>
+                        </div>
                     </div>
+
+
                 </div>
 
 
+
+            </footer>
+
+            <div class="col-lg-12 text-center">
+                <p>Copyright &copy; Your Website 2020</p>
             </div>
 
 
+            <!-- jQuery -->
+            <script src="boots/js/jquery.js"></script>
+            <script src="boots/js/bootstrap.js"></script>
 
-        </footer>
-
-        <div class="col-lg-12 text-center">
-            <p>Copyright &copy; Your Website 2020</p>
-        </div>
-
-
-        <!-- jQuery -->
-        <script src="boots/js/jquery.js"></script>
-        <script src="boots/js/bootstrap.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="boots/js/bootstrap.min.js"></script>
+            <!-- Bootstrap Core JavaScript -->
+            <script src="boots/js/bootstrap.min.js"></script>
 
 
-        <style type="text/css">
+            <style type="text/css">
 
-            .button {border-radius: 2px;
-                     background-color: #555555;
-            }
-        </style>
-        <script type="text/JavaScript" src="jsfonction/pageafficheprog.js"></script>
+                .button {border-radius: 2px;
+                         background-color: #555555;
+                }
+            </style>
+            <script type="text/JavaScript" src="jsfonction/pageafficheprog.js"></script>
 </html>
